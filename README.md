@@ -1,71 +1,189 @@
-# Getting Started with Create React App
+![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Individual Project - Henry Food
 
-## Available Scripts
+<p align="right">
+  <img height="200" src="./cooking.png" />
+</p>
 
-In the project directory, you can run:
+## Objetivos del Proyecto
 
-### `npm start`
+- Construir una App utlizando React, Redux, Node y Sequelize.
+- Afirmar y conectar los conceptos aprendidos en la carrera.
+- Aprender mejores prácticas.
+- Aprender y practicar el workflow de GIT.
+- Usar y practicar testing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Horarios y Fechas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+El proyecto tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
 
-### `npm test`
+## Comenzando
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ 1. Forkear el repositorio para tener una copia del mismo en sus cuentas
+ 2. Clonar el repositorio en sus computadoras para comenzar a trabajar
 
-### `npm run build`
+Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+__IMPORTANTE:__ Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Actualmente las versiónes necesarias son:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- __Node__: 12.18.3 o mayor
+- __NPM__: 6.14.16 o mayor
 
-### `npm run eject`
+Para verificar que versión tienen instalada:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+node -v
+npm -v
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+__ACLARACIÓN:__ Las dependencias actuales se encuentran en las versiones que venimos trabajando durante el bootcamp.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Versiones:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- __react__: 17.0.1
+- __react-dom__: 17.0.1
+- __react-router-dom__: 5.2.0
+- __redux__: 4.0.5
+- __react-redux__: 7.2.3
 
-## Learn More
+Está permitido, __bajo su responsabilidad__, actualizar las dependencias a versiones más actuales.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> __IMPORTANTE:__ Versiones mas actuales podrían presentar configuraciones diferentes respecto a las versiones en las que venimos trabajando durante el bootcamp.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## BoilerPlate
 
-### Code Splitting
+El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
-### Analyzing the Bundle Size
+```env
+DB_USER=usuariodepostgres
+DB_PASSWORD=passwordDePostgres
+DB_HOST=localhost
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
 
-### Making a Progressive Web App
+Adicionalmente será necesario que creen desde psql una base de datos llamada `food`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+El contenido de `client` fue creado usando: Create React App.
 
-### Advanced Configuration
+## Enunciado
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+La idea general es crear una aplicación en la cual se puedan ver distintas recetas de comida junto con información relevante de las mismas utilizando la api externa [spoonacular](https://spoonacular.com/food-api) y a partir de ella poder, entre otras cosas:
 
-### Deployment
+- Buscar recetas
+- Filtrarlos / Ordenarlos
+- Crear nuevas recetas propias
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+__IMPORTANTE__: Para poder utilizar esta API externa es necesario crearse una cuenta para obtener una API Key que luego debera ser incluida en todos los request que hagamos a spoonacular simplemente agregando `?apiKey={YOUR_API_KEY}` al final de cada endpoint. Agregar la clave en el archivo `.env` para que la misma no se suba al repositorio por cuestiones de seguridad y utilizarla desde allí. Por otro lado tienen un límite de requests por día por lo que usenlos con cuidado!
 
-### `npm run build` fails to minify
+__IMPORTANTE__: Para las funcionalidades de filtrado y ordenamiento NO pueden utilizar los endpoints de la API externa que ya devuelven los resultados filtrados u ordenados sino que deben realizarlo ustedes mismos. En particular alguno de los ordenamientos o filtrados debe si o si realizarse desde el frontend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# PF-henry-grupo18
+### Únicos Endpoints/Flags que pueden utilizar
+
+- GET <https://api.spoonacular.com/recipes/complexSearch>
+  - Para obtener mayor información sobre las recetas, como por ejemplo el tipo de dieta deben agregar el flag `&addRecipeInformation=true` a este endpoint
+  - Para los tipos de dieta deben tener en cuenta las propiedades vegetarian, vegan, glutenFree por un lado y también analizar las que se incluyan dentro de la propiedad `diets`
+- GET <https://api.spoonacular.com/recipes/{id}/information>
+
+### Requerimientos mínimos
+
+A continuación se detallaran los requerimientos mínimos para la aprobación del proyecto individial. Aquellos que deseen agregar más funcionalidades podrán hacerlo. En cuanto al diseño visual no va a haber wireframes ni prototipos prefijados sino que tendrán libertad de hacerlo a su gusto pero tienen que aplicar los conocimientos de estilos vistos en el curso para que quede agradable a la vista.
+
+__IMPORTANTE__: No se permitirá utilizar librerías externas para aplicar estilos a la aplicación. Tendrán que utilizar CSS con algunas de las opciones que vimos en dicha clase (CSS puro, CSS Modules o Styled Components)
+
+#### Tecnologías necesarias
+
+- [ ] React
+- [ ] Redux
+- [ ] Express
+- [ ] Sequelize - Postgres
+
+## Frontend
+
+Se debe desarrollar una aplicación de React/Redux que contenga las siguientes pantallas/rutas.
+
+__Pagina inicial__: deben armar una landing page con
+
+- [ ] Alguna imagen de fondo representativa al proyecto
+- [ ] Botón para ingresar al home (`Ruta principal`)
+
+__Ruta principal__: debe contener
+
+- [ ] Input de búsqueda para encontrar recetas por nombre
+- [ ] Área donde se verá el listado de recetas. Deberá mostrar su:
+  - Imagen
+  - Nombre
+  - Tipo de dieta (vegetariano, vegano, apto celíaco, etc)
+- [ ] Botones/Opciones para filtrar por por tipo de dieta
+- [ ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente las recetas por orden alfabético y por health score (nivel de comida saludable).
+- [ ] Paginado para ir buscando y mostrando las siguientes recetas, 9 recetas por pagina, mostrando las primeros 9 en la primer pagina.
+
+__IMPORTANTE__: Dentro de la Ruta Principal se deben mostrar tanto las recetas traidas desde la API como así también las de la base de datos. Debido a que en la API existen alrededor de 5 mil recetas, por cuestiones de performance pueden tomar la simplificación de obtener y paginar las primeras 100.
+
+__Ruta de detalle de receta__: debe contener
+
+- [ ] Los campos mostrados en la ruta principal para cada receta (imagen, nombre, tipo de plato y tipo de dieta)
+- [ ] Resumen del plato
+- [ ] Nivel de "comida saludable" (health score)
+- [ ] Paso a paso
+
+__Ruta de creación de recetas__: debe contener
+
+- [ ] Un formulario __controlado con JavaScript__ con los siguientes campos:
+  - Nombre
+  - Resumen del plato
+  - Nivel de "comida saludable" (health score)
+  - Paso a paso
+- [ ] Posibilidad de seleccionar/agregar uno o más tipos de dietas
+- [ ] Botón/Opción para crear una nueva receta
+
+> Es requisito que el formulario de creación esté validado con JavaScript y no sólo con validaciones HTML. Pueden agregar las validaciones que consideren. Por ejemplo: Que el nombre de la receta no pueda contener símbolos, que el health score no pueda exceder determinado valor, etc.
+
+## Base de datos
+
+El modelo de la base de datos deberá tener las siguientes entidades (Aquellas propiedades marcadas con asterisco deben ser obligatorias):
+
+- [ ] Receta con las siguientes propiedades:
+  - ID: *
+  - Nombre *
+  - Resumen del plato *
+  - Nivel de "comida saludable" (health score)
+  - Paso a paso
+- [ ] Tipo de dieta con las siguientes propiedades:
+  - ID
+  - Nombre
+
+La relación entre ambas entidades debe ser de muchos a muchos ya que una receta puede ser parte de varios tipos de dieta en simultaneo y, a su vez, un tipo de dieta puede contener múltiples recetas distintas. Un ejemplo tomado de la API sería el `Strawberry Mango Green Tea Limeade` que es vegetariano, vegano y apto para celíacos, todo al mismo tiempo. Pero a su vez existen otras recetas para vegetarianos.
+
+__IMPORTANTE__: Pensar como modelar los IDs de las recetas en la base de datos. Existen distintas formas correctas de hacerlo pero tener en cuenta que cuando hagamos click en alguna receta, esta puede provenir de la API o de la Base de Datos por lo que cuando muestre su detalle no debería haber ambigüedad en cual se debería mostrar. Por ejemplo si en la API la receta `Strawberry Mango Green Tea Limeade` tiene id = 1 y en nuestra base de datos creamos una nueva receta `Medialunas de Manteca` con id = 1, ver la forma de diferenciarlas cuando querramos acceder al detalle de la misma.
+
+## Backend
+
+Se debe desarrollar un servidor en Node/Express con las siguientes rutas:
+
+__IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y paginados brindados por la API externa, todas estas funcionalidades tienen que implementarlas ustedes.
+
+- [ ] __GET /recipes?name="..."__:
+  - Obtener un listado de las recetas que contengan la palabra ingresada como query parameter
+  - Si no existe ninguna receta mostrar un mensaje adecuado
+- [ ] __GET /recipes/{idReceta}__:
+  - Obtener el detalle de una receta en particular
+  - Debe traer solo los datos pedidos en la ruta de detalle de receta
+  - Incluir los tipos de dieta asociados
+- [ ] __POST /recipes__:
+  - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de recetas por body
+  - Crea una receta en la base de datos relacionada con sus tipos de dietas.
+- [ ] __GET /diets__:
+  - Obtener todos los tipos de dieta posibles
+  - En una primera instancia, cuando no exista ninguno, deberán precargar la base de datos con los tipos de datos indicados por spoonacular [acá](https://spoonacular.com/food-api/docs#Diets)
+
+## Testing
+
+- [ ] Al menos tener un componente del frontend con sus tests respectivos
+- [ ] Al menos tener una ruta del backend con sus tests respectivos
+- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
