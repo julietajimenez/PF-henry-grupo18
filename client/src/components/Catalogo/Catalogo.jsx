@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllProducts } from "../../redux/actions/index.js"
+import { getAllProducts } from "../../redux/actions/ProductsActions.js"
 import Pager from '../Paginado/Pager.jsx'
 import Card from '../Cards/Cards.jsx'
 import { Link } from "react-router-dom";
+import SearchBar from '../Searchbar/Searchbar.jsx'
 
 
 
 function Catalogo() {
 
-    const productos = useSelector((state) => state.products.allProducts)
-    console.log(productos)
+    const productos = useSelector((state) => state.products.products)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getAllProducts())
@@ -33,6 +33,8 @@ function Catalogo() {
                 itemsPerPage={videosPerPage}
                 totalItems={productos.length}
             />
+            <SearchBar />
+
             {currentProducts &&
                 currentProducts
                     .sort((a, b) => {
@@ -41,8 +43,10 @@ function Catalogo() {
                         return aDate - bDate;
                     })
                     .map((video) => {
+                        { var categoria = video.categories ? categoria = video.categories.map((e) => e.name) : null }
                         return (
                             <>
+
                                 <Link className="c__fav-container" key={video.id} to={`/products/${video.id}`}>
                                     <Card
                                         id={video.id}
@@ -50,6 +54,7 @@ function Catalogo() {
                                         image={video.image}
                                         price={video.price}
                                         category={video.category}
+                                        categories={categoria}
                                     />
                                 </Link>
                                 <div className="c__button">
@@ -57,6 +62,7 @@ function Catalogo() {
                             </>
                         );
                     })}
+
         </>
     )
 }

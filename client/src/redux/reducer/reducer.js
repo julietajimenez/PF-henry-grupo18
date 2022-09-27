@@ -11,6 +11,12 @@ export function products(state = initialState, action) {
         products: action.payload,
         allProducts: action.payload,
       };
+
+    case "GET_PRODUCTS_BY_NAME":
+      return{
+        ...state,
+        products: action.payload
+      }
     default:
       return state;
   }
