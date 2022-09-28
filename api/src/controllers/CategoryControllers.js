@@ -1,8 +1,8 @@
 const  axios  = require('axios')
-const {Category } = require('../db.js')
+const {Category, Products } = require('../db.js')
 
 const getAllCategory = async (req, res, next)=> {
-    try {
+/*     try {
         let response = await axios.get('https://api.escuelajs.co/api/v1/categories')
         response = await response.data.map(el => {
             const obj = {
@@ -15,6 +15,14 @@ const getAllCategory = async (req, res, next)=> {
         if (!categories.length) await Category.bulkCreate(response)
         const categoriesDB = await Category.findAll()
         res.json(categoriesDB)
+    } catch (error) {
+        next(error)
+    } */
+    try {
+        const products = await Products.findAll()
+        const categorys= products.map(e=> e.category)
+        const set = [...new Set(categorys)]
+        res.json(set)
     } catch (error) {
         next(error)
     }

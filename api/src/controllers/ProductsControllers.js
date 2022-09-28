@@ -81,12 +81,12 @@ const postProducts = async (req, res, next) => {
   try {
     const obj = { name, brand, price, description, category, image, stock };
     const newProduct = await Products.create(obj);
-    const categoriesProduct = await Category.findAll({
+/*     const categoriesProduct = await Category.findAll({
       where: {
         name: categories,
       },
     });
-    await newProduct.addCategories(categoriesProduct);
+    await newProduct.addCategories(categoriesProduct); */
     console.log(newProduct.__proto__);
     res.json(newProduct);
   } catch (error) {
@@ -114,7 +114,7 @@ const putProducts = async (req, res, next) => {
   const { id } = req.params;
   const { name, brand, price, description, category, image, stock } = req.body;
   try {
-    const obj = { id, name, price, description };
+    const obj = { id, name, brand, price, description, category, image, stock };
     const productUpdate = await Products.update(obj, {
       where: {
         id: id,
