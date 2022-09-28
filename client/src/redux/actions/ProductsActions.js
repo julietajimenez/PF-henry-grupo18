@@ -44,3 +44,23 @@ export function postProducts(payload) {
     return json;
   };
 }
+
+export function productById(id){
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        `http://localhost:3001/products/byId/${id}`
+      );
+        return dispatch({
+          type: "GET_PRODUCTS_BY_ID",
+          payload: json.data, 
+        });
+    } catch (error) {}
+  };
+}
+
+export const removeDetail = () => {
+  return {
+      type: 'REMOVE_DETAIL'
+  }
+}

@@ -1,5 +1,6 @@
 const initialState = {
     categorys: [],
+    allCategorys: []
 }
 
 
@@ -9,8 +10,9 @@ export function categorys(state = initialState, action) {
         return {
           ...state,
           categorys: action.payload,
+          allCategorys: action.payload
         };
-  
+
       default: 
         return {...state}
     }

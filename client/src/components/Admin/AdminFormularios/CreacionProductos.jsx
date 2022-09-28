@@ -12,6 +12,7 @@ function CreacionProductos() {
         name: '',
         price: '', 
         description: '',
+        stock: '',
         categories: []
     })
 useEffect(()=>{
@@ -39,6 +40,7 @@ function handleSubmit (e){
         name: '',
         price: '',
         description: '',
+        stock: '',
         categories: []
       });
 }
@@ -56,6 +58,10 @@ function handleSubmit (e){
             <div>
                 <label>Descripción: </label>
                 <input type='text' name='description' value={input.description} onChange={handleChange} />
+            </div> 
+            <div>
+                <label>Stock: </label>
+                <input type='number' name='stock' value={input.stock} onChange={handleChange} />
             </div> 
              <div>
                 <select onChange={(e)=>handleSelect(e)}>

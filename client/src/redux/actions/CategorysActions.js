@@ -33,3 +33,10 @@ export function createCategory(payload) {
     return json;
   };
 }
+
+export function filterByCategory(payload){
+  return {
+    type: 'FILTER_BY_CATEGORY',
+    payload
+  }
+}

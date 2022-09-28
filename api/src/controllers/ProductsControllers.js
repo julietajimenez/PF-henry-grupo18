@@ -38,9 +38,9 @@ const getProductById = async (req, res, next) => {
 };
 
 const postProducts = async (req, res, next) => {
-  const { name, price, description, categories } = req.body;
+  const { name, price, description, stock, categories } = req.body;
   try {
-    const obj = { name, price, description};
+    const obj = { name, price, description, stock};
     const newProduct = await Products.create(obj);
      const categoriesProduct = await Category.findAll({
       where: {
@@ -73,9 +73,9 @@ const getProductByName = async (req, res, next) => {
 
 const putProducts = async (req, res, next) => {
   const { id } = req.params;
-  const { name, price, description } = req.body;
+  const { name, price, description, stock } = req.body;
   try {
-    const obj = { id, name, price, description };
+    const obj = { id, name, price, description, stock };
     const productUpdate = await Products.update(obj, {
       where: {
         id: id,
