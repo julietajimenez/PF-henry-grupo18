@@ -12,13 +12,20 @@ const getAllUsers = async (req, res, next )=> {
 const postUsers = async (req, res, next )=> {
     const {name, email, avatar, password} = req.body
     try {
-        const obj = {name, email, avatar, password}
-        const newUser = await Users.create(obj)   
-        res.json(newUser)     
+        const getAll = await Users.findAll()
+        const getEmail = getAll.map(e=>e.email)
+        if(!getEmail.find(e => e === email)){
+            const obj = {name, email, avatar, password}
+            const newUser = await Users.create(obj)   
+            res.json(newUser)     
+        } else {
+            return res.json({ message: "Usuario ya existente" });
+        }
     } catch (error) {
         next(error)
     }
 } 
+
 
 const updateUser = async (req, res, next) => {
     const {id} = req.params

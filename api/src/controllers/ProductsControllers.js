@@ -42,13 +42,13 @@ const postProducts = async (req, res, next) => {
   try {
     const obj = { name, price, description};
     const newProduct = await Products.create(obj);
-    const categoriesProduct = await Category.findAll({
+     const categoriesProduct = await Category.findAll({
       where: {
         name: categories,
       },
     });
     await newProduct.addCategories(categoriesProduct)
-    console.log(newProduct.__proto__)
+    console.log(newProduct.__proto__) 
     res.json(newProduct);
   } catch (error) {
     next(error);
