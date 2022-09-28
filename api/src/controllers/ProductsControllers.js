@@ -77,30 +77,17 @@ const getProductById = async (req, res, next) => {
 };
 
 const postProducts = async (req, res, next) => {
-<<<<<<< HEAD
   const { name, brand, price, description, category, image, stock } = req.body;
   try {
     const obj = { name, brand, price, description, category, image, stock };
     const newProduct = await Products.create(obj);
 /*     const categoriesProduct = await Category.findAll({
-=======
-  const { name, price, description, stock, categories } = req.body;
-  try {
-    const obj = { name, price, description, stock};
-    const newProduct = await Products.create(obj);
-     const categoriesProduct = await Category.findAll({
->>>>>>> formularios
       where: {
         name: categories,
       },
     });
-<<<<<<< HEAD
     await newProduct.addCategories(categoriesProduct); */
     console.log(newProduct.__proto__);
-=======
-    await newProduct.addCategories(categoriesProduct)
-    console.log(newProduct.__proto__) 
->>>>>>> formularios
     res.json(newProduct);
   } catch (error) {
     next(error);
@@ -125,15 +112,9 @@ const getProductByName = async (req, res, next) => {
 
 const putProducts = async (req, res, next) => {
   const { id } = req.params;
-<<<<<<< HEAD
   const { name, brand, price, description, category, image, stock } = req.body;
   try {
     const obj = { id, name, brand, price, description, category, image, stock };
-=======
-  const { name, price, description, stock } = req.body;
-  try {
-    const obj = { id, name, price, description, stock };
->>>>>>> formularios
     const productUpdate = await Products.update(obj, {
       where: {
         id: id,
