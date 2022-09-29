@@ -8,8 +8,9 @@ import SearchBar from '../Searchbar/Searchbar.jsx'
 
 
 
-function Catalogo() {
+function Catalogo(props) {
 
+    const {onAddCarrito} = props
     const productos = useSelector((state) => state.products.products)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -34,7 +35,7 @@ function Catalogo() {
                 totalItems={productos.length}
             />
             <SearchBar />
-
+            <Link to={"/carrito"}>carrito</Link>
             {currentProducts &&
                 currentProducts
                     .sort((a, b) => {
@@ -47,7 +48,7 @@ function Catalogo() {
                         return (
                             <>
 
-                                <Link className="c__fav-container" key={video.id} to={`/products/${video.id}`}>
+                               
                                     <Card
                                         id={video.id}
                                         name={video.name}
@@ -55,8 +56,9 @@ function Catalogo() {
                                         price={video.price}
                                         category={video.category}
                                         categories={categoria}
+                                        onAddCarrito={onAddCarrito}
                                     />
-                                </Link>
+                 
                                 <div className="c__button">
                                 </div>
                             </>
