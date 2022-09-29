@@ -29,23 +29,14 @@ export function products(state = initialState, action) {
           ...state,
           detail: {}
       }
-/*        case 'FILTER_BY_CATEGORY':
+        case 'FILTER_BY_CATEGORY':
         const allProd = state.allProducts
         const filtered = allProd.filter(e=> [e.category].includes(action.payload))
-        const filteredDB= allProd.filter(e => {
-          for(var i =0; i < e.categories?.length; i++){
-            if(e.categories[i].name.includes(action.payload)){
-              return true
-            }
-          }
-          return false 
-        })
-
-        const concateFilter = filtered.concat(filteredDB)  
         return {
           ...state,
-          allProducts: action.payload === 'all' ? state.categorys : concateFilter
-        }   */
+          products: action.payload === 'all' ? state.products : filtered
+        }  
+        
     default:
       return state;
   }

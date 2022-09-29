@@ -64,3 +64,11 @@ export const removeDetail = () => {
       type: 'REMOVE_DETAIL'
   }
 }
+
+export function updateProducts(id,payload) {
+  return async function () {
+    var json = await axios.put(`http://localhost:3001/products/update/${id}`, payload);
+    console.log(payload);
+    return json;
+  };
+}

@@ -5,7 +5,8 @@ import Pager from '../Paginado/Pager.jsx'
 import Card from '../Cards/Cards.jsx'
 import { Link } from "react-router-dom";
 import SearchBar from '../Searchbar/Searchbar.jsx'
-//import CategoryFilter from '../Filter/CategoryFilter.jsx'
+import CategoryFilter from '../Filter/CategoryFilter.jsx'
+
 
 
 function Catalogo() {
@@ -34,9 +35,9 @@ function Catalogo() {
                 totalItems={productos.length}
             />
             <SearchBar />
-{/*             <CategoryFilter
+             <CategoryFilter
             setCurrentPage= {setCurrentPage}
-            /> */}
+            /> 
             {currentProducts &&
                 currentProducts
                     .sort((a, b) => {
@@ -56,7 +57,7 @@ function Catalogo() {
                                         image={video.image}
                                         price={video.price}
                                         category={video.category}
-                                        categories={categoria}
+                                        stock={video.stock}
                                     />
                                 </Link>
                                 <div className="c__button">

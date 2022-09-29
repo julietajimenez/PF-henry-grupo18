@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Cards.module.css"
 
-const Cards = ({ id, name, price, category, image, categories }) => {
+const Cards = ({ id, name, price, category, image, stock }) => {
 
 
 
@@ -10,9 +10,10 @@ const Cards = ({ id, name, price, category, image, categories }) => {
             <img style={{ maxHeight: "200px", width: "320px", borderTopLeftRadius: "10px", borderTopRightRadius: "10px" }} src={image} alt="nohayimagen" />
             <p style={{}}>{name}</p>
             <span>${price} USD</span>
-            <p>{categories}</p>
             <p>{category}</p>
-
+            {
+                stock < 1 ? <span>Sin stock</span> : null
+            }
 
         </div>
 

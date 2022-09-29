@@ -9,14 +9,14 @@ export default function Detail (){
     const dispatch= useDispatch()
     const navigate = useNavigate()
     const product = useSelector(state=> state.products.detail)
-console.log(product);
+//console.log(product);
     useEffect(()=>{
         dispatch(productById(id))
         return ()=> {
             dispatch(removeDetail())
         }
     }, [id])
-console.log(product);
+
     return (
         product.name? 
         <div>
@@ -24,10 +24,11 @@ console.log(product);
             <img src={product.image}/>
             <h4>{product.price}</h4>
             <h4>{product.description}</h4>
+            <h4>{product.rating}</h4>
             {
-                product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null
+                product.stock === 0 ? <h4>Sin stock</h4> : product.stock === 1 ? <h4>¡Último producto disponible!</h4> : null
             }
-            <button onClick={()=>navigate( '/catalogo')}>Home</button> 
+            <button onClick={()=>navigate(-1)}>Home</button> 
         </div> :
         <h1>CARGANDO...</h1>
     )

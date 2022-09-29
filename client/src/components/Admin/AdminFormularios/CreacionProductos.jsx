@@ -10,10 +10,12 @@ function CreacionProductos() {
     const categories = useSelector(state=> state.categorys.categorys)
     const [input, setInput] = useState({
         name: '',
+        marca: '',
         price: '', 
         description: '',
         stock: '',
-        categories: []
+        image: '',
+        category: ''
     })
 useEffect(()=>{
     dispatch(getAllCategorys())
@@ -28,7 +30,7 @@ function handleChange (e){
 function handleSelect(e){
     setInput({
         ...input,
-        categories: [...new Set([...input.categories, e.target.value])]
+        category: [...new Set([...input.category, e.target.value])]
     })
 }
 
@@ -38,10 +40,12 @@ function handleSubmit (e){
     alert('creado con exito')
     setInput({
         name: '',
+        marca: '',
         price: '',
         description: '',
         stock: '',
-        categories: []
+        image: '',
+        category: ''
       });
 }
   return (
@@ -52,23 +56,31 @@ function handleSubmit (e){
                 <input type='text' name='name' value={input.name} onChange={handleChange} />
             </div> 
             <div>
+                <label>Marca: </label>
+                <input type='text' name='marca' value={input.marca} onChange={handleChange} />
+            </div> 
+            <div>
                 <label>Precio: </label>
                 <input type='text' name='price' value={input.price} onChange={handleChange} />
             </div> 
             <div>
-                <label>Descripción: </label>
-                <input type='text' name='description' value={input.description} onChange={handleChange} />
+                <label>Imagen: </label>
+                <input type='text' name='image' value={input.image} onChange={handleChange} />
             </div> 
             <div>
                 <label>Stock: </label>
                 <input type='number' name='stock' value={input.stock} onChange={handleChange} />
+            </div> 
+            <div>
+                <label>Descripción: </label>
+                <textarea type='text' name='description' value={input.description} onChange={handleChange}></textarea>
             </div> 
              <div>
                 <select onChange={(e)=>handleSelect(e)}>
                     {
                         categories && categories.map(e => {
                             return(
-                                <option value={e.name}>{e.name}</option>
+                                <option value={e}>{e}</option>
                             )
                         })
                     }

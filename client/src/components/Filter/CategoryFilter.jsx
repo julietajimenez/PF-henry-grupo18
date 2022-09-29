@@ -10,7 +10,7 @@ export default function CategoryFilter (props){
      useEffect(()=>{
             dispatch(getAllCategorys())
     }, []) 
-    
+
     function handleSelect (e){
         e.preventDefault()
         dispatch(filterByCategory(e.target.value))
@@ -19,11 +19,11 @@ export default function CategoryFilter (props){
     return (
         <>
             <select onClick={(e)=>handleSelect(e)}>
-                <option value={'all'}>Todas las categorias</option>
+                <option value={'all'}>Todas las categorias</option> 
                 {
                     categorys?.map(e => {
                         return(
-                                <option value={e.name} key={e.id}>{e.name}</option>
+                                <option value={e} key={e}>{e}</option>
                         )
                     })
                 }

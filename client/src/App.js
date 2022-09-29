@@ -7,6 +7,9 @@ import CreacionProductos from "./components/Admin/AdminFormularios/CreacionProdu
 import UpdateUsuarios from "./components/Admin/AdminFormularios/UpdateUsuarios";
 import UpdateUsers from "./components/Admin/AdminFormularios/UpdateUsers";
 import Detail from "./components/Details/Detail";
+import SearchToModify from "./components/Admin/AdminFormularios/SearchToModify";
+import UpdateProducts from "./components/Admin/AdminFormularios/UpdateProducts";
+
 
 function App() {
   return (
@@ -19,6 +22,10 @@ function App() {
         <Route path="/update/:id" element={<UpdateUsuarios />} />
         <Route path="/update" element= {<UpdateUsers/>}/>
         <Route path="/products/:id" element= {<Detail/>}/>
+        <Route path="/products/update/:id" element= {<UpdateProducts />}/>
+        <Route path="/products/update/" element= {<SearchToModify/>}/>
+
+
 
 
         

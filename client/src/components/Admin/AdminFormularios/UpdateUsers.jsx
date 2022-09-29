@@ -13,7 +13,7 @@ export default function UpdateUsers (){
     }, [])
 
     return (
-        <div> hola
+        <div> 
              {
                 users && users.map(e => {
                     return(
