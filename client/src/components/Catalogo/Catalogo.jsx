@@ -5,7 +5,7 @@ import Pager from '../Paginado/Pager.jsx'
 import Card from '../Cards/Cards.jsx'
 import { Link } from "react-router-dom";
 import SearchBar from '../Searchbar/Searchbar.jsx'
-
+//import CategoryFilter from '../Filter/CategoryFilter.jsx'
 
 
 function Catalogo(props) {
@@ -36,6 +36,9 @@ function Catalogo(props) {
             />
             <SearchBar />
             <Link to={"/carrito"}>carrito</Link>
+{/*             <CategoryFilter
+            setCurrentPage= {setCurrentPage}
+            /> */}
             {currentProducts &&
                 currentProducts
                     .sort((a, b) => {
@@ -70,4 +73,3 @@ function Catalogo(props) {
 }
 
 export default Catalogo
-

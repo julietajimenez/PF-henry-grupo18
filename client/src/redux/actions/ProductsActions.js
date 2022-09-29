@@ -36,3 +36,31 @@ export function getProductsByName(name) {
     } catch (error) {}
   };
 }
+
+export function postProducts(payload) {
+  return async function () {
+    var json = await axios.post(`http://localhost:3001/products/create`, payload);
+    console.log(payload);
+    return json;
+  };
+}
+
+export function productById(id){
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        `http://localhost:3001/products/byId/${id}`
+      );
+        return dispatch({
+          type: "GET_PRODUCTS_BY_ID",
+          payload: json.data, 
+        });
+    } catch (error) {}
+  };
+}
+
+export const removeDetail = () => {
+  return {
+      type: 'REMOVE_DETAIL'
+  }
+}

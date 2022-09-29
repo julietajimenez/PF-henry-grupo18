@@ -4,23 +4,62 @@ const { Op } = require("sequelize");
 
 const getAllProducts = async (req, res, next) => {
   try {
-    let products = await axios.get("https://api.escuelajs.co/api/v1/products");
-    products = await products.data.map((el) => {
+    let productsNyx = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=physicians formula"
+    );
+    let productsMaybelline = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
+    );
+    let productElf = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=e.l.f."
+    );
+    let productsPacifica = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=pacifica"
+    );
+    let productsAlmay = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=almay"
+    );
+    let productsColourpop = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=colourpop"
+    );
+    let productsRevlon = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=revlon"
+    );
+    
+    
+
+    let productsLoreal = await axios.get(
+      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=l'oreal"
+    );
+    let products = [
+      ...productsLoreal.data,
+      ...productsMaybelline.data,
+      ...productsNyx.data,
+      ...productElf.data,
+      ...productsPacifica.data,
+      ...productsAlmay.data,
+      ...productsColourpop.data,
+      ...productsRevlon.data
+    ];
+
+    products = products.map((el) => {
       const obj = {
-        name: el.title,
+        name: el.name,
+        brand: el.brand,
         price: el.price,
+        rating: el.rating,
+        stock: Math.ceil(el.price * 10),
+        category: el.product_type,
         description: el.description,
-        category: el.category.name,
-        image: el.images,
+        image: el.image_link,
       };
       return obj;
     });
-    const allProducts = await Products.findAll();
+
+    let allProducts = await Products.findAll();
     if (!allProducts.length) await Products.bulkCreate(products);
-    //const categories
-    const productsDB = await Products.findAll({
-      include: [{ model: Category }],
-    });
+    // //const categories
+    const productsDB = await Products.findAll();
     res.json(productsDB);
   } catch (error) {
     next(error);
@@ -38,17 +77,17 @@ const getProductById = async (req, res, next) => {
 };
 
 const postProducts = async (req, res, next) => {
-  const { name, price, description, categories } = req.body;
+  const { name, brand, price, description, category, image, stock } = req.body;
   try {
-    const obj = { name, price, description};
+    const obj = { name, brand, price, description, category, image, stock };
     const newProduct = await Products.create(obj);
-    const categoriesProduct = await Category.findAll({
+/*     const categoriesProduct = await Category.findAll({
       where: {
         name: categories,
       },
     });
-    await newProduct.addCategories(categoriesProduct)
-    console.log(newProduct.__proto__)
+    await newProduct.addCategories(categoriesProduct); */
+    console.log(newProduct.__proto__);
     res.json(newProduct);
   } catch (error) {
     next(error);
@@ -73,9 +112,9 @@ const getProductByName = async (req, res, next) => {
 
 const putProducts = async (req, res, next) => {
   const { id } = req.params;
-  const { name, price, description } = req.body;
+  const { name, brand, price, description, category, image, stock } = req.body;
   try {
-    const obj = { id, name, price, description };
+    const obj = { id, name, brand, price, description, category, image, stock };
     const productUpdate = await Products.update(obj, {
       where: {
         id: id,

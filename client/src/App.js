@@ -7,6 +7,11 @@ import CarroCompras from "./components/CarroCompras/CarroCompras";
 import Login from "./components/Login/Login";
 
 
+import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
+import CreacionProductos from "./components/Admin/AdminFormularios/CreacionProductos";
+import UpdateUsuarios from "./components/Admin/AdminFormularios/UpdateUsuarios";
+import UpdateUsers from "./components/Admin/AdminFormularios/UpdateUsers";
+import Detail from "./components/Details/Detail";
 
 function App() {
 
@@ -56,6 +61,15 @@ function App() {
         <Route path="/card" element={<Cards />} />
         <Route path="/login" element={<Login />} />
         <Route  path="/carrito" element={<CarroCompras cartItems={cartItems} onAddCarrito={onAddCarrito} onRemoveCarrito={onRemoveCarrito} onRemoveItemCarrito={onRemoveItemCarrito} />} />
+        <Route path="/updatecategory" element={<CreacionCategorias />} />
+        <Route path="/createProduct" element={<CreacionProductos />} />
+        <Route path="/update/:id" element={<UpdateUsuarios />} />
+        <Route path="/update" element= {<UpdateUsers/>}/>
+        <Route path="/products/:id" element= {<Detail/>}/>
+
+
+        
+
 
       </Routes>
     </div>

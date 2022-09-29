@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!--DESCRIPCIÓN DE QUE COMPRAMOS-->
+    <button id="checkout">Checkout</button>
+
+    <script>
+
+        const checkout = document.getElementById('checkout')
+        
+        checkout.addEventListener('click', function(){
+            const response= await fetch('/create-order', {
+                method: 'POST'
+            })
+            const data = await response.json()
+            console.log(data)
+
+            window.location.href = data.links[1].href
+        })
+
+    </script>
+
+
+</body>
+</html>
