@@ -14,6 +14,8 @@ import UpdateUsers from "./components/Admin/AdminFormularios/UpdateUsers";
 import Detail from "./components/Details/Detail";
 import SearchToModify from "./components/Admin/AdminFormularios/SearchToModify";
 import UpdateProducts from "./components/Admin/AdminFormularios/UpdateProducts";
+import Landing from "./components/Landing/Landing";
+import Home from "./components/Home/Home";
 
 
 function App() {
@@ -60,6 +62,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<Landing/>} />
+        <Route path="/home" element={<Home/>} />
         <Route  path="/catalogo" element={<Catalogo onAddCarrito={onAddCarrito}/>} />
         <Route path="/card" element={<Cards />} />
         <Route path="/login" element={<Login />} />

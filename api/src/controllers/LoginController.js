@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+/* const bcrypt = require("bcrypt");
 const { Users } = require('../db.js')
 const jwt = require("jsonwebtoken");
 
@@ -20,7 +20,8 @@ const login = async (req, res) => {
         };
 
         const token = jwt.sign(data, "secreto", {
-          expiresIn: 86400 /* 24hs */,
+          expiresIn: 86400 
+          // 24hs ,
         });
 
         res.json({
@@ -38,4 +39,4 @@ const login = async (req, res) => {
   });
 };
 
-module.exports = login;
+module.exports = login; */

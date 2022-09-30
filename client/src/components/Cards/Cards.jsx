@@ -1,11 +1,13 @@
 import React from 'react';
-import "./Cards.module.css"
+import "./Cards.module.css";
+import {useNavigate} from 'react-router-dom'
 
 
 
 const Cards = ({ id, name, price, category, image, categories, stock,  onAddCarrito }) => {
 
     let producto = { id, name, price, category, image, categories }
+    const navigate = useNavigate()
 
     return (
         <div key={id} style={{ margin: "10px", paddingTop: "0px", maxWidth: "320px", background: "gray", borderRadius: "10px", height: "400px" }}>
@@ -17,6 +19,7 @@ const Cards = ({ id, name, price, category, image, categories, stock,  onAddCarr
                 stock < 1 ? <span>Sin stock</span> : null
             }
             <button onClick={() =>onAddCarrito(producto)}>Agregar al carrito</button>
+            <button onClick={()=>navigate(`/products/${id}`)}>detalle</button>
 
 
         </div>

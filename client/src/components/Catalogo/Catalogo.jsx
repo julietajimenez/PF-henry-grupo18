@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllProducts } from "../../redux/actions/ProductsActions.js"
-import Pager from '../Paginado/Pager.jsx'
-import Card from '../Cards/Cards.jsx'
-import { Link } from "react-router-dom";
-import SearchBar from '../Searchbar/Searchbar.jsx'
-import CategoryFilter from '../Filter/CategoryFilter.jsx'
-
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from "../../redux/actions/ProductsActions.js";
+import Pager from '../Paginado/Pager.jsx';
+import Card from '../Cards/Cards.jsx';
+import CategoryFilter from '../Filter/CategoryFilter.jsx';
+import Loader from '../Loader/Loader.jsx';
+import SearchBar from '../Searchbar/Searchbar.jsx';
 
 
 function Catalogo(props) {
@@ -27,6 +26,10 @@ function Catalogo(props) {
         indexOfFirstVideo = indexOfLastVideo - videosPerPage,
         currentProducts = productos.slice(indexOfFirstVideo, indexOfLastVideo);
 
+
+        if(productos.length <= 0){
+            return <Loader/>
+        } 
     return (
         <>
             <Pager
@@ -36,7 +39,6 @@ function Catalogo(props) {
                 totalItems={productos.length}
             />
             <SearchBar />
-            <Link to={"/carrito"}>carrito</Link>
 
              <CategoryFilter
             setCurrentPage= {setCurrentPage}

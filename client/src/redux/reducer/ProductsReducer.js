@@ -34,7 +34,7 @@ export function products(state = initialState, action) {
         const filtered = allProd.filter(e=> [e.category].includes(action.payload))
         return {
           ...state,
-          products: action.payload === 'all' ? state.products : filtered
+          products: action.payload === 'all' ? state.allProducts : filtered
         }  
         
     default:
