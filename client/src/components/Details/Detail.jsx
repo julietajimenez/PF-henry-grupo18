@@ -22,8 +22,9 @@ console.log(product);
         <div>
             <h1>{product.name}</h1>
             <img src={product.image}/>
-            <h4>{product.price}</h4>
-            <h4>{product.description}</h4>
+            <h4>${product.price} USD</h4>
+            <h3>Descripción</h3>
+            <span>{product.description}</span>
             {
                 product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null
             }
