@@ -5,6 +5,7 @@ import Pager from "../Paginado/Pager.jsx";
 import Card from "../Cards/Cards.jsx";
 import { Link } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar.jsx";
+import Loader from "../Loader/Loader.jsx";
 import CategoryFilter from "../Filter/CategoryFilter.jsx";
 import styles from "./Catalogo.module.css";
 
@@ -25,6 +26,11 @@ function Catalogo(props) {
     indexOfFirstVideo = indexOfLastVideo - videosPerPage,
     currentProducts = productos.slice(indexOfFirstVideo, indexOfLastVideo);
 
+
+  if(productos.length <= 0){
+      return <Loader />
+  } 
+
   return (
     <div className={styles.catalogoContainer}>
       <div className={styles.boxCategorySearch}>
@@ -35,7 +41,7 @@ function Catalogo(props) {
         />
       </div>
 
-      {/*  <Link to={"/carrito"}>carrito</Link> */}
+  
 
       <div className={styles.cardsContainer}>
         {currentProducts &&

@@ -1,4 +1,5 @@
 import React from "react";
+import {useNavigate} from 'react-router-dom'
 import styles from "./Cards.module.css";
 
 const Cards = ({
@@ -12,6 +13,7 @@ const Cards = ({
   onAddCarrito,
 }) => {
   let producto = { id, name, price, category, image, categories };
+  const navigate = useNavigate()
 
   return (
     <div key={id} className={styles.card}>
@@ -21,9 +23,10 @@ const Cards = ({
 
       <p style={{}}>{name}</p>
       <span>${price} USD</span>
-      <p>{category}</p>
+      <p>{category.toUpperCase()}</p>
       {stock < 1 ? <span>Sin stock</span> : null}
       <button onClick={() => onAddCarrito(producto)}>Agregar al carrito</button>
+      <button onClick={()=>navigate(`/products/${id}`)}>detalle</button>
     </div>
   );
 };
