@@ -32,11 +32,11 @@ const Login = () => {
           setMensaje(data.mensaje);
           setTimeout(() => {
             setMensaje("");
-            // localStorage.setItem("token", data?.usuario.token);
+            localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
 
-
-            console.log(localStorage)
+            let pepe = localStorage.getItem("logueado")
+            console.log(JSON.parse(pepe))
             
 
             navigate(`/catalogo`);
