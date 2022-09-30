@@ -20,19 +20,26 @@ const Login = () => {
     e.preventDefault();
     if (email !== "" && password !== "") {
       const Usuario = {
+//        name: 'hernan',
         email,
         password,
       };
       setLoading(true);
       await axios
-        .post("http://localhost:4000/login", Usuario)
+        .post("http://localhost:3001/users/login", Usuario)
         .then((res) => {
           const { data } = res;
           setMensaje(data.mensaje);
           setTimeout(() => {
             setMensaje("");
-            localStorage.setItem("token", data?.usuario.token);
-            navigate(`/welcome`);
+            // localStorage.setItem("token", data?.usuario.token);
+            localStorage.setItem("logueado", JSON.stringify(data?.usuario));
+
+
+            console.log(localStorage)
+            
+
+            navigate(`/catalogo`);
           }, 1500);
         })
         .catch((error) => {
