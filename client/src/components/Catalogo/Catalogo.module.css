@@ -1,0 +1,25 @@
+.catalogoContainer {
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  min-height: 70vh;
+}
+
+.boxCategorySearch {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.paginado {
+  margin: 0 auto;
+}

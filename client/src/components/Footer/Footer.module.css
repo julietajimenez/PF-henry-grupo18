@@ -1,0 +1,29 @@
+.navContainer {
+  background-color: #ec80a4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 35px;
+  height: 15vh;
+  font-size: 1.5rem;
+}
+
+.ulContainer {
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+  padding: 0;
+}
+
+.ulContainer li {
+  color: #fff;
+  cursor: pointer;
+}
+
+.ulContainer li:hover {
+  color: #dddddd;
+}
+
+.underline {
+  text-decoration: none;
+}

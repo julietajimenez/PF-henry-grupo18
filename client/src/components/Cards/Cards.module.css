@@ -1,0 +1,33 @@
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 250px;
+  border: 1px solid rgb(233, 233, 233);
+  padding: 10px;
+  background-color: #f9f3f3;
+  text-align: center;
+  position: relative;
+}
+
+.imgContainer {
+  width: 100%;
+}
+.imgContainer img {
+  width: 100%;
+}
+
+.card button {
+  width: 80%;
+  margin: 0 auto;
+  padding: 8px 8px;
+  border: none;
+  background-color: #f7d9d9;
+  border-radius: 7px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #ec80a4;
+}
