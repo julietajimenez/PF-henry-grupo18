@@ -6,7 +6,7 @@ import ControlledCarousel from "./Carrusel/Carrusel";
 export default function Home (){
     return (
         <>
-            <Nav/>
+            {/* <Nav/> */}
             <ControlledCarousel/>
         </>
     )

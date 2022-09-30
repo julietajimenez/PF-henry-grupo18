@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import { Link } from "react-router-dom";
 import img from './fondo-landing.jpg';
 import style from './Landing.module.css'
@@ -12,4 +12,4 @@ export default function Landing (){
             </Link>
         </div>
     )
-}
+} */
