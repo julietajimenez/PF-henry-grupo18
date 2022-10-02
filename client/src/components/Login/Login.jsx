@@ -1,9 +1,12 @@
-/* import axios from "axios";
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { logueadoUser } from "../../redux/actions/UsersAction.js";
 
 const Login = () => {
+
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
@@ -35,9 +38,7 @@ const Login = () => {
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
 
-            let pepe = localStorage.getItem("logueado")
-            console.log(JSON.parse(pepe))
-            
+            dispatch(logueadoUser(Usuario))           
 
             navigate(`/catalogo`);
           }, 1500);
@@ -96,7 +97,7 @@ const Login = () => {
           </button>
           <p>
             Aun no tienes cuenta?{" "}
-            <b onClick={() => navigate("/")}>Registrate!</b>
+            <b onClick={() => navigate("/register")}>Registrate!</b>
           </p>
         </form>
       </div>
@@ -106,4 +107,4 @@ const Login = () => {
   );
 };
 
-export default Login; */
+export default Login;

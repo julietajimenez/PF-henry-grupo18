@@ -19,6 +19,7 @@ import SearchToModify from "./components/Admin/AdminFormularios/SearchToModify";
 import UpdateProducts from "./components/Admin/AdminFormularios/UpdateProducts";
 //import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
+import Register from "./components/Register/Register";
 
 function App() {
   const [cartItems, setCartItems] = useState(() => {
@@ -76,6 +77,7 @@ function App() {
         <Route  path="/catalogo" element={<Catalogo onAddCarrito={onAddCarrito}/>} />
         <Route path="/card" element={<Cards />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register/>} />
         <Route
           path="/carrito"
           element={
