@@ -10,6 +10,7 @@ import {
 import styles from "./Detail.module.css";
 import imgDefault from './imageDefault.jpg'
 
+<<<<<<< HEAD
 export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -48,3 +49,34 @@ export default function Detail() {
     <h1>CARGANDO...</h1>
   );
 }
+=======
+export default function Detail (){
+    const {id} = useParams()
+    const dispatch= useDispatch()
+    const navigate = useNavigate()
+    const product = useSelector(state=> state.products.detail)
+console.log(product);
+    useEffect(()=>{
+        dispatch(productById(id))
+        return ()=> {
+            dispatch(removeDetail())
+        }
+    }, [id])
+console.log(product);
+    return (
+        product.name? 
+        <div>
+            <h1>{product.name}</h1>
+            <img src={product.image}/>
+            <h4>${product.price} USD</h4>
+            <h3>Descripción</h3>
+            <span>{product.description}</span>
+            {
+                product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null
+            }
+            <button onClick={()=>navigate( '/catalogo')}>Home</button> 
+        </div> :
+        <h1>CARGANDO...</h1>
+    )
+}
+>>>>>>> 7ef66a54fdf7e9e7cb13f24d34032f25305cabe9
