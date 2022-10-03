@@ -25,7 +25,19 @@ import Revlon from "./components/Brands/Revlon";
 import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
 import Register from "./components/Register/Register";
 
+import UserContext from "./context/userContext";
+
 function App() {
+
+  const [logueado, setlogueado] = useState(() => {
+    try {
+      const userLogueado = localStorage.getItem("logueado");
+      return userLogueado ? JSON.parse(userLogueado) : [];
+    } catch (error) {
+      return [];
+    }
+  });
+
   const [cartItems, setCartItems] = useState(() => {
     try {
       const prodEnLocalStorage = localStorage.getItem("carrito");
@@ -74,6 +86,7 @@ function App() {
 
   return (
     <div className="App">
+      <UserContext.Provider value={{logueado, setlogueado}}>
       <NavBar />
       <Routes>
         {/* <Route path="/" element={<Landing/>} /> */}
@@ -110,6 +123,7 @@ function App() {
 
       </Routes>
       <Footer />
+      </UserContext.Provider>
     </div>
   );
 }

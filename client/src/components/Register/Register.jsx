@@ -1,7 +1,9 @@
 import React from "react";
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
+import UserContext from "../../context/userContext";
 
 function Register() {
 
@@ -17,6 +19,8 @@ function Register() {
       })
 
     const [mensaje, setMensaje] = useState();
+
+    const {logueado, setlogueado} = useContext(UserContext)
 
     function handleChange(e) {
         setInput({
@@ -70,6 +74,8 @@ function Register() {
             // localStorage.setItem("token", data?.usuario.token);
             
             localStorage.setItem("logueado", JSON.stringify(Usuario));
+
+            setlogueado(Usuario)
             
             
 
