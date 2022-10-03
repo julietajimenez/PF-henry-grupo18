@@ -2,6 +2,7 @@ const { Products, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
 
+
 const getAllProducts = async (req, res, next) => {
   try {
     let productsNyx = await axios.get(
@@ -56,6 +57,14 @@ const getAllProducts = async (req, res, next) => {
       return obj;
     });
 
+    if (req.query.filter) {
+      const productFilter = await Products.findAll({
+        where: { 
+          brand: req.query.filter 
+        },
+      });
+      return res.json(productFilter);
+    }
     let allProducts = await Products.findAll();
     if (!allProducts.length) await Products.bulkCreate(products);
     // //const categories
@@ -65,6 +74,8 @@ const getAllProducts = async (req, res, next) => {
     next(error);
   }
 };
+
+
 
 const getProductById = async (req, res, next) => {
   const { id } = req.params;
@@ -110,6 +121,23 @@ const getProductByName = async (req, res, next) => {
   }
 };
 
+const getProductByBrand = async (req, res, next) => {
+  const { brand } = req.query;
+  try {
+         const product = await Products.findAll({
+      where: {
+        brand: {
+          [Op.iLike]: "%" + brand + "%",
+        },
+      },
+    });
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 const putProducts = async (req, res, next) => {
   const { id } = req.params;
   const { name, brand, price, description, category, image, stock } = req.body;
@@ -145,6 +173,7 @@ module.exports = {
   getProductById,
   postProducts,
   getProductByName,
+  getProductByBrand,
   putProducts,
   deleteProduct,
 };

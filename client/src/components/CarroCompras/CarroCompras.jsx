@@ -10,7 +10,7 @@ function CarroCompras(props) {
             <div>
                 {cartItems.length === 0 && <div>Su carrito de compras está vacío</div>}
             </div>
-            <div><h2>Total: $ {total}</h2></div>
+            <div><h2>Total: $ {total.toFixed(2)}</h2></div>
             {cartItems.map((item) => (
                 <div key={item.id}>
                     <div>{item.name}</div>

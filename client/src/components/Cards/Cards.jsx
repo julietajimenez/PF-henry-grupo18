@@ -26,7 +26,8 @@ const Cards = ({
       <p>{category.toUpperCase()}</p>
       {stock < 1 ? <span>Sin stock</span> : null}
       <button onClick={() => onAddCarrito(producto)}>Agregar al carrito</button>
-      <button onClick={()=>navigate(`/products/${id}`)}>detalle</button>
+      <br></br>
+      <button onClick={()=>navigate(`/products/${id}`)}>Ver más</button>
     </div>
   );
 };

@@ -2,14 +2,15 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { productById, removeDetail } from "../../redux/actions/ProductsActions";
+import { productById, removeDetail, pagesControl } from "../../redux/actions/ProductsActions";
 
 export default function Detail (){
     const {id} = useParams()
     const dispatch= useDispatch()
     const navigate = useNavigate()
     const product = useSelector(state=> state.products.detail)
-console.log(product);
+    const page = useSelector(state=> state.products.pages)
+console.log(page);
     useEffect(()=>{
         dispatch(productById(id))
         return ()=> {
@@ -27,7 +28,9 @@ console.log(product);
             {
                 product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null
             }
-            <button onClick={()=>navigate( '/catalogo')}>Home</button> 
+            <button onClick={()=>{
+                                navigate(-1) 
+                                dispatch(pagesControl(page))}}>Volver</button> 
         </div> :
         <h1>CARGANDO...</h1>
     )

@@ -65,6 +65,7 @@ export default function SearchBar() {
     e.preventDefault();
     dispatch(getProductsByName(name));
   }
+
   return (
     <div className={styles.searchContainer}>
       <input

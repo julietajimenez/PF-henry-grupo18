@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/ProductsActions.js";
+import { getAllCategorys } from '../../redux/actions/CategorysActions'
 import Pager from "../Paginado/Pager.jsx";
 import Card from "../Cards/Cards.jsx";
 import { Link } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar.jsx";
 import Loader from "../Loader/Loader.jsx";
-import CategoryFilter from "../Filter/CategoryFilter.jsx";
+import CategoryFilter from "../Filters/Filter Category/CategoryFilter.jsx";
 import styles from "./Catalogo.module.css";
+import BrandFiltered from "../Filters/Filter Brand/BrandFilter";
+//import OtroFiltro from "../Filters/OtroFiltro.jsx";
 
 function Catalogo(props) {
-  const { onAddCarrito } = props;
-  const productos = useSelector((state) => state.products.products);
   const dispatch = useDispatch();
+  const { onAddCarrito } = props;
+  const productos = useSelector((state) => state.products.allProducts);
+  //const filtered = useSelector(state=>state.products.filtered)
+  const page = useSelector(state => state.products.pages)
+  //const [filter, setFilter] = useState(false)
+
+  const [currentPage, setCurrentPage] = useState(page);
+
+
   useEffect(() => {
-    dispatch(getAllProducts());
+    if(!productos.length){
+      dispatch(getAllProducts());
+    }
   }, [dispatch]);
 
-  const [currentPage, setCurrentPage] = useState(1);
+
+
   const handlePage = (number) => {
     setCurrentPage(number);
   };
@@ -27,21 +40,30 @@ function Catalogo(props) {
     currentProducts = productos.slice(indexOfFirstVideo, indexOfLastVideo);
 
 
-  if(productos.length <= 0){
-      return <Loader />
-  } 
+
+
+  if (productos.length <= 0) {
+    return <Loader />
+  }
 
   return (
     <div className={styles.catalogoContainer}>
       <div className={styles.boxCategorySearch}>
         <SearchBar />
+        {/*         <OtroFiltro
+        setCurrentPage={setCurrentPage}/> */}
         <CategoryFilter
           setCurrentPage={setCurrentPage}
           className={styles.category}
+        //setFilter ={setFilter}
+        />
+        <BrandFiltered
+          setCurrentPage={setCurrentPage}
+        //setFilter ={setFilter}
         />
       </div>
 
-  
+
 
       <div className={styles.cardsContainer}>
         {currentProducts &&
@@ -58,6 +80,7 @@ function Catalogo(props) {
 
               return (
                 <Card
+                  key={video.id}
                   id={video.id}
                   name={video.name}
                   image={video.image}

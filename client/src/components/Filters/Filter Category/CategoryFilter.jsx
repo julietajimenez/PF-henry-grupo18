@@ -1,10 +1,10 @@
-import React from "react";
+ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterByCategory,
   getAllCategorys,
-} from "../../redux/actions/CategorysActions";
+} from "../../../redux/actions/CategorysActions";
 import styles from "./CategoryFilter.module.css";
 
 export default function CategoryFilter(props) {
@@ -13,16 +13,17 @@ export default function CategoryFilter(props) {
 
   useEffect(() => {
     dispatch(getAllCategorys());
-  }, []);
+  }, [dispatch]);
 
   function handleSelect(e) {
-    e.preventDefault();
     dispatch(filterByCategory(e.target.value));
     props.setCurrentPage(1);
+    //props.setFilter(true);
   }
+
   return (
     <div className={styles.categoryContainer}>
-      <select onClick={(e) => handleSelect(e)}>
+      <select onChange={(e) => handleSelect(e)}>
         <option value={"all"}>Todas las categorias</option>
         {categorys?.map((e) => {
           return (
@@ -34,4 +35,4 @@ export default function CategoryFilter(props) {
       </select>
     </div>
   );
-}
+} 

@@ -7,8 +7,10 @@ function NavBar() {
     <nav className={styles.navContainer}>
       <div>
         <ul className={styles.ulContainer}>
+        <Link to={"/"} className={styles.underline}>
           <li>Logo</li>
-          <Link to={"/"} className={styles.underline}>
+          </Link>
+          <Link to={"/catalogo"} className={styles.underline}>
             <li>Catalogo</li>
           </Link>
         </ul>

@@ -21,7 +21,7 @@ export function getProductsByName(name) {
       var json = await axios.get(
         `http://localhost:3001/products/byName?name=${name}`
       );
-      console.log(json.data);
+
       if (!json.data.length) {
         swal("Error: no se encontró el producto.", {
           icon: "error",
@@ -72,3 +72,36 @@ export function updateProducts(id,payload) {
     return json;
   };
 }
+
+
+export function getProductsByBrand(brand) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        `http://localhost:3001/products/byBrand?brand=${brand}`
+      );
+      console.log(json.data);
+       return dispatch({
+          type: "GET_PRODUCTS_BY_BRAND",
+          payload: json.data, 
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+ export function filterByBrand (payload){
+  return {
+    type: 'FILTER_BY_BRAND',
+    payload
+  }
+}
+
+export const pagesControl = (number) => {
+  return {
+      type: 'CURRENT_PAGES',
+      payload: number
+  }
+} 

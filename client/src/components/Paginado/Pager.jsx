@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./Pager.module.css";
+import {pagesControl} from '../../redux/actions/ProductsActions.js';
+import { useDispatch } from "react-redux";
 
 const Pager = ({ currentPage, itemsPerPage, totalItems, pageHandler }) => {
   const pageNumbers = [];
-
+  const dispatch = useDispatch()
   // Pages creation
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
@@ -32,7 +34,9 @@ const Pager = ({ currentPage, itemsPerPage, totalItems, pageHandler }) => {
           <li onClick={() => handlePrevious()}>{"<"}</li>
         ) : null}
         {pageNumbers.map((number) => (
-          <li key={number} onClick={() => handlePagination(number)}>
+          <li key={number} onClick={() => {
+                                          handlePagination(number)
+                                          dispatch(pagesControl(number))}}>
             {number}
           </li>
         ))}

@@ -19,6 +19,14 @@ const getAllCategory = async (req, res, next)=> {
         next(error)
     } */
     try {
+        if (req.query.filter) {
+            const categoryFilter = await Products.findAll({
+              where: { 
+                category: req.query.filter 
+              },
+            });
+            return res.json(categoryFilter);
+          }
         const products = await Products.findAll()
         const categorys= products.map(e=> e.category)
         const set = [...new Set(categorys)]

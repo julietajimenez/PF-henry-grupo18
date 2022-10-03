@@ -6,7 +6,7 @@ import Cards from "./components/Cards/Cards";
 import CarroCompras from "./components/CarroCompras/CarroCompras";
 import Login from "./components/Login/Login";
 import Searchbar from "./components/Searchbar/Searchbar.jsx";
-import Category from "./components/Filter/CategoryFilter.jsx";
+import Category from "./components/Filters/Filter Category/CategoryFilter.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 
@@ -19,6 +19,10 @@ import SearchToModify from "./components/Admin/AdminFormularios/SearchToModify";
 import UpdateProducts from "./components/Admin/AdminFormularios/UpdateProducts";
 //import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
+import Pacifica from "./components/Brands/Pacifica";
+import Maybelline from "./components/Brands/Maybelline";
+import Revlon from "./components/Brands/Revlon";
+import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
 
 function App() {
   const [cartItems, setCartItems] = useState(() => {
@@ -72,7 +76,7 @@ function App() {
       <NavBar />
       <Routes>
         {/* <Route path="/" element={<Landing/>} /> */}
-        <Route path="/home" element={<Home/>} />
+        <Route path="/" element={<Home onAddCarrito={onAddCarrito}/>} />
         <Route  path="/catalogo" element={<Catalogo onAddCarrito={onAddCarrito}/>} />
         <Route path="/card" element={<Cards />} />
         <Route path="/login" element={<Login />} />
@@ -94,8 +98,14 @@ function App() {
         <Route path="/products/:id" element={<Detail />} />
         <Route path="/products/update/:id" element={<UpdateProducts />} />
         <Route path="/products/update/" element={<SearchToModify />} />
-        <Route path="/searchbar" element={<Searchbar />} />
-        <Route path="/Category" element={<Category />} />
+        <Route path="/products/brands/pacifica" element={<Pacifica onAddCarrito={onAddCarrito} />} />
+        <Route path="/products/brands/maybelline" element={<Maybelline onAddCarrito={onAddCarrito} />} />
+        <Route path="/products/brands/revlon" element={<Revlon onAddCarrito={onAddCarrito} />} />
+        <Route path="/products/brands/physiciansFormula" element={<PhysiciansFormula onAddCarrito={onAddCarrito} />} />
+
+
+
+
       </Routes>
       <Footer />
     </div>
