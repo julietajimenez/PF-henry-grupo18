@@ -32,9 +32,9 @@ function App() {
   const [logueado, setlogueado] = useState(() => {
     try {
       const userLogueado = localStorage.getItem("logueado");
-      return userLogueado ? JSON.parse(userLogueado) : [];
+      return userLogueado ? JSON.parse(userLogueado) : 'invitado';
     } catch (error) {
-      return [];
+      return 'invitado';
     }
   });
 

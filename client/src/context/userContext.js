@@ -1,7 +1,6 @@
 import { createContext } from 'react'
 
-const UserContext = createContext({
-})
+const UserContext = createContext('invitado')
 
 
 export default UserContext;
