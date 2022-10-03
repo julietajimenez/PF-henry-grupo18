@@ -2,14 +2,16 @@ import React from "react";
 import styles from "./NavBar.module.css";
 import { Link } from "react-router-dom";
 
+
 function NavBar() {
   
   let logueado = localStorage.getItem("logueado")
-  console.log(logueado)
+
   if(logueado !== null)
   {
     logueado = JSON.parse(logueado)
   }
+
   return (
     <nav className={styles.navContainer}>
       <div>

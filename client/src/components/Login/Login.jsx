@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logueadoUser } from "../../redux/actions/UsersAction.js";
+
+
 
 const Login = () => {
 
-  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
@@ -37,8 +36,7 @@ const Login = () => {
             setMensaje("");
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
-
-            dispatch(logueadoUser(Usuario))           
+       
 
             navigate(`/catalogo`);
           }, 1500);
