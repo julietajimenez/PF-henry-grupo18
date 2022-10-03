@@ -1,11 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
+import styles from "./Login.module.css";
 
 const Login = () => {
-
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
@@ -22,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     if (email !== "" && password !== "") {
       const Usuario = {
-//        name: 'hernan',
+        //        name: 'hernan',
         email,
         password,
       };
@@ -36,7 +34,6 @@ const Login = () => {
             setMensaje("");
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
-       
 
             navigate(`/catalogo`);
           }, 1500);
@@ -54,54 +51,53 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div >
-
+    <div className={styles.flexContainer}>
+      <div className={styles.container}>
         <h2>Iniciar Sesión!</h2>
         <form onSubmit={(e) => onSubmit(e)}>
-          <div>
-            <div>
-              <label htmlFor="email">email</label>
-              <input
-                onChange={(e) => HandleChange(e)}
-                value={email}
-                name="email"
-                id="email"
-                type="email"
-                placeholder="email..."
-                autoComplete="off"
-              />
-            </div>
-
+          <div className={styles.formInputs}>
+            <label htmlFor="email">email</label>
+            <input
+              onChange={(e) => HandleChange(e)}
+              value={email}
+              name="email"
+              id="email"
+              type="email"
+              placeholder="email..."
+              autoComplete="off"
+            />
           </div>
 
-          <div >
-            <div >
-              <label htmlFor="password">password</label>
-              <input
-                onChange={(e) => HandleChange(e)}
-                value={password}
-                name="password"
-                id="password"
-                type="password"
-                placeholder="password..."
-                autoComplete="off"
-              />
-            </div>
-           
+          <div className={styles.formInputs}>
+            <label htmlFor="password">password</label>
+            <input
+              onChange={(e) => HandleChange(e)}
+              value={password}
+              name="password"
+              id="password"
+              type="password"
+              placeholder="password..."
+              autoComplete="off"
+            />
           </div>
-          <button type="submit">
+
+          <button type="submit" className={styles.btnLogin}>
             {loading ? "Cargando..." : "Iniciar Sesión"}
           </button>
           <p>
             Aun no tienes cuenta?{" "}
-            <b onClick={() => navigate("/register")}>Registrate!</b>
+            <b
+              className={styles.register}
+              onClick={() => navigate("/register")}
+            >
+              Registrate!
+            </b>
           </p>
         </form>
       </div>
 
-      {mensaje && <div >{mensaje}</div>}
-    </>
+      {mensaje && <div>{mensaje}</div>}
+    </div>
   );
 };
 

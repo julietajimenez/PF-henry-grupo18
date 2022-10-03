@@ -1,0 +1,38 @@
+.container {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10%;
+  gap: 20px;
+}
+
+.description {
+  border: 1px solid rgb(233, 233, 233);
+  border-radius: 15px;
+  padding: 5%;
+  text-align: center;
+  background-color: #f9f3f3;
+}
+.description img {
+  margin: 15px 0;
+}
+
+.description p {
+  text-align: left;
+}
+
+.description button {
+  width: 20%;
+  margin: 20px auto 0;
+  padding: 8px 8px;
+  border: none;
+  background-color: #f7d9d9;
+  border-radius: 7px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.description button:hover {
+  background-color: #ec80a4;
+}
