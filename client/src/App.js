@@ -23,6 +23,7 @@ import Pacifica from "./components/Brands/Pacifica";
 import Maybelline from "./components/Brands/Maybelline";
 import Revlon from "./components/Brands/Revlon";
 import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
+import Register from "./components/Register/Register";
 
 function App() {
   const [cartItems, setCartItems] = useState(() => {
@@ -80,6 +81,7 @@ function App() {
         <Route  path="/catalogo" element={<Catalogo onAddCarrito={onAddCarrito}/>} />
         <Route path="/card" element={<Cards />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register/>} />
         <Route
           path="/carrito"
           element={

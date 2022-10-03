@@ -5,8 +5,7 @@ const jwt = require('jsonwebtoken');
 const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        console.log(email, password)
-        await Users.findOne({ email }).then((usuario) => {
+        await Users.findOne({ where: { email: email } }).then((usuario) => {
             if (!usuario) {
                 return res.json({ mensaje: "Usuario no encontrado" });
             }
@@ -52,10 +51,9 @@ const login = async (req, res, next) => {
 
 const register = async (req, res, next) => {
     try {
+        const { name, email, avatar, password } = req.body;
 
-        const { name, email, password } = req.body;
-
-        Users.findOne({ email }).then((usuario) => {
+        Users.findOne({ where: { email: email } }).then((usuario) => {
             if (usuario) {
                 return res.json({ mensaje: "Ya existe un usuario con ese email" });
             } else if (!name || !email || !password) {
@@ -67,10 +65,12 @@ const register = async (req, res, next) => {
                         const nuevoUsuario = {
                             name,
                             email,
+                            avatar,
                             password: passwordHasheada,
                         };
 
                         Users.create(nuevoUsuario)
+                        console.log(nuevoUsuario)
 
                         res.json({ mensaje: "Usuario creado correctamente", nuevoUsuario });
 
