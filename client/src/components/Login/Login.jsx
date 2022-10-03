@@ -1,12 +1,16 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Login.module.css";
+import styles from "./Login.module.css";import UserContext from "../../context/userContext";
+
+
 
 const Login = () => {
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
+
+  const {logueado, setlogueado} = useContext(UserContext)
 
   const navigate = useNavigate();
 
@@ -34,8 +38,9 @@ const Login = () => {
             setMensaje("");
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
+            setlogueado(Usuario)
 
-            navigate(`/`);
+            navigate(`/catalogo`);
           }, 1500);
         })
         .catch((error) => {

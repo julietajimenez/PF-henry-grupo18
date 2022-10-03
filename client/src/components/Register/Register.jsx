@@ -1,8 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
+
+import UserContext from "../../context/userContext";
 
 function Register() {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ function Register() {
   });
 
   const [mensaje, setMensaje] = useState();
+  const {logueado, setlogueado} = useContext(UserContext)
 
   function handleChange(e) {
     setInput({
@@ -43,7 +46,6 @@ function Register() {
     if (!input.password) {
       errors.password = "Se requiere una contraseña!";
     }
-
     return errors;
   };
 
@@ -69,6 +71,7 @@ function Register() {
 
             localStorage.setItem("logueado", JSON.stringify(Usuario));
 
+            setlogueado(Usuario)
             navigate(`/`);
           }, 1500);
         });
