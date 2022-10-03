@@ -5,13 +5,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Cards from "./components/Cards/Cards";
 import CarroCompras from "./components/CarroCompras/CarroCompras";
 import Login from "./components/Login/Login";
-<<<<<<< HEAD
 import Searchbar from "./components/Searchbar/Searchbar.jsx";
 import Category from "./components/Filters/Filter Category/CategoryFilter.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-=======
->>>>>>> 7ef66a54fdf7e9e7cb13f24d34032f25305cabe9
 
 import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
 import CreacionProductos from "./components/Admin/AdminFormularios/CreacionProductos";
@@ -20,7 +17,6 @@ import UpdateUsers from "./components/Admin/AdminFormularios/UpdateUsers";
 import Detail from "./components/Details/Detail";
 import SearchToModify from "./components/Admin/AdminFormularios/SearchToModify";
 import UpdateProducts from "./components/Admin/AdminFormularios/UpdateProducts";
-<<<<<<< HEAD
 //import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
 import Pacifica from "./components/Brands/Pacifica";
@@ -28,7 +24,7 @@ import Maybelline from "./components/Brands/Maybelline";
 import Revlon from "./components/Brands/Revlon";
 import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
 import Register from "./components/Register/Register";
-
+import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
 
 function App() {
@@ -44,19 +40,12 @@ function App() {
 
   const [cartItems, setCartItems] = useState(() => {
     try {
-=======
-import Checkout from "./components/PayPal/Checkout";
-
-function App() {
-  const [cartItems, setCartItems] = useState(() => {
-    try {
->>>>>>> 7ef66a54fdf7e9e7cb13f24d34032f25305cabe9
       const prodEnLocalStorage = localStorage.getItem("carrito");
       return prodEnLocalStorage ? JSON.parse(prodEnLocalStorage) : [];
     } catch (error) {
       return [];
     }
-  });
+  });;
 
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(cartItems));
@@ -74,9 +63,9 @@ function App() {
         )
       );
     } else {
-      setCartItems([...cartItems, { ...product, cantidad: 1 }]);
+      setCartItems([...cartItems, {  ...product, cantidad: 1  }]);;
     }
-  };
+  };;
 
   const onRemoveCarrito = (product) => {
     const productRemove = cartItems.find((item) => item.id === product.id);
@@ -89,32 +78,23 @@ function App() {
         )
       );
     }
-  };
+  };;
 
   const onRemoveItemCarrito = (product) => {
-    setCartItems(cartItems.filter((item) => item.id !== product.id));
-  };
+    setCartItems(cartItems.filter((item) => item.id !== product.id));;
+  };;
 
   return (
     <div className="App">
       <UserContext.Provider value={{logueado, setlogueado}}>
       <NavBar />
       <Routes>
-<<<<<<< HEAD
         {/* <Route path="/" element={<Landing/>} /> */}
         <Route path="/" element={<Home onAddCarrito={onAddCarrito}/>} />
         <Route  path="/catalogo" element={<Catalogo onAddCarrito={onAddCarrito}/>} />
         <Route path="/card" element={<Cards />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>} />
-=======
-        <Route
-          path="/catalogo"
-          element={<Catalogo onAddCarrito={onAddCarrito} />}
-        />
-        <Route path="/card" element={<Cards />} />
-        <Route path="/login" element={<Login />} />
->>>>>>> 7ef66a54fdf7e9e7cb13f24d34032f25305cabe9
         <Route
           path="/carrito"
           element={
@@ -126,29 +106,21 @@ function App() {
             />
           }
         />
-<<<<<<< HEAD
         <Route path="/createcategory" element={<CreacionCategorias />} />
-=======
-        <Route path="/updatecategory" element={<CreacionCategorias />} />
->>>>>>> 7ef66a54fdf7e9e7cb13f24d34032f25305cabe9
         <Route path="/createProduct" element={<CreacionProductos />} />
         <Route path="/update/:id" element={<UpdateUsuarios />} />
         <Route path="/update" element={<UpdateUsers />} />
         <Route path="/products/:id" element={<Detail />} />
         <Route path="/products/update/:id" element={<UpdateProducts />} />
         <Route path="/products/update/" element={<SearchToModify />} />
-<<<<<<< HEAD
         <Route path="/products/brands/pacifica" element={<Pacifica onAddCarrito={onAddCarrito} />} />
         <Route path="/products/brands/maybelline" element={<Maybelline onAddCarrito={onAddCarrito} />} />
         <Route path="/products/brands/revlon" element={<Revlon onAddCarrito={onAddCarrito} />} />
         <Route path="/products/brands/physiciansFormula" element={<PhysiciansFormula onAddCarrito={onAddCarrito} />} />
-
-
-
-
-=======
         <Route path="/checkout" element={<Checkout />} />
->>>>>>> 7ef66a54fdf7e9e7cb13f24d34032f25305cabe9
+
+
+
       </Routes>
       <Footer />
       </UserContext.Provider>
