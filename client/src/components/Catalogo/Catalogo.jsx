@@ -45,6 +45,8 @@ function Catalogo(props) {
   if (productos.length <= 0) {
     return <Loader />
   }
+  
+  console.log(productos);
 
   return (
     <div className={styles.catalogoContainer}>
@@ -62,8 +64,6 @@ function Catalogo(props) {
         //setFilter ={setFilter}
         />
       </div>
-
-
 
       <div className={styles.cardsContainer}>
         {currentProducts &&
@@ -91,7 +91,7 @@ function Catalogo(props) {
                   onAddCarrito={onAddCarrito}
                 />
               )} 
-            })}
+              })}
       </div>
 
       <div className={styles.paginado}>

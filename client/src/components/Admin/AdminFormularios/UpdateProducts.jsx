@@ -42,7 +42,7 @@ function UpdateProducts() {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(updateProducts(id, input));
-    alert("Usuario actualizado");
+    alert("Producto actualizado");
     setInput({
       name: '',
       brand: '',

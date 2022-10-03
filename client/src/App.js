@@ -106,7 +106,7 @@ function App() {
             />
           }
         />
-        <Route path="/updatecategory" element={<CreacionCategorias />} />
+        <Route path="/createcategory" element={<CreacionCategorias />} />
         <Route path="/createProduct" element={<CreacionProductos />} />
         <Route path="/update/:id" element={<UpdateUsuarios />} />
         <Route path="/update" element={<UpdateUsers />} />

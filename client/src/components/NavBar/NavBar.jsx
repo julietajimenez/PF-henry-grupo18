@@ -1,18 +1,21 @@
 import React, { useContext } from "react";
 import styles from "./NavBar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import UserContext from "../../context/userContext";
 
 
 function NavBar() {
-  
+  const navigate = useNavigate()
   const {logueado, setlogueado} = useContext(UserContext)
 
   const logout = () => {
     setlogueado('invitado')
     localStorage.removeItem('token');
+    localStorage.removeItem('carrito');
     localStorage.removeItem('logueado');
+    navigate('/login')
+    window.location.reload()
   } 
 
   return (
