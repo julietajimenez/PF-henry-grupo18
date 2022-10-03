@@ -2,15 +2,17 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { getAllCategorys } from '../../../redux/actions/CategorysActions'
 import { postProducts } from '../../../redux/actions/ProductsActions'
 
 function CreacionProductos() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const categories = useSelector(state=> state.categorys.categorys)
     const [input, setInput] = useState({
         name: '',
-        marca: '',
+        brand: '',
         price: '', 
         description: '',
         stock: '',
@@ -30,38 +32,40 @@ function handleChange (e){
 function handleSelect(e){
     setInput({
         ...input,
-        category: [...new Set([...input.category, e.target.value])]
+        category: e.target.value
     })
 }
 
 function handleSubmit (e){
     e.preventDefault()
     dispatch(postProducts(input))
+    console.log(input);
     alert('creado con exito')
     setInput({
         name: '',
-        marca: '',
+        brand: '',
         price: '',
         description: '',
         stock: '',
         image: '',
         category: ''
       });
+    navigate('/catalogo')
 }
   return (
     <div>
         <form autoComplete="off" autoCapitalize="on" onSubmit={(e)=>handleSubmit(e)}>
            <div>
                 <label>Nombre: </label>
-                <input type='text' name='name' value={input.name} onChange={handleChange} />
+                <input type='text' required name='name' value={input.name} onChange={handleChange} />
             </div> 
             <div>
                 <label>Marca: </label>
-                <input type='text' name='marca' value={input.marca} onChange={handleChange} />
+                <input type='text' required name='brand' value={input.brand} onChange={handleChange} />
             </div> 
             <div>
                 <label>Precio: </label>
-                <input type='text' name='price' value={input.price} onChange={handleChange} />
+                <input type='text' required name='price' value={input.price} onChange={handleChange} />
             </div> 
             <div>
                 <label>Imagen: </label>
@@ -76,6 +80,7 @@ function handleSubmit (e){
                 <textarea type='text' name='description' value={input.description} onChange={handleChange}></textarea>
             </div> 
              <div>
+                <label>Categoria: </label>  
                 <select onChange={(e)=>handleSelect(e)}>
                     {
                         categories && categories.map(e => {

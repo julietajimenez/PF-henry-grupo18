@@ -39,7 +39,7 @@ export function getProductsByName(name) {
 
 export function postProducts(payload) {
   return async function () {
-    var json = await axios.post(`http://localhost:3001/products/create`, payload);
+    var json = await axios.post('http://localhost:3001/products/create', payload);
     console.log(payload);
     return json;
   };
@@ -105,3 +105,8 @@ export const pagesControl = (number) => {
       payload: number
   }
 } 
+export function removeFilters (){
+  return {
+    type: 'REMOVE_FILTERS'
+  }
+}

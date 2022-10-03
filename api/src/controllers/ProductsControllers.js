@@ -140,9 +140,9 @@ const getProductByBrand = async (req, res, next) => {
 
 const putProducts = async (req, res, next) => {
   const { id } = req.params;
-  const { name, brand, price, description, category, image, stock } = req.body;
+  const { name, brand, price, description, category, image, stock, active } = req.body;
   try {
-    const obj = { id, name, brand, price, description, category, image, stock };
+    const obj = { id, name, brand, price, description, category, image, stock, active };
     const productUpdate = await Products.update(obj, {
       where: {
         id: id,

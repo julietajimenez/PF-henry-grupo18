@@ -29,9 +29,9 @@ const postUsers = async (req, res, next )=> {
 
 const updateUser = async (req, res, next) => {
     const {id} = req.params
-    const  {name, email, avatar, password, active} = req.body
+    const  {name, email, avatar, password, active, category} = req.body
     try {
-        const obj = {name, email, avatar, password, active}
+        const obj = {name, email, avatar, password, active, category}
         const userUpdate = await Users.update(obj, {
             where: {
                 id: id

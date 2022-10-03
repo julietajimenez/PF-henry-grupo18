@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate} from "react-router-dom";
 import {removeDetail, pagesControl, getProductsByBrand, getAllProducts } from "../../redux/actions/ProductsActions";
 import Cards from "../Cards/Cards";
+import styles from '../Catalogo/Catalogo.module.css'
 
 export default function PhysiciansFormula (props){
 
@@ -21,7 +22,8 @@ export default function PhysiciansFormula (props){
     }, [])
   
     return (
-        <div>
+        <>
+        <div className={styles.cardsContainer}>
             {
                 product?.map(e=> {
                     return (
@@ -42,5 +44,6 @@ export default function PhysiciansFormula (props){
                                 navigate(-1) 
                                 dispatch(pagesControl(page))}}>Volver</button> 
         </div>
+        </>
     )
 }

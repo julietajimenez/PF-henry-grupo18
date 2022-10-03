@@ -1,6 +1,7 @@
 import React from "react";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
 import styles from "./Cards.module.css";
+import imgDefault from './imageDefault.jpg'
 
 const Cards = ({
   id,
@@ -18,7 +19,7 @@ const Cards = ({
   return (
     <div key={id} className={styles.card}>
       <div className={styles.imgContainer}>
-        <img src={image} alt="nohayimagen" />
+        { image? <img src={image} alt="nohayimagen" /> : <img style={{height:'270px'}} src={imgDefault}/>}
       </div>
 
       <p style={{}}>{name}</p>

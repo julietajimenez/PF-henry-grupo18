@@ -1,20 +1,23 @@
  import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByBrand, getAllProducts } from "../../../redux/actions/ProductsActions";
+import { filterByBrand, removeFilters } from "../../../redux/actions/ProductsActions";
 
 export default function BrandFiltered (props){
     const dispatch = useDispatch()
-    const products = useSelector(state=> state.products.allProducts)
+    const allProducts = useSelector(state=> state.products.allProducts)
+    const products = useSelector(state=> state.products.products)
 
-    const brands = [...new Set(products.map(e=> e.brand))]
+    
+
+    const brands = [...new Set(allProducts.map(e=> e.brand))]
     function handleSelect(e){
         dispatch(filterByBrand(e.target.value))
         props.setCurrentPage(1)
         //props.setFilter(true)
     }
     function handleClick(){
-        dispatch(getAllProducts())
+        dispatch(removeFilters())
     }
     return (
     <>

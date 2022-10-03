@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProducts } from "../../../redux/actions/ProductsActions";
+import Loader from "../../Loader/Loader";
 
 
 
@@ -12,7 +13,10 @@ export default function SearchToModify (){
     useEffect(()=>{
         dispatch(getAllProducts())
     }, [])
-console.log(products);
+
+    if (products.length <= 0) {
+        return <Loader />
+      }
     return (
         <div> 
              {

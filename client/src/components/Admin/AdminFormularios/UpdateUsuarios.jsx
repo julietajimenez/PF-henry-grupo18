@@ -14,8 +14,9 @@ function UpdateUsuarios() {
     name: users.name,
     email: users.email,
     avatar: users.avatar,
-    password: users.password,
-    active: users.active
+    password: '',
+    active: users.active,
+    category: users.category
   })
 
   useEffect(() => {
@@ -36,6 +37,13 @@ function UpdateUsuarios() {
     })
   }
 
+  const handleCategory = (e) => {
+    setInput({
+      ...input,
+      category: e.target.value
+    })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(updateUser(id, input));
@@ -46,7 +54,8 @@ function UpdateUsuarios() {
       email: '',
       avatar: '',
       password: '',
-      active: ''
+      active: '',
+      category:''
     });
   };
   return (
@@ -77,6 +86,11 @@ function UpdateUsuarios() {
                   <label>Estado: </label>
                   <label>Activo<input type={'radio'} name={'active'} value={true} onChange={(e) => handleActive(e)} defaultValue={e.active} /></label>
                   <label>Inactivo<input type={'radio'} name={'active'} value={false} onChange={(e) => handleActive(e)} defaultValue={e.active} /></label>
+                </div>
+                <div>
+                  <label>Categoria: </label>
+                  <label>Admin<input type={'radio'} name={'category'} value={'admin'} onChange={(e) => handleCategory(e)} defaultValue={e.category} /></label>
+                  <label>Usuario<input type={'radio'} name={'category'} value={'user'} onChange={(e) => handleCategory(e)} defaultValue={e.category} /></label>
                 </div>
                 <button className="submitButton" type="submit">
                   UPDATE

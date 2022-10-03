@@ -73,7 +73,7 @@ function Register() {
             
             
 
-            navigate(`/catalogo`);
+            navigate(`/`);
             }, 1500);
         })
         

@@ -73,24 +73,24 @@ function Catalogo(props) {
               const bDate = new Date(b.createdAt);
               return aDate - bDate;
             })
-            .map((video) => {
-              var categoria = video.categories
-                ? (categoria = video.categories.map((e) => e.name))
-                : null;
-
+            .map((e) => {
+/*               var categoria = e.categories
+                ? (categoria = e.categories.map((e) => e.name))
+                : null; */
+                if(e.active === true){
               return (
                 <Card
-                  key={video.id}
-                  id={video.id}
-                  name={video.name}
-                  image={video.image}
-                  price={video.price}
-                  category={video.category}
-                  stock={video.stock}
-                  categories={categoria}
+                  key={e.id}
+                  id={e.id}
+                  name={e.name}
+                  image={e.image}
+                  price={e.price}
+                  category={e.category}
+                  stock={e.stock}
+                  
                   onAddCarrito={onAddCarrito}
                 />
-              );
+              )} 
             })}
       </div>
 

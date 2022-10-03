@@ -60,6 +60,11 @@ export function products(state = initialState, action) {
               ...state,
               pages: action.payload
           } 
+        case 'REMOVE_FILTERS': 
+        return {
+          ...state,
+          allProducts: state.products
+        }
     default:
       return state;
   }

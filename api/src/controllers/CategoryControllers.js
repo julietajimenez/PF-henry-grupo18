@@ -29,8 +29,11 @@ const getAllCategory = async (req, res, next)=> {
           }
         const products = await Products.findAll()
         const categorys= products.map(e=> e.category)
+        const categoryDB = await Category.findAll()
+        const categoryName = categoryDB.map(e=>e.name)
         const set = [...new Set(categorys)]
-        res.json(set)
+        const allCategorys = [...categoryName, ...set]
+        res.json(allCategorys)
     } catch (error) {
         next(error)
     }

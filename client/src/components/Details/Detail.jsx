@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { productById, removeDetail, pagesControl } from "../../redux/actions/ProductsActions";
+import imgDefault from './imageDefault.jpg'
 
 export default function Detail (){
     const {id} = useParams()
@@ -22,8 +23,8 @@ console.log(product);
         product.name? 
         <div>
             <h1>{product.name}</h1>
-            <img src={product.image}/>
-            <h4>{product.price}</h4>
+            { product.image? <img src={product.image} alt="nohayimagen" /> : <img style={{height:'270px'}} src={imgDefault}/>}
+            <h4>${product.price}USD</h4>
             <h4>{product.description}</h4>
             {
                 product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null

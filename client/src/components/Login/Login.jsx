@@ -38,7 +38,7 @@ const Login = () => {
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
        
 
-            navigate(`/catalogo`);
+            navigate(`/`);
           }, 1500);
         })
         .catch((error) => {

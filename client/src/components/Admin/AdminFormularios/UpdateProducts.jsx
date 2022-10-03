@@ -17,7 +17,8 @@ function UpdateProducts() {
     price: products.price,
     stock: products.stock,
     image: products.image,
-    description: products.description
+    description: products.description,
+    active: products.active
   })
 
   useEffect(() => {
@@ -41,7 +42,6 @@ function UpdateProducts() {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(updateProducts(id, input));
-    console.log(input);
     alert("Usuario actualizado");
     setInput({
       name: '',
@@ -49,7 +49,8 @@ function UpdateProducts() {
       price: '',
       stock: '',
       image: '',
-      description: ''
+      description: '',
+      active: ''
     });
   };
   return (
@@ -84,11 +85,11 @@ function UpdateProducts() {
                   <label>Descripción: </label>
                   <textarea type={'text'} name='description' value={input.description} defaultValue={e.description} onChange={handleChange} ></textarea>
                 </div>
-                {/* <div>
+                <div>
                   <label>Estado: </label>
                   <label>Activo<input type={'radio'} name={'active'} value={true} onChange={(e) => handleActive(e)} defaultValue={e.active} /></label>
                   <label>Inactivo<input type={'radio'} name={'active'} value={false} onChange={(e) => handleActive(e)} defaultValue={e.active} /></label>
-                </div> */}
+                </div> 
                 <button className="submitButton" type="submit">
                   UPDATE
                 </button>
