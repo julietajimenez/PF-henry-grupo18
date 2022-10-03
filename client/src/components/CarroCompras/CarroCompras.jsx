@@ -18,7 +18,7 @@ function CarroCompras(props) {
                 <img src={item.image} alt="" />
               </div>
               <button onClick={() => onRemoveItemCarrito(item)}>
-                eliminar
+                Eliminar
               </button>
             </div>
 
