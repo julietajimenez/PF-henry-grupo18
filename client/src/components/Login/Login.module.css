@@ -1,0 +1,52 @@
+.flexContainer {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(85, 83, 83);
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  border: 1px solid rgb(233, 233, 233);
+  padding: 25px;
+  border-radius: 10px;
+  background-color: #f9f3f3;
+}
+.container h2 {
+  text-align: center;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.formInputs input {
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-top: 5px;
+  letter-spacing: 0.8px;
+}
+
+.btnLogin {
+  padding: 8px 8px;
+  border: none;
+  background-color: #f7d9d9;
+  border-radius: 7px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: block;
+  margin: 15px auto;
+}
+
+.btnLogin:hover {
+  background-color: #ec80a4;
+}
+
+.register {
+  cursor: pointer;
+}

@@ -1,6 +1,9 @@
-.img{
-    margin-left: 25%;
-    width: 50%;
-    height: 649px;
-} 
+.container {
+  min-height: 70vh;
+}
 
+.img {
+  margin-left: 25%;
+  width: 50%;
+  height: 649px;
+}
