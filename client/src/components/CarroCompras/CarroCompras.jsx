@@ -21,17 +21,6 @@ function CarroCompras(props) {
                 eliminar
               </button>
             </div>
-<<<<<<< HEAD
-            <div><h2>Total: $ {total.toFixed(2)}</h2></div>
-            {cartItems.map((item) => (
-                <div key={item.id}>
-                    <div>{item.name}</div>
-                    <img src={item.image} alt="" />
-                    <div>
-                        <button onClick={() =>onAddCarrito(item)}>+</button>
-                        <button onClick={() =>onRemoveCarrito(item)}>-</button>
-=======
->>>>>>> 5af0d050fa34a18c3ce5b9dd9710b8ec516fa906
 
             <div className={styles.flexDataContainer}>
               <p>{item.name}</p>
@@ -47,7 +36,7 @@ function CarroCompras(props) {
           </div>
         </div>
       ))}
-      <h3>Total: $ {total}</h3>
+      <h3>Total: $ {total.toFixed(2)}</h3>
     </div>
   );
 }
