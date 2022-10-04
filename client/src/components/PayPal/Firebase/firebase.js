@@ -6,12 +6,16 @@
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+const {API_KEY} = process.env
+
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB_dSbx-Si6rXcrmMdBWu7S_MZVJ09Rryc",
+  apiKey: API_KEY,
   authDomain: "fir-correo-react-2e9e4.firebaseapp.com",
   projectId: "fir-correo-react-2e9e4",
   storageBucket: "fir-correo-react-2e9e4.appspot.com",

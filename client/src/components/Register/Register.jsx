@@ -1,10 +1,10 @@
 import React from "react";
-import { useState, useContext } from 'react'
+import { useState, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
-
 import UserContext from "../../context/userContext";
+const { URL_API } = process.env;
 
 function Register() {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function Register() {
   });
 
   const [mensaje, setMensaje] = useState();
-  const {logueado, setlogueado} = useContext(UserContext)
+  const { logueado, setlogueado } = useContext(UserContext);
 
   function handleChange(e) {
     setInput({
@@ -60,21 +60,19 @@ function Register() {
     };
 
     if (input.name !== "" && input.email !== "" && input.password !== "") {
-      await axios
-        .post("http://localhost:3001/users/register", Usuario)
-        .then((res) => {
-          const { data } = res;
-          setMensaje(data.mensaje);
-          setTimeout(() => {
-            setMensaje("");
-            // localStorage.setItem("token", data?.usuario.token);
+      await axios.post(URL_API + "/users/register", Usuario).then((res) => {
+        const { data } = res;
+        setMensaje(data.mensaje);
+        setTimeout(() => {
+          setMensaje("");
+          // localStorage.setItem("token", data?.usuario.token);
 
-            localStorage.setItem("logueado", JSON.stringify(Usuario));
+          localStorage.setItem("logueado", JSON.stringify(Usuario));
 
-            setlogueado(Usuario)
-            navigate(`/`);
-          }, 1500);
-        });
+          setlogueado(Usuario);
+          navigate(`/`);
+        }, 1500);
+      });
 
       setInput({
         name: "",

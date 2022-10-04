@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";import UserContext from "../../context/userContext";
-
+const {URL_API} = process.env;
 
 
 const Login = () => {
+
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ const Login = () => {
       };
       setLoading(true);
       await axios
-        .post("http://localhost:3001/users/login", Usuario)
+        .post(URL_API+"/users/login", Usuario)
         .then((res) => {
           const { data } = res;
           setMensaje(data.mensaje);
