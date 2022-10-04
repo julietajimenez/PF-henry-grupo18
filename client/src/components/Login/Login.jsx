@@ -55,7 +55,7 @@ const Login = () => {
       setLoading(false);
     }
   };
-
+console.log(logueado.email);
   return (
     <div className={styles.flexContainer}>
       <div className={styles.container}>
