@@ -1,32 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 import sentEmail from "./Firebase/sentEmail";
-function Checkout({ descripcion, valor, cantidad }) {
+import UserContext from "../../context/userContext";
 
+function Checkout({ descripcion, valor, cantidad }) {
+  const [logueado, setlogueado] = useContext(UserContext);
 
   function submitHandler() {
-   
-    let email = "guidox2001@gmail.com"; // ASIGNO EL VALOR DE CORREO SEGÚN LO ENVIADO POR INPUT
+    let email = logueado.email; // ASIGNO EL VALOR DE CORREO SEGÚN LO ENVIADO POR INPUT
     let subject = "¡Gracias por tu compra en nuestra tienda!"; // LO MISMO
     let body = descripcion; // DE ARRIBA
     sentEmail(email, subject, body); // EJECUTO LA FUNCIÓN SENTEMAIL Y LE ENVÍO LOS DATOS POR PROPS... INVESTIGAR DE COMO INCORPORAR ESTO AL ATRIBUT ONAPPROVE DE PAYPAL
   }
 
-
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const compraste = descripcion;
   const REACT_APP_PAYPAL_CLIENT_ID =
     "ATbqit3pbxakLWH6-Sgyh_FIaRvtCBr-Vkq2AWChyWBBx4monf1Dumry1mGcdZiYLgxN4TvdaPGzKk6l";
   const handleApprove = (orderID) => {
     setPaidFor(true);
-    swal('¡Gracias por comprar en Cosmetista Henry', 'Se envió un ticket de compra a su correo electrónico.😃')
+    swal(
+      "¡Gracias por comprar en Cosmetista Henry",
+      "Se envió un ticket de compra a su correo electrónico.😃"
+    );
   };
-
 
   if (error) {
     alert(error);
@@ -58,7 +60,7 @@ function Checkout({ descripcion, valor, cantidad }) {
         }}
         onApprove={async (data, actions) => {
           const order = await actions.order.capture();
-          submitHandler()
+          submitHandler();
           handleApprove(data.orderID);
         }}
         onCancel={() => {}}
