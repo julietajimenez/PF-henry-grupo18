@@ -19,6 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn } = require("./src/db.js");
+const {DB_PORT} = require("./src/config")
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {

@@ -3,7 +3,8 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 
-import { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } from "../config.js";
+
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = require('./config.js').default;
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,

@@ -1,37 +1,38 @@
 const { Products, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
+require("dotenv").config()
 
 
 const getAllProducts = async (req, res, next) => {
   try {
     let productsNyx = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=physicians formula"
+      URL_API+"brand=physicians formula"
     );
     let productsMaybelline = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=maybelline"
+      URL_API+"brand=maybelline"
     );
     let productElf = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=e.l.f."
+      URL_API+"brand=e.l.f."
     );
     let productsPacifica = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=pacifica"
+      URL_API+"brand=pacifica"
     );
     let productsAlmay = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=almay"
+      URL_API+"brand=almay"
     );
     let productsColourpop = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=colourpop"
+      URL_API+"brand=colourpop"
     );
     let productsRevlon = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=revlon"
+      URL_API+"brand=revlon"
     );
-    
-    
-
+     
     let productsLoreal = await axios.get(
-      "http://makeup-api.herokuapp.com/api/v1/products.json?brand=l'oreal"
+      URL_API+"brand=l'oreal"
     );
+
+    
     let products = [
       ...productsLoreal.data,
       ...productsMaybelline.data,
