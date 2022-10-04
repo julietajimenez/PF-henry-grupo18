@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
 const { LOCAL } = process.env;
-
+const cors = require('cors');
 const server = express();
 
 server.name = "API";
