@@ -1,38 +1,21 @@
 const { Products, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
-require("dotenv").config()
-
+require("dotenv").config();
+const { URL_API } = process.env;
 
 const getAllProducts = async (req, res, next) => {
   try {
-    let productsNyx = await axios.get(
-      URL_API+"brand=physicians formula"
-    );
-    let productsMaybelline = await axios.get(
-      URL_API+"brand=maybelline"
-    );
-    let productElf = await axios.get(
-      URL_API+"brand=e.l.f."
-    );
-    let productsPacifica = await axios.get(
-      URL_API+"brand=pacifica"
-    );
-    let productsAlmay = await axios.get(
-      URL_API+"brand=almay"
-    );
-    let productsColourpop = await axios.get(
-      URL_API+"brand=colourpop"
-    );
-    let productsRevlon = await axios.get(
-      URL_API+"brand=revlon"
-    );
-     
-    let productsLoreal = await axios.get(
-      URL_API+"brand=l'oreal"
-    );
+    let productsNyx = await axios.get(URL_API + "brand=physicians formula");
+    let productsMaybelline = await axios.get(URL_API + "brand=maybelline");
+    let productElf = await axios.get(URL_API + "brand=e.l.f.");
+    let productsPacifica = await axios.get(URL_API + "brand=pacifica");
+    let productsAlmay = await axios.get(URL_API + "brand=almay");
+    let productsColourpop = await axios.get(URL_API + "brand=colourpop");
+    let productsRevlon = await axios.get(URL_API + "brand=revlon");
 
-    
+    let productsLoreal = await axios.get(URL_API + "brand=l'oreal");
+
     let products = [
       ...productsLoreal.data,
       ...productsMaybelline.data,
@@ -41,7 +24,7 @@ const getAllProducts = async (req, res, next) => {
       ...productsPacifica.data,
       ...productsAlmay.data,
       ...productsColourpop.data,
-      ...productsRevlon.data
+      ...productsRevlon.data,
     ];
 
     products = products.map((el) => {
@@ -60,8 +43,8 @@ const getAllProducts = async (req, res, next) => {
 
     if (req.query.filter) {
       const productFilter = await Products.findAll({
-        where: { 
-          brand: req.query.filter 
+        where: {
+          brand: req.query.filter,
         },
       });
       return res.json(productFilter);
@@ -75,8 +58,6 @@ const getAllProducts = async (req, res, next) => {
     next(error);
   }
 };
-
-
 
 const getProductById = async (req, res, next) => {
   const { id } = req.params;
@@ -93,7 +74,7 @@ const postProducts = async (req, res, next) => {
   try {
     const obj = { name, brand, price, description, category, image, stock };
     const newProduct = await Products.create(obj);
-/*     const categoriesProduct = await Category.findAll({
+    /*     const categoriesProduct = await Category.findAll({
       where: {
         name: categories,
       },
@@ -125,7 +106,7 @@ const getProductByName = async (req, res, next) => {
 const getProductByBrand = async (req, res, next) => {
   const { brand } = req.query;
   try {
-         const product = await Products.findAll({
+    const product = await Products.findAll({
       where: {
         brand: {
           [Op.iLike]: "%" + brand + "%",
@@ -138,12 +119,22 @@ const getProductByBrand = async (req, res, next) => {
   }
 };
 
-
 const putProducts = async (req, res, next) => {
   const { id } = req.params;
-  const { name, brand, price, description, category, image, stock, active } = req.body;
+  const { name, brand, price, description, category, image, stock, active } =
+    req.body;
   try {
-    const obj = { id, name, brand, price, description, category, image, stock, active };
+    const obj = {
+      id,
+      name,
+      brand,
+      price,
+      description,
+      category,
+      image,
+      stock,
+      active,
+    };
     const productUpdate = await Products.update(obj, {
       where: {
         id: id,
