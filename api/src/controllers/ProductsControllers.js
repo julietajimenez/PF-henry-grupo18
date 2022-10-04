@@ -6,15 +6,14 @@ const { URL_API } = process.env;
 
 const getAllProducts = async (req, res, next) => {
   try {
-    let productsNyx = await axios.get(URL_API + "brand=physicians formula");
-    let productsMaybelline = await axios.get(URL_API + "brand=maybelline");
-    let productElf = await axios.get(URL_API + "brand=e.l.f.");
-    let productsPacifica = await axios.get(URL_API + "brand=pacifica");
-    let productsAlmay = await axios.get(URL_API + "brand=almay");
-    let productsColourpop = await axios.get(URL_API + "brand=colourpop");
-    let productsRevlon = await axios.get(URL_API + "brand=revlon");
-
-    let productsLoreal = await axios.get(URL_API + "brand=l'oreal");
+    let productsNyx = await axios.get(URL_API + "products.json?brand=physicians formula");
+    let productsMaybelline = await axios.get(URL_API + "products.json?brand=maybelline");
+    let productElf = await axios.get(URL_API + "products.json?brand=e.l.f.");
+    let productsPacifica = await axios.get(URL_API + "products.json?brand=pacifica");
+    let productsAlmay = await axios.get(URL_API + "products.json?brand=almay");
+    let productsColourpop = await axios.get(URL_API + "products.json?brand=colourpop");
+    let productsRevlon = await axios.get(URL_API + "products.json?brand=revlon");
+    let productsLoreal = await axios.get(URL_API + "products.json?brand=l'oreal");
 
     let products = [
       ...productsLoreal.data,
