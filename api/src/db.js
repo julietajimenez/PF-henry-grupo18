@@ -5,7 +5,7 @@ const path = require("path");
 const { PGHOST, PGNAME, PGPASSWORD, PGUSER } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}/${PGNAME}`,
+  `${DB_DIALECT}://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGNAME}`,
 
   {
     logging: false, // set to console.log to see the raw SQL queries
