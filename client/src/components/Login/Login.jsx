@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";import UserContext from "../../context/userContext";
-const {URL_API} = process.env;
+
 
 
 const Login = () => {
@@ -31,7 +31,7 @@ const Login = () => {
       };
       setLoading(true);
       await axios
-        .post(URL_API+"/users/login", Usuario)
+        .post(process.env.REACT_APP_URL_API+"/users/login", Usuario)
         .then((res) => {
           const { data } = res;
           setMensaje(data.mensaje);
