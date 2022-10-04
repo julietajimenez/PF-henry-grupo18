@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { PGHOST, PGNAME, PGPASSWORD, PGUSER } = process.env;
+const { DB_DIALECT, PGHOST, PGNAME, PGPASSWORD, PGUSER } = process.env;
 
 const sequelize = new Sequelize(
   `${DB_DIALECT}://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGNAME}`,
