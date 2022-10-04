@@ -1,9 +1,17 @@
 import axios from "axios";
 
+const {URL_API} = process.env
+
+
+
+
+
+
+
 export function getAllCategorys() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/category");
+      var json = await axios.get(URL_API+`/category`);
       return dispatch({
         type: "GET_CATEGORYS",
         payload: json.data,
@@ -17,7 +25,7 @@ export function getAllCategorys() {
 export function putCategory(id, payload) {
   return async function () {
     var json = await axios.put(
-      `http://localhost:3001/category/update/${id}`,
+      URL_API+`/category/update/${id}`,
       payload
     );
     return json;
@@ -27,7 +35,7 @@ export function putCategory(id, payload) {
 export function createCategory(payload) {
   return async function () {
     var json = await axios.post(
-      "http://localhost:3001/category/create",
+      URL_API+"/category/create",
       payload
     );
     return json;
