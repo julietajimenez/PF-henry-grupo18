@@ -1,18 +1,19 @@
 import axios from "axios";
 import swal from "sweetalert";
 
-const {URL_API} = process.env;
+
 
 export function getAllProducts() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(URL_API+"/products");
+      var json = await axios.get(process.env.REACT_APP_URL_API+"/products");
+      console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS",
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
+      console.log(process.env.REACT_APP_URL_API);
     }
   };
 }
@@ -21,7 +22,7 @@ export function getProductsByName(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        URL_API+`/products/byName?name=${name}`
+        process.env.REACT_APP_URL_API+`/products/byName?name=${name}`
       );
 
       if (!json.data.length) {
@@ -42,7 +43,7 @@ export function getProductsByName(name) {
 export function postProducts(payload) {
   return async function () {
     var json = await axios.post(
-      URL_API+"/products/create",
+      process.env.REACT_APP_URL_API+"/products/create",
       payload
     );
     console.log(payload);
@@ -53,7 +54,8 @@ export function postProducts(payload) {
 export function productById(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(URL_API+`/products/byId/${id}`);
+      var json = await axios.get(process.env.REACT_APP_URL_API+`/products/byId/${id}`);
+      console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS_BY_ID",
         payload: json.data,
@@ -71,7 +73,7 @@ export const removeDetail = () => {
 export function updateProducts(id, payload) {
   return async function () {
     var json = await axios.put(
-     URL_API+ `/products/update/${id}`,
+     process.env.REACT_APP_URL_API+ `/products/update/${id}`,
       payload
     );
     console.log(payload);
@@ -83,7 +85,7 @@ export function getProductsByBrand(brand) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-      URL_API+ `/products/byBrand?brand=${brand}`
+      process.env.REACT_APP_URL_API+ `/products/byBrand?brand=${brand}`
       );
       console.log(json.data);
       return dispatch({

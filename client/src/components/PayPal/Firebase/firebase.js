@@ -6,7 +6,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-const {API_KEY} = process.env
+const {REACT_APP_API_KEY} = process.env
 
 
 
@@ -15,7 +15,7 @@ const {API_KEY} = process.env
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: API_KEY,
+  apiKey: REACT_APP_API_KEY,
   authDomain: "fir-correo-react-2e9e4.firebaseapp.com",
   projectId: "fir-correo-react-2e9e4",
   storageBucket: "fir-correo-react-2e9e4.appspot.com",

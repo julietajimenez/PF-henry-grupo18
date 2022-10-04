@@ -77,7 +77,7 @@ function Catalogo(props) {
 /*               var categoria = e.categories
                 ? (categoria = e.categories.map((e) => e.name))
                 : null; */
-                if(e.active === true){
+               /*  if(e.active === true){ */
               return (
                 <Card
                   key={e.id}
@@ -91,7 +91,7 @@ function Catalogo(props) {
                   onAddCarrito={onAddCarrito}
                 />
               )} 
-              })}
+              )}
       </div>
 
       <div className={styles.paginado}>
