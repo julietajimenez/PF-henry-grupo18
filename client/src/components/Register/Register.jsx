@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
 import UserContext from "../../context/userContext";
-const { URL_API } = process.env;
+// const { URL_API } = process.env;
 
 function Register() {
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ function Register() {
     };
 
     if (input.name !== "" && input.email !== "" && input.password !== "") {
-      await axios.post(URL_API + "/users/register", Usuario).then((res) => {
+      await axios.post(process.env.REACT_APP_URL_API + "/users/register", Usuario).then((res) => {
         const { data } = res;
         setMensaje(data.mensaje);
         setTimeout(() => {
