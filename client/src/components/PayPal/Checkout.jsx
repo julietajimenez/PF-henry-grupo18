@@ -24,7 +24,7 @@ function Checkout({ descripcion, valor, cantidad }) {
     "ATbqit3pbxakLWH6-Sgyh_FIaRvtCBr-Vkq2AWChyWBBx4monf1Dumry1mGcdZiYLgxN4TvdaPGzKk6l";
   const handleApprove = (orderID) => {
     setPaidFor(true);
-    swal('¡Gracias por comprar en Cosmetista Henry', `Aquí sus productos comprados: ${descripcion}`)
+    swal('¡Gracias por comprar en Cosmetista Henry', 'Se envió un ticket de compra a su correo electrónico.😃')
   };
 
 
@@ -48,7 +48,7 @@ function Checkout({ descripcion, valor, cantidad }) {
           return actions.order.create({
             purchase_units: [
               {
-                description: `${compraste}`,
+                description: `Compra en Henry Cosmetista, productos de maquillaje de primera calidad.`,
                 amount: {
                   value: valor, //ACÁ IRÍA EL PRECIO DEL CARRITO
                 },
@@ -59,7 +59,6 @@ function Checkout({ descripcion, valor, cantidad }) {
         onApprove={async (data, actions) => {
           const order = await actions.order.capture();
           submitHandler()
-          console.log(descripcion)
           handleApprove(data.orderID);
         }}
         onCancel={() => {}}
