@@ -59,7 +59,7 @@ function Register() {
     };
 
     if (input.name !== "" && input.email !== "" && input.password !== "") {
-      await axios.post("/users/register", Usuario).then((res) => {
+      await axios.post(process.env.REACT_APP_URL_API + "/users/register", Usuario).then((res) => {
         const { data } = res;
         setMensaje(data.mensaje);
         setTimeout(() => {
