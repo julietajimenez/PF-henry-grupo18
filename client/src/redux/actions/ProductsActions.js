@@ -116,3 +116,25 @@ export function removeFilters() {
     type: "REMOVE_FILTERS",
   };
 }
+
+/* export async function cloudinaryImage(base64EncodedImage){
+  console.log(base64EncodedImage)
+  try {
+    return async (dispatch) => {
+
+      const res = await axios.post('http://localhost:3001/cloudinary/api/upload', { data: base64EncodedImage})
+
+      console.log(res, "Esto es res23 156+4156+46+46+e5n el")
+
+      localStorage.setItem("profileImage", res.data.url)
+      window.location.reload('http://localhost:3000/');
+
+      return dispatch({
+        type: 'CLOUDINARY_IMAGE',
+        payload: base64EncodedImage,
+      })
+}
+  } catch (err) {
+      console.error(err);
+  }
+}; */

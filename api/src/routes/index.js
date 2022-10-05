@@ -4,6 +4,7 @@ const { Router } = require("express");
 const ProductsRoutes = require("./ProductsRoutes.js");
 const UsersRoutes = require('./UsersRoutes.js');
 const CategoryRoutes = require("./CategoryRoutes");
+/* const CloudinaryRoutes = require('./CloudinaryRoutes.js') */
 
 
 const router = Router();
@@ -13,6 +14,8 @@ const router = Router();
 router.use("/products", ProductsRoutes);
 router.use("/users", UsersRoutes);
 router.use("/category", CategoryRoutes);
+/* router.use("/cloudinary", CloudinaryRoutes); */
+
 
 
 module.exports = router;

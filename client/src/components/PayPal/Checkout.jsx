@@ -7,7 +7,7 @@ import UserContext from "../../context/userContext";
 
 function Checkout({ descripcion, valor, cantidad }) {
 const {logueado, setlogueado} = useContext(UserContext); 
-console.log(logueado);
+
   function submitHandler() {
     let email = logueado.email; // ASIGNO EL VALOR DE CORREO SEGÚN LO ENVIADO POR INPUT
     let subject = "¡Gracias por tu compra en nuestra tienda!"; // LO MISMO

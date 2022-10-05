@@ -4,6 +4,7 @@ const initialState = {
   detail: {},
   filtered: [],
   pages: 1,
+  //image:[],
 };
 
 export function products(state = initialState, action) {
@@ -68,6 +69,11 @@ export function products(state = initialState, action) {
         ...state,
         allProducts: state.products,
       };
+/*       case 'CLOUDINARY_IMAGE':
+      return {
+        ...initialState,
+        image: action.payload
+      }; */
     default:
       return state;
   }
