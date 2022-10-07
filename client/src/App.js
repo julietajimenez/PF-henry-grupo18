@@ -9,7 +9,6 @@ import Searchbar from "./components/Searchbar/Searchbar.jsx";
 import Category from "./components/Filters/Filter Category/CategoryFilter.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-
 import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
 import CreacionProductos from "./components/Admin/AdminFormularios/CreacionProductos";
 import UpdateUsuarios from "./components/Admin/AdminFormularios/UpdateUsuarios";
@@ -26,15 +25,15 @@ import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
 import Register from "./components/Register/Register";
 import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
+import Verify from "./components/VerificadorUsers/Verify";
 
 function App() {
-
   const [logueado, setlogueado] = useState(() => {
     try {
       const userLogueado = localStorage.getItem("logueado");
-      return userLogueado ? JSON.parse(userLogueado) : 'invitado';
+      return userLogueado ? JSON.parse(userLogueado) : "invitado";
     } catch (error) {
-      return 'invitado';
+      return "invitado";
     }
   });
 
@@ -45,7 +44,7 @@ function App() {
     } catch (error) {
       return [];
     }
-  });;
+  });
 
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(cartItems));
@@ -63,9 +62,9 @@ function App() {
         )
       );
     } else {
-      setCartItems([...cartItems, {  ...product, cantidad: 1  }]);;
+      setCartItems([...cartItems, { ...product, cantidad: 1 }]);
     }
-  };;
+  };
 
   const onRemoveCarrito = (product) => {
     const productRemove = cartItems.find((item) => item.id === product.id);
@@ -78,51 +77,64 @@ function App() {
         )
       );
     }
-  };;
+  };
 
   const onRemoveItemCarrito = (product) => {
-    setCartItems(cartItems.filter((item) => item.id !== product.id));;
-  };;
+    setCartItems(cartItems.filter((item) => item.id !== product.id));
+  };
 
   return (
     <div className="App">
-      <UserContext.Provider value={{logueado, setlogueado}}>
-      <NavBar />
-      <Routes>
-        {/* <Route path="/" element={<Landing/>} /> */}
-        <Route path="/" element={<Home onAddCarrito={onAddCarrito}/>} />
-        <Route  path="/catalogo" element={<Catalogo onAddCarrito={onAddCarrito}/>} />
-        <Route path="/card" element={<Cards />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register/>} />
-        <Route
-          path="/carrito"
-          element={
-            <CarroCompras
-              cartItems={cartItems}
-              onAddCarrito={onAddCarrito}
-              onRemoveCarrito={onRemoveCarrito}
-              onRemoveItemCarrito={onRemoveItemCarrito}
-            />
-          }
-        />
-        <Route path="/createcategory" element={<CreacionCategorias />} />
-        <Route path="/createProduct" element={<CreacionProductos />} />
-        <Route path="/update/:id" element={<UpdateUsuarios />} />
-        <Route path="/update" element={<UpdateUsers />} />
-        <Route path="/products/:id" element={<Detail />} />
-        <Route path="/products/update/:id" element={<UpdateProducts />} />
-        <Route path="/products/update/" element={<SearchToModify />} />
-        <Route path="/products/brands/pacifica" element={<Pacifica onAddCarrito={onAddCarrito} />} />
-        <Route path="/products/brands/maybelline" element={<Maybelline onAddCarrito={onAddCarrito} />} />
-        <Route path="/products/brands/revlon" element={<Revlon onAddCarrito={onAddCarrito} />} />
-        <Route path="/products/brands/physiciansFormula" element={<PhysiciansFormula onAddCarrito={onAddCarrito} />} />
-        <Route path="/checkout" element={<Checkout />} />
-
-
-
-      </Routes>
-      <Footer />
+      <UserContext.Provider value={{ logueado, setlogueado }}>
+        <NavBar />
+        <Routes>
+          {/* <Route path="/" element={<Landing/>} /> */}
+          <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
+          <Route
+            path="/catalogo"
+            element={<Catalogo onAddCarrito={onAddCarrito} />}
+          />
+          <Route path="/card" element={<Cards />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/carrito"
+            element={
+              <CarroCompras
+                cartItems={cartItems}
+                onAddCarrito={onAddCarrito}
+                onRemoveCarrito={onRemoveCarrito}
+                onRemoveItemCarrito={onRemoveItemCarrito}
+              />
+            }
+          />
+          <Route path="/createcategory" element={<CreacionCategorias />} />
+          <Route path="/createProduct" element={<CreacionProductos />} />
+          <Route path="/update/:id" element={<UpdateUsuarios />} />
+          <Route path="/update" element={<UpdateUsers />} />
+          <Route path="/products/:id" element={<Detail />} />
+          <Route path="/products/update/:id" element={<UpdateProducts />} />
+          <Route path="/products/update/" element={<SearchToModify />} />
+          <Route
+            path="/products/brands/pacifica"
+            element={<Pacifica onAddCarrito={onAddCarrito} />}
+          />
+          <Route
+            path="/products/brands/maybelline"
+            element={<Maybelline onAddCarrito={onAddCarrito} />}
+          />
+          <Route
+            path="/products/brands/revlon"
+            element={<Revlon onAddCarrito={onAddCarrito} />}
+          />
+          <Route
+            path="/products/brands/physiciansFormula"
+            element={<PhysiciansFormula onAddCarrito={onAddCarrito} />}
+          />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/verify/:id" element={<Verify />} />
+        </Routes>
+        <Footer />
       </UserContext.Provider>
     </div>
   );

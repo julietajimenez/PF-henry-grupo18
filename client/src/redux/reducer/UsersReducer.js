@@ -11,7 +11,10 @@ const initialState = {
           users: action.payload,
           allUsers: action.payload,
         };
-  
+      case "CONFIRMATION_MAIL":
+      return {
+        ...state,
+      };
       default:
         return state;
     }

@@ -48,7 +48,7 @@ function Checkout({ descripcion, valor, cantidad }) {
           return actions.order.create({
             purchase_units: [
               {
-                description: `${compraste}`,
+                description: `NADA`,
                 amount: {
                   value: valor, //ACÁ IRÍA EL PRECIO DEL CARRITO
                 },

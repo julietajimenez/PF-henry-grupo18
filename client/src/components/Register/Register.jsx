@@ -72,7 +72,7 @@ function Register() {
             localStorage.setItem("logueado", JSON.stringify(Usuario));
 
             setlogueado(Usuario)
-            navigate(`/`);
+            
           }, 1500);
         });
 
