@@ -26,6 +26,7 @@ import Register from "./components/Register/Register";
 import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
 import Verify from "./components/VerificadorUsers/Verify";
+import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 
 function App() {
   const [logueado, setlogueado] = useState(() => {
@@ -109,6 +110,7 @@ function App() {
             }
           />
           <Route path="/createcategory" element={<CreacionCategorias />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/createProduct" element={<CreacionProductos />} />
           <Route path="/update/:id" element={<UpdateUsuarios />} />
           <Route path="/update" element={<UpdateUsers />} />

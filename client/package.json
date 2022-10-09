@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@coreui/icons": "^2.1.0",
+    "@coreui/icons-react": "^2.1.0",
+    "@coreui/react": "^4.4.0",
+    "@coreui/react-chartjs": "^2.1.0",
     "@headlessui/react": "^1.7.2",
     "@heroicons/react": "^2.0.11",
     "@paypal/react-paypal-js": "^7.8.1",
@@ -11,6 +15,7 @@
     "@testing-library/user-event": "^13.1.1",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
+    "classnames": "^2.3.2",
     "daisyui": "^2.31.0",
     "firebase": "^9.10.0",
     "react": "^18.2.0",
@@ -54,6 +59,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.16",
+    "sass": "^1.55.0",
     "tailwindcss": "^3.1.8"
   }
 }

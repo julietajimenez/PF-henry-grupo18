@@ -3,7 +3,7 @@ import axios from "axios";
 export function getAllUsers() {
   return async function (dispatch) {
     try {
-      var json = await axios.get("http://localhost:3001/users");
+      var json = await axios.get(process.env.REACT_APP_URL_API+`/users`);
       return dispatch({
         type: "GET_USERS",
         payload: json.data,
@@ -17,7 +17,7 @@ export function getAllUsers() {
 export function updateUser(id, payload) {
   return async function () {
     var json = await axios.put(
-      `http://localhost:3001/users/update/${id}`,
+      process.env.REACT_APP_URL_API+`/users/update/${id}`,
       payload
     );
     console.log(payload);
@@ -25,12 +25,11 @@ export function updateUser(id, payload) {
   };
 }
 
-
 export function verifyUser(id) {
   return async function (dispatch) {
     try {
       const response = await axios.put(
-        `http://localhost:3001/users/verify/${id}`
+        process.env.REACT_APP_URL_API+`/users/verify/${id}`
       );
       console.log("response", response);
       return dispatch({ type: "CONFIRMATION_MAIL" });
@@ -40,9 +39,7 @@ export function verifyUser(id) {
   };
 }
 
-
 export async function verifyRoute(id) {
-  const response = await axios.get(`http://localhost:3001/users/ById/${id}`)
-    return response.data;
-  };
-
+  const response = await axios.get(`http://localhost:3001/users/ById/${id}`);
+  return response.data;
+}
