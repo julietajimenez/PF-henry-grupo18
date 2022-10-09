@@ -8,6 +8,16 @@
   gap: 20px;
 }
 
+.review {
+  display: flex;
+  min-width: 50vh;
+  padding: 10%;
+  flex-direction: column;
+  border: 1px solid rgb(233, 233, 233);
+  background-color: #f7d9d9;
+  border-radius: 15px;
+}
+
 .description {
   border: 1px solid rgb(233, 233, 233);
   border-radius: 15px;

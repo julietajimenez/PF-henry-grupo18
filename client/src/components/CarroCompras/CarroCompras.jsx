@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./CarroCompras.module.css";
 import Checkout from "../PayPal/Checkout";
 
+import UserContext from "../../context/userContext";
+
 function CarroCompras(props) {
+
+  const {logueado, setlogueado} = useContext(UserContext)
   const { cartItems, onAddCarrito, onRemoveCarrito, onRemoveItemCarrito } =
     props;
 
   let total = cartItems.reduce((a, c) => a + c.price * c.cantidad, 0);
   let descripcion = "";
+  let productos = []
   let count = 0;
   return (
     <div className={styles.carroContainer}>
@@ -18,6 +23,8 @@ function CarroCompras(props) {
           <div hidden>
             {(count = count + 1)}
             {(descripcion = descripcion + item.cantidad + "x " + item.name)}
+            {(productos.push(item.id))}
+            
           </div>
           <div className={styles.imgNameContainer}>
             <div className={styles.leftSideContainer}>
@@ -44,13 +51,14 @@ function CarroCompras(props) {
         </div>
       ))}
 
-      {total > 0 ? (
+      {logueado.email && total > 0 ? (
         <>
-        <Checkout valor={total} descripcion={descripcion} />
+        <Checkout valor={total} descripcion={descripcion} productos={productos} />
         <h3>Total: $ {total.toFixed(2)}</h3>
         </>
-      ) : (
+      ) : ( total = 0 ?
         <h3>Su carrito está vacío</h3>
+        : <h3>Iniciar sesion</h3>
       )}
     </div>
   );

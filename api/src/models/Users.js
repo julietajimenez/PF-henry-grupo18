@@ -32,6 +32,9 @@ module.exports = (sequelize) => {
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    compras: {
+      type: DataTypes.JSON
     }
   });
 };

@@ -3,7 +3,8 @@ const initialState = {
   products: [],
   detail: {},
   filtered: [],
-  pages: 1
+  pages: 1,
+  reviews: []
 
 };
 
@@ -29,6 +30,11 @@ export function products(state = initialState, action) {
         ...state,
         detail: action.payload
       }
+      case "GET_REVIEWS_BY_PRODUCT":
+        return {
+          ...state,
+          reviews: action.payload
+        }
       case 'REMOVE_DETAIL': 
       return {
           ...state,

@@ -1,0 +1,51 @@
+.carroContainer {
+  margin: 60px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 70vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.carroContainer h3 {
+  text-align: right;
+  margin-right: 30px;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 50px;
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+
+.imgNameContainer p {
+  font-size: 1.5rem;
+}
+
+.imgNameContainer  img{
+  max-height: 150px;
+}
+
+.flexDataContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 2;
+}
+
+.leftSideContainer {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.leftSideContainer button {
+  border: none;
+  background-color: white;
+  color: blue;
+  cursor: pointer;
+  max-width: 75px;
+}

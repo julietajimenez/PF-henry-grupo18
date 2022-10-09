@@ -26,6 +26,8 @@ import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
 import Register from "./components/Register/Register";
 import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
+import Review from "./components/Review/Review";
+import MisCompras from "./components/MisCompras/MisCompras";
 
 function App() {
 
@@ -118,6 +120,8 @@ function App() {
         <Route path="/products/brands/revlon" element={<Revlon onAddCarrito={onAddCarrito} />} />
         <Route path="/products/brands/physiciansFormula" element={<PhysiciansFormula onAddCarrito={onAddCarrito} />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/review/:id" element={<Review />} />
+        <Route path="/miscompras" element={<MisCompras />} />
 
 
 

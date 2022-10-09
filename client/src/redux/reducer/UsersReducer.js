@@ -1,6 +1,8 @@
 const initialState = {
     users: [],
-    allUsers: []
+    allUsers: [],
+    user: '',
+    compras: []
   };
   
   export function users(state = initialState, action) {
@@ -10,6 +12,18 @@ const initialState = {
           ...state,
           users: action.payload,
           allUsers: action.payload,
+        };
+
+      case "GET_USER":
+        return {
+          ...state,
+          user: action.payload
+        };
+        
+        case "GET_COMPRAS":
+        return {
+          ...state,
+          compras: action.payload
         };
   
       default:
