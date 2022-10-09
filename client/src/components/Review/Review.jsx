@@ -41,7 +41,7 @@ function Review() {
       alert("Gracias por su opinion");
       setInput({
           comment: 'Espectacular',
-          rating: 0
+          rating: 5
       });
       if(input.rating === 1) {
         alert("Por favor, comentenos un poco mas sobre el producto");
@@ -54,32 +54,32 @@ function Review() {
 
   const handleRating = (index) => {
     setRating(index)
-    setInput({
-        ...input,
-        rating: index
-    })
   }
 
   const handleSelect = (e) => {
-    setInput({
-        ...input,
-        comment: e.target.value
-    })
+    
+    let rating = 0
     if(e.target.value === 'Espectacular') {
-      handleRating(5)
+      rating = 5
     }
     if(e.target.value === 'Excelente relacion precio-calidad') {
-      handleRating(4)
+      rating = 4
     }
     if(e.target.value === 'Regular') {
-      handleRating(3)
+      rating = 3
     }
     if(e.target.value === 'Malo') {
-      handleRating(1)
+      rating = 1
     }
-
+    
+    setInput({
+      ...input,
+      comment: e.target.value,
+      rating: rating
+    })
+    handleRating(rating)
   }
-
+  
   return (
     <div className={styles.flexContainer}>
         
@@ -113,8 +113,7 @@ function Review() {
                 key={index}
                 className={index <= (hover || rating) ? styles.on : styles.off}
                 
-                onMouseEnter={() => setHover(index)}
-                onMouseLeave={() => setHover(rating)}
+    
             >
                 <span className={styles.star}>&#9733;</span>
             </button>
