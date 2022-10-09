@@ -1,6 +1,8 @@
 const { Products, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
+require('dotenv').config();
+const {cloudinary} = require('../utils/cloudinary.js')
 
 
 const getAllProducts = async (req, res, next) => {
@@ -87,23 +89,64 @@ const getProductById = async (req, res, next) => {
   }
 };
 
-const postProducts = async (req, res, next) => {
+/*  const postProducts = async (req, res, next) => {
+  const { name, brand, price, description, category, stock, image } = req.body;
+
+  console.log(image);
+    const uploadImage = await cloudinary.uploader.upload(image,{
+      upload_preset: 'online-shop',
+      allowed_formats: ['png', 'jpg', 'jpeg', 'svg', 'ico', 'jfif', 'webp']
+    }) 
+
+      const newProduct = await Products.create({
+        name,
+        brand,
+        price,
+        description,
+        category,
+        image: uploadImage,
+        stock
+      });
+    
+      console.log(newProduct.__proto__);
+      res.json(newProduct);
+
+    
+}; */  
+
+
+
+      const postProducts = async (req, res, next) => {
   const { name, brand, price, description, category, image, stock } = req.body;
+  console.log(req.body);
   try {
-    const obj = { name, brand, price, description, category, image, stock };
+  const obj = { name, brand, price, description, category, image, stock };
     const newProduct = await Products.create(obj);
-/*     const categoriesProduct = await Category.findAll({
-      where: {
-        name: categories,
-      },
-    });
-    await newProduct.addCategories(categoriesProduct); */
+
     console.log(newProduct.__proto__);
     res.json(newProduct);
   } catch (error) {
     next(error);
   }
-};
+};   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const getProductByName = async (req, res, next) => {
   const { name } = req.query;

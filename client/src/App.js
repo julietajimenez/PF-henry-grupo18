@@ -26,6 +26,8 @@ import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
 import Register from "./components/Register/Register";
 import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
+import swal from "sweetalert2";
+
 
 function App() {
 
@@ -64,6 +66,13 @@ function App() {
       );
     } else {
       setCartItems([...cartItems, {  ...product, cantidad: 1  }]);;
+      swal.fire({
+        position: 'bottom-start',
+        icon: 'success',
+        title: 'El producto ha sido añadido al carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
   };;
 

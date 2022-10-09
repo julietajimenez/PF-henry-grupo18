@@ -110,3 +110,19 @@ export function removeFilters (){
     type: 'REMOVE_FILTERS'
   }
 }
+
+export function image_post(payload, name){
+  return async function(dispatch) {
+    try {
+      let json = await axios.post('http://localhost:3001/upload',{file:payload, name: name})
+      return dispatch({
+        type: 'IMAGE_POST',
+        payload: json.data,
+      });
+  
+  } catch(e) {
+      console.log(e);
+  }
+  }
+  
+}
