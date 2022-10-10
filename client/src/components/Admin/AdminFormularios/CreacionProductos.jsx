@@ -61,11 +61,11 @@ function CreacionProductos() {
     reader.onloadend = () => {
       dispatch(image_post(reader.result, input.name));
     };
-   
+    
     /*     if (
       input.description &&
       input.name &&
-      input.price &&
+      input.price && 
       input.image &&
       input.brand &&  
       input.category
