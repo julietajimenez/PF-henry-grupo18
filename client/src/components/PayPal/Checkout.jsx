@@ -6,7 +6,11 @@ import sentEmail from "./Firebase/sentEmail";
 import UserContext from "../../context/userContext";
 
 function Checkout({ descripcion, valor, cantidad }) {
-const {logueado, setlogueado} = useContext(UserContext); 
+// const {logueado, setlogueado} = useContext(UserContext); 
+const logueado = JSON.parse(localStorage.logueado)
+console.log(logueado)
+// console.log(logueado)
+
 
   function submitHandler() {
     let email = logueado.email; // ASIGNO EL VALOR DE CORREO SEGÚN LO ENVIADO POR INPUT
