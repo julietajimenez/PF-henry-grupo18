@@ -14,13 +14,20 @@ import {
   cilBasket,
   cilArrowBottom,
   cilArrowTop,
+  cilBalanceScale,
+  cilBrush,
+  cilStarHalf,
+  cilStar,
 } from "@coreui/icons";
 import "../DashboardComponents/style.scss";
 import WidgetsDropdown from "../DashboardComponents/widgets/WidgetsDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../../redux/actions/ProductsActions";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -130,12 +137,23 @@ const Dashboard = () => {
           <CWidgetStatsC
             icon={<CIcon icon={cilSpeech} height={36} />}
             value="972"
-            title="comments"
+            title="Reseñas totales"
             progress={{ color: "info", value: 100 }}
             className="mb-4"
           />
           <CWidgetStatsC
-            icon={<CIcon icon={cilArrowBottom} height={36} />}
+            onClick={() => navigate("/dashboard/products/create")}
+            icon={<CIcon icon={cilBrush} height={36} />}
+            value="Productos"
+            title="Crear un producto nuevo"
+            progress={{ color: "default", value: 100 }}
+            className="mb-4"
+            style={{ cursor: "pointer" }}
+          />
+          <CWidgetStatsC
+            onClick={() => navigate(`/products/${peorValorado.id}`)}
+            style={{ cursor: "pointer" }}
+            icon={<CIcon icon={cilStarHalf} height={36} />}
             value="Peor valorado"
             title={peorValorado.name + " - " + peorValorado.rating + "⭐"}
             progress={{ color: "danger", value: 100 }}
@@ -145,14 +163,25 @@ const Dashboard = () => {
         <CCol sm={3} md={3}>
           {" "}
           <CWidgetStatsC
-            icon={<CIcon icon={cilBasket} height={36} />}
+            icon={<CIcon icon={cilBalanceScale} height={36} />}
             value="1238"
-            title="Products sold"
+            title="Productos vendidos"
             progress={{ color: "warning", value: 100 }}
             className="mb-4"
           />
           <CWidgetStatsC
-            icon={<CIcon icon={cilArrowTop} height={36} />}
+            onClick={() => navigate("/dashboard/products/update")}
+            icon={<CIcon icon={cilBasket} height={36} />}
+            value="Productos"
+            title="Lista de todos los productos"
+            progress={{ color: "dark", value: 100 }}
+            className="mb-4"
+            style={{ cursor: "pointer" }}
+          />
+          <CWidgetStatsC
+            onClick={() => navigate(`/products/${mejorValorado.id}`)}
+            style={{ cursor: "pointer" }}
+            icon={<CIcon icon={cilStar} height={36} />}
             value="Mejor valorado"
             title={mejorValorado.name + " - " + mejorValorado.rating + "⭐"}
             progress={{ color: "success", value: 100 }}

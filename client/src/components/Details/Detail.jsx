@@ -8,7 +8,7 @@ import {
   pagesControl,
 } from "../../redux/actions/ProductsActions";
 import styles from "./Detail.module.css";
-import imgDefault from './imageDefault.jpg'
+import imgDefault from "./imageDefault.jpg";
 
 export default function Detail() {
   const { id } = useParams();
@@ -28,12 +28,21 @@ export default function Detail() {
     <div className={styles.container}>
       <div className={styles.description}>
         <h2>{product.name}</h2>
-        { product.image? <img src={product.image} alt="nohayimagen" /> : <img style={{height:'270px'}} src={imgDefault}/>}
-            <h4>${product.price}USD</h4>
+        {product.image ? (
+          <img
+            src={
+              product.image ||
+              "https://d3t32hsnjxo7q6.cloudfront.net/i/d03d4a62759d7805ff8b41caebb4cbb0_ra,w158,h184_pa,w158,h184.jpeg"
+            }
+            alt="nohayimagen"
+          />
+        ) : (
+          <img style={{ height: "270px" }} src={imgDefault} />
+        )}
+        <h4>${product.price}USD</h4>
 
         <p>{product.description}</p>
         {product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null}
-        <h3>{product.price}</h3>
         <button
           onClick={() => {
             navigate(-1);

@@ -58,7 +58,7 @@ function UpdateProducts() {
       {
         products && products.map(e => {
 
-          if (window.location.pathname === `/products/update/${e.id}`) {
+          if (window.location.pathname === `/dashboard/products/update/${e.id}`) {
             return (
               <form autoComplete="off" autoCapitalize="on" onSubmit={(e) => { handleSubmit(e) }}>
                 <div>
@@ -104,4 +104,3 @@ function UpdateProducts() {
 
 
 export default UpdateProducts
-

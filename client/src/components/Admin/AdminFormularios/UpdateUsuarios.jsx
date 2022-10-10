@@ -63,7 +63,7 @@ function UpdateUsuarios() {
       {
         users && users.map(e => {
 
-          if (window.location.pathname === `/update/${e.id}`) {
+          if (window.location.pathname === `/dashboard/update/${e.id}`) {
             return (
               <form autoComplete="off" autoCapitalize="on" onSubmit={(e) => { handleSubmit(e) }}>
                 <div>

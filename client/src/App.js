@@ -29,7 +29,6 @@ import Verify from "./components/VerificadorUsers/Verify";
 import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 import swal from "sweetalert2";
 
-
 function App() {
   const [logueado, setlogueado] = useState(() => {
     try {
@@ -65,14 +64,14 @@ function App() {
         )
       );
     } else {
-      setCartItems([...cartItems, {  ...product, cantidad: 1  }]);;
+      setCartItems([...cartItems, { ...product, cantidad: 1 }]);
       swal.fire({
-        position: 'bottom-start',
-        icon: 'success',
-        title: 'El producto ha sido añadido al carrito',
+        position: "bottom-start",
+        icon: "success",
+        title: "El producto ha sido añadido al carrito",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
     }
   };
 
@@ -99,6 +98,23 @@ function App() {
         <NavBar />
         <Routes>
           {/* <Route path="/" element={<Landing/>} /> */}
+
+          {/* /* //////////ADMIN////////////////////////// */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/createcategory" element={<CreacionCategorias />} />
+          <Route path="/dashboard/products/create" element={<CreacionProductos />} />
+          <Route path="/dashboard/update/:id" element={<UpdateUsuarios />} />
+          <Route path="/dashboard/update" element={<UpdateUsers />} />
+          <Route
+            path="/dashboard/products/update/:id"
+            element={<UpdateProducts />}
+          />
+          <Route
+            path="/dashboard/products/update/"
+            element={<SearchToModify />}
+          />
+
+          {/* ///////////////USUARIO///////////////// */}
           <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
           <Route
             path="/catalogo"
@@ -118,14 +134,7 @@ function App() {
               />
             }
           />
-          <Route path="/createcategory" element={<CreacionCategorias />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/createProduct" element={<CreacionProductos />} />
-          <Route path="/update/:id" element={<UpdateUsuarios />} />
-          <Route path="/update" element={<UpdateUsers />} />
-          <Route path="/products/:id" element={<Detail />} />
-          <Route path="/products/update/:id" element={<UpdateProducts />} />
-          <Route path="/products/update/" element={<SearchToModify />} />
+          <Route path="products/:id" element={<Detail />} />
           <Route
             path="/products/brands/pacifica"
             element={<Pacifica onAddCarrito={onAddCarrito} />}
