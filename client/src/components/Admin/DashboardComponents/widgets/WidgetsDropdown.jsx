@@ -16,8 +16,12 @@ import CIcon from "@coreui/icons-react";
 import { useNavigate } from "react-router-dom";
 
 const WidgetsDropdown = () => {
+  const styles = {
+    color: "white",
+  };
+
   const users = useSelector((state) => state.users.users);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const usuariosRegistrados = users.length;
   const usuariosVerificados = [];
   const usuariosNoVerificados = [];
@@ -38,6 +42,7 @@ const WidgetsDropdown = () => {
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           className="mb-4"
+          style={styles}
           color="secondary"
           value="Usuarios registrados"
           title={usuariosRegistrados}
@@ -54,7 +59,9 @@ const WidgetsDropdown = () => {
                 />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem onClick={() => navigate('update/')}>Actualizar Usuario</CDropdownItem>
+                <CDropdownItem onClick={() => navigate("update/")}>
+                  Actualizar Usuario
+                </CDropdownItem>
               </CDropdownMenu>
             </CDropdown>
           }
@@ -62,6 +69,7 @@ const WidgetsDropdown = () => {
       </CCol>
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
+          style={styles}
           className="mb-4"
           color="primary"
           value="Usuarios verificados"
@@ -70,6 +78,7 @@ const WidgetsDropdown = () => {
       </CCol>
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
+          style={styles}
           className="mb-4"
           color="success"
           value="Usuarios no verificados "
@@ -78,6 +87,7 @@ const WidgetsDropdown = () => {
       </CCol>
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
+          style={styles}
           className="mb-4"
           color="danger"
           value="Usuarios baneados "

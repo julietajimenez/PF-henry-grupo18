@@ -19,7 +19,7 @@ import {
   cilStarHalf,
   cilStar,
 } from "@coreui/icons";
-import "../DashboardComponents/style.scss";
+// import "../DashboardComponents/style.scss";
 import WidgetsDropdown from "../DashboardComponents/widgets/WidgetsDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../../redux/actions/ProductsActions";
