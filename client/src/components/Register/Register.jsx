@@ -59,19 +59,20 @@ function Register() {
     };
 
     if (input.name !== "" && input.email !== "" && input.password !== "") {
-      await axios.post(process.env.REACT_APP_URL_API + "/users/register", Usuario).then((res) => {
-        const { data } = res;
-        setMensaje(data.mensaje);
-        setTimeout(() => {
-          setMensaje("");
-          // localStorage.setItem("token", data?.usuario.token);
+      await axios
+        .post(process.env.REACT_APP_URL_API + "/users/register", Usuario)
+        .then((res) => {
+          const { data } = res;
+          setMensaje(data.mensaje);
+          setTimeout(() => {
+            setMensaje("");
+            // localStorage.setItem("token", data?.usuario.token);
 
-          localStorage.setItem("logueado", JSON.stringify(Usuario));
+            localStorage.setItem("logueado", JSON.stringify(Usuario));
 
-          setlogueado(Usuario);
-          navigate(`/`);
-        }, 1500);
-      });
+            setlogueado(Usuario);
+          }, 1500);
+        });
 
       setInput({
         name: "",

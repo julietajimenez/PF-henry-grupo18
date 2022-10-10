@@ -32,6 +32,14 @@ module.exports = (sequelize) => {
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    status:{
+      type: DataTypes.STRING,
+      defaultValue: 'UNVERIFIED'
+    }, 
+    code:{
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
     }
   });
 };

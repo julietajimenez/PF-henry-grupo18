@@ -9,7 +9,6 @@ import Searchbar from "./components/Searchbar/Searchbar.jsx";
 import Category from "./components/Filters/Filter Category/CategoryFilter.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-
 import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
 import CreacionProductos from "./components/Admin/AdminFormularios/CreacionProductos";
 import UpdateUsuarios from "./components/Admin/AdminFormularios/UpdateUsuarios";
@@ -26,6 +25,8 @@ import PhysiciansFormula from "./components/Brands/PhysiciansFormula";
 import Register from "./components/Register/Register";
 import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
+import Verify from "./components/VerificadorUsers/Verify";
+import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 
 function App() {
   const [logueado, setlogueado] = useState(() => {
@@ -89,7 +90,6 @@ function App() {
         <NavBar />
         <Routes>
           {/* <Route path="/" element={<Landing/>} /> */}
-
           <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
           <Route
             path="/catalogo"
@@ -110,6 +110,7 @@ function App() {
             }
           />
           <Route path="/createcategory" element={<CreacionCategorias />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/createProduct" element={<CreacionProductos />} />
           <Route path="/update/:id" element={<UpdateUsuarios />} />
           <Route path="/update" element={<UpdateUsers />} />
@@ -133,6 +134,7 @@ function App() {
             element={<PhysiciansFormula onAddCarrito={onAddCarrito} />}
           />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/verify/:id" element={<Verify />} />
         </Routes>
         <Footer />
       </UserContext.Provider>

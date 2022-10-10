@@ -21,3 +21,22 @@ export function updateUser(id, payload) {
     return json;
   };
 }
+
+export function verifyUser(id) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(
+        process.env.REACT_APP_URL_API+`/users/verify/${id}`
+      );
+      console.log("response", response);
+      return dispatch({ type: "CONFIRMATION_MAIL" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export async function verifyRoute(id) {
+  const response = await axios.get(`http://localhost:3001/users/ById/${id}`);
+  return response.data;
+}
