@@ -38,7 +38,7 @@ const Dashboard = () => {
 
   const mejorValorado = products.find((e) => e.rating === 5);
   const peorValorado = products.find((e) => e.rating === 1);
-  console.log(peorValorado.name);
+  
 
   let loreal = 0;
   let maybelline = 0;
