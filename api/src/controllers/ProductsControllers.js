@@ -1,19 +1,32 @@
 const { Products, Category } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
-require("dotenv").config();
 const { URL_API } = process.env;
+require("dotenv").config();
+const { cloudinary } = require("../utils/cloudinary.js");
 
 const getAllProducts = async (req, res, next) => {
   try {
-    let productsNyx = await axios.get(URL_API + "products.json?brand=physicians formula");
-    let productsMaybelline = await axios.get(URL_API + "products.json?brand=maybelline");
+    let productsNyx = await axios.get(
+      URL_API + "products.json?brand=physicians formula"
+    );
+    let productsMaybelline = await axios.get(
+      URL_API + "products.json?brand=maybelline"
+    );
     let productElf = await axios.get(URL_API + "products.json?brand=e.l.f.");
-    let productsPacifica = await axios.get(URL_API + "products.json?brand=pacifica");
+    let productsPacifica = await axios.get(
+      URL_API + "products.json?brand=pacifica"
+    );
     let productsAlmay = await axios.get(URL_API + "products.json?brand=almay");
-    let productsColourpop = await axios.get(URL_API + "products.json?brand=colourpop");
-    let productsRevlon = await axios.get(URL_API + "products.json?brand=revlon");
-    let productsLoreal = await axios.get(URL_API + "products.json?brand=l'oreal");
+    let productsColourpop = await axios.get(
+      URL_API + "products.json?brand=colourpop"
+    );
+    let productsRevlon = await axios.get(
+      URL_API + "products.json?brand=revlon"
+    );
+    let productsLoreal = await axios.get(
+      URL_API + "products.json?brand=l'oreal"
+    );
 
     let products = [
       ...productsLoreal.data,
@@ -70,15 +83,10 @@ const getProductById = async (req, res, next) => {
 
 const postProducts = async (req, res, next) => {
   const { name, brand, price, description, category, image, stock } = req.body;
+  console.log(req.body);
   try {
     const obj = { name, brand, price, description, category, image, stock };
     const newProduct = await Products.create(obj);
-    /*     const categoriesProduct = await Category.findAll({
-      where: {
-        name: categories,
-      },
-    });
-    await newProduct.addCategories(categoriesProduct); */
     console.log(newProduct.__proto__);
     res.json(newProduct);
   } catch (error) {

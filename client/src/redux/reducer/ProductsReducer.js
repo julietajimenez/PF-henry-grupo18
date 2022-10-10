@@ -69,11 +69,10 @@ export function products(state = initialState, action) {
         ...state,
         allProducts: state.products,
       };
-/*       case 'CLOUDINARY_IMAGE':
+    case "IMAGE_POST":
       return {
-        ...initialState,
-        image: action.payload
-      }; */
+        ...state,
+      };
     default:
       return state;
   }

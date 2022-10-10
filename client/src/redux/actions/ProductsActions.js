@@ -1,12 +1,10 @@
 import axios from "axios";
 import swal from "sweetalert";
 
-
-
 export function getAllProducts() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(process.env.REACT_APP_URL_API+"/products");
+      var json = await axios.get(process.env.REACT_APP_URL_API + "/products");
       console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS",
@@ -22,7 +20,7 @@ export function getProductsByName(name) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-        process.env.REACT_APP_URL_API+`/products/byName?name=${name}`
+        process.env.REACT_APP_URL_API + `/products/byName?name=${name}`
       );
 
       if (!json.data.length) {
@@ -43,7 +41,7 @@ export function getProductsByName(name) {
 export function postProducts(payload) {
   return async function () {
     var json = await axios.post(
-      process.env.REACT_APP_URL_API+"/products/create",
+      process.env.REACT_APP_URL_API + "/products/create",
       payload
     );
     console.log(payload);
@@ -54,7 +52,9 @@ export function postProducts(payload) {
 export function productById(id) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(process.env.REACT_APP_URL_API+`/products/byId/${id}`);
+      var json = await axios.get(
+        process.env.REACT_APP_URL_API + `/products/byId/${id}`
+      );
       console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS_BY_ID",
@@ -73,7 +73,7 @@ export const removeDetail = () => {
 export function updateProducts(id, payload) {
   return async function () {
     var json = await axios.put(
-     process.env.REACT_APP_URL_API+ `/products/update/${id}`,
+      process.env.REACT_APP_URL_API + `/products/update/${id}`,
       payload
     );
     console.log(payload);
@@ -85,7 +85,7 @@ export function getProductsByBrand(brand) {
   return async function (dispatch) {
     try {
       var json = await axios.get(
-      process.env.REACT_APP_URL_API+ `/products/byBrand?brand=${brand}`
+        process.env.REACT_APP_URL_API + `/products/byBrand?brand=${brand}`
       );
       console.log(json.data);
       return dispatch({
@@ -117,24 +117,19 @@ export function removeFilters() {
   };
 }
 
-/* export async function cloudinaryImage(base64EncodedImage){
-  console.log(base64EncodedImage)
-  try {
-    return async (dispatch) => {
-
-      const res = await axios.post('http://localhost:3001/cloudinary/api/upload', { data: base64EncodedImage})
-
-      console.log(res, "Esto es res23 156+4156+46+46+e5n el")
-
-      localStorage.setItem("profileImage", res.data.url)
-      window.location.reload('http://localhost:3000/');
-
+export function image_post(payload, name) {
+  return async function (dispatch) {
+    try {
+      let json = await axios.post("http://localhost:3001/upload", {
+        file: payload,
+        name: name,
+      });
       return dispatch({
-        type: 'CLOUDINARY_IMAGE',
-        payload: base64EncodedImage,
-      })
+        type: "IMAGE_POST",
+        payload: json.data,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
 }
-  } catch (err) {
-      console.error(err);
-  }
-}; */

@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     active: {
       type: DataTypes.BOOLEAN,

@@ -27,6 +27,8 @@ import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
 import Verify from "./components/VerificadorUsers/Verify";
 import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
+import swal from "sweetalert2";
+
 
 function App() {
   const [logueado, setlogueado] = useState(() => {
@@ -63,7 +65,14 @@ function App() {
         )
       );
     } else {
-      setCartItems([...cartItems, { ...product, cantidad: 1 }]);
+      setCartItems([...cartItems, {  ...product, cantidad: 1  }]);;
+      swal.fire({
+        position: 'bottom-start',
+        icon: 'success',
+        title: 'El producto ha sido añadido al carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
   };
 
