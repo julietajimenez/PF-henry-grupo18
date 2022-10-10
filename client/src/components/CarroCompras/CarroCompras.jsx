@@ -46,7 +46,7 @@ function CarroCompras(props) {
 
       {total > 0 ? (
         <>
-        <Checkout valor={total} descripcion={descripcion} />
+        <Checkout valor={total.toFixed(2)} descripcion={descripcion} />
         <h3>Total: $ {total.toFixed(2)}</h3>
         </>
       ) : (

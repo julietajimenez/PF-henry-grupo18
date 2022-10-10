@@ -11,7 +11,7 @@ const {logueado, setlogueado} = useContext(UserContext);
   function submitHandler() {
     let email = logueado.email; // ASIGNO EL VALOR DE CORREO SEGÚN LO ENVIADO POR INPUT
     let subject = "¡Gracias por tu compra en nuestra tienda!"; // LO MISMO
-    let body = descripcion; // DE ARRIBA
+    let body = descripcion + 'por un valor total de: ' + valor; // DE ARRIBA
     sentEmail(email, subject, body); // EJECUTO LA FUNCIÓN SENTEMAIL Y LE ENVÍO LOS DATOS POR PROPS... INVESTIGAR DE COMO INCORPORAR ESTO AL ATRIBUT ONAPPROVE DE PAYPAL
   }
 
@@ -50,7 +50,7 @@ const {logueado, setlogueado} = useContext(UserContext);
           return actions.order.create({
             purchase_units: [
               {
-                description: `Compra en Henry Cosmetista, productos de maquillaje de primera calidad.`,
+                description: `Compra en Henry Cosmetista`,
                 amount: {
                   value: valor, //ACÁ IRÍA EL PRECIO DEL CARRITO
                 },

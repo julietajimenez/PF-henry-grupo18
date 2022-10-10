@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { Users } = require("../db.js");
 const jwt = require("jsonwebtoken");
-const nodemailer = require('nodemailer')
+const nodemailer = require("nodemailer");
 
 const login = async (req, res, next) => {
   try {
@@ -66,10 +66,11 @@ const register = async (req, res, next) => {
 
             await Users.create(nuevoUsuario);
 
-            const id = await Users.findOne({where:{
-              email
-            }})
-
+            const id = await Users.findOne({
+              where: {
+                email,
+              },
+            });
 
             const transporter = nodemailer.createTransport({
               service: "gmail",
@@ -89,7 +90,8 @@ const register = async (req, res, next) => {
                 "\n\n" +
                 "Gracias por registrarse en Pure Glow.\n" +
                 "Para confirmar su registro, ingrese al siguiente link:\n\n" +
-                "http://localhost:3000/verify/" +
+                process.env.VERCEL_URL +
+                "verify/" +
                 id.dataValues.id +
                 "\n\n" +
                 "Si el link no funciona, copia y pega el link en tu navegador.\n\n" +
