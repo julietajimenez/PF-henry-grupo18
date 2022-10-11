@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./CarroCompras.module.css";
 import Checkout from "../PayPal/Checkout";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/userContext"
 
 function CarroCompras(props) {
   const { logueado, setlogueado } = useContext(UserContext);
