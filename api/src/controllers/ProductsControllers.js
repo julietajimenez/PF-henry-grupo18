@@ -81,6 +81,11 @@ const getProductById = async (req, res, next) => {
   }
 };
 
+const getProductByIdCompras = async (id) => {
+    const product = await Products.findByPk(id);
+    return product;
+};
+
 const postProducts = async (req, res, next) => {
   const { name, brand, price, description, category, image, stock } = req.body;
   try {
@@ -173,4 +178,5 @@ module.exports = {
   getProductByBrand,
   putProducts,
   deleteProduct,
+  getProductByIdCompras
 };

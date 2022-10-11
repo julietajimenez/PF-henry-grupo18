@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Login.module.css";import UserContext from "../../context/userContext";
+import styles from "./Login.module.css";
+import UserContext from "../../context/userContext";
 
 
 
@@ -39,7 +40,7 @@ const Login = () => {
             setMensaje("");
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
-            setlogueado(Usuario)
+            setlogueado(data?.usuario)
 
             navigate(`/`);
           }, 1500);

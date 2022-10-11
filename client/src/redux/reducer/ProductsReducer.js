@@ -4,7 +4,8 @@ const initialState = {
   detail: {},
   filtered: [],
   pages: 1,
-  //image:[],
+  reviews: []
+
 };
 
 export function products(state = initialState, action) {
@@ -27,9 +28,14 @@ export function products(state = initialState, action) {
     case "GET_PRODUCTS_BY_ID":
       return {
         ...state,
-        detail: action.payload,
-      };
-    case "REMOVE_DETAIL":
+        detail: action.payload
+      }
+      case "GET_REVIEWS_BY_PRODUCT":
+        return {
+          ...state,
+          reviews: action.payload
+        }
+      case 'REMOVE_DETAIL': 
       return {
         ...state,
         detail: {},

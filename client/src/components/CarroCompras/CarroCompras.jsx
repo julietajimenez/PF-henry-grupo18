@@ -3,7 +3,9 @@ import styles from "./CarroCompras.module.css";
 import Checkout from "../PayPal/Checkout";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import UserContext from "../../context/userContext"
+import UserContext from "../../context/userContext";
+
+import UserContext from "../../context/userContext";
 
 function CarroCompras(props) {
   const { logueado, setlogueado } = useContext(UserContext);
@@ -62,6 +64,7 @@ function CarroCompras(props) {
 
   let total = cartItems.reduce((a, c) => a + c.price * c.cantidad, 0);
   let descripcion = "";
+  let productos = [];
   let count = 0;
   return (
     <div className={styles.carroContainer}>
@@ -72,6 +75,7 @@ function CarroCompras(props) {
           <div hidden>
             {(count = count + 1)}
             {(descripcion = descripcion + item.cantidad + "x " + item.name)}
+            {productos.push(item.id)}
           </div>
           <div className={styles.imgNameContainer}>
             <div className={styles.leftSideContainer}>

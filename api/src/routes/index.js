@@ -4,9 +4,10 @@ const { Router } = require("express");
 const ProductsRoutes = require("./ProductsRoutes.js");
 const UsersRoutes = require('./UsersRoutes.js');
 const CategoryRoutes = require("./CategoryRoutes");
-/* const CloudinaryRoutes = require('./CloudinaryRoutes.js') */
-
-
+const PaymentRoutes = require("./PaymentRoutes");
+const ReviewsRouter = require('./ReviewsRoutes')
+const cloudinary = require('../utils/cloudinary')
+const {Products} = require('../db.js')
 const router = Router();
 
 // Configurar los routers
@@ -18,8 +19,6 @@ router.use("/category", CategoryRoutes);
 
 
 
-const cloudinary = require('../utils/cloudinary')
-const {Products} = require('../db.js')
 router.get('/images', async (_req, res) => {
     const { resources } = await cloudinary.search
         .expression('folder:online-shop')
@@ -33,8 +32,6 @@ router.get('/images', async (_req, res) => {
 
 router.post('/upload', async (req, res) => {
     const {file, name} = req.body;
-
-    console.log(file, '****************************************');
     try {
         const uploadResponse = await cloudinary.uploader.upload(file, {
             upload_preset: 'online-shop',
@@ -50,5 +47,7 @@ router.post('/upload', async (req, res) => {
         res.status(500).json({ err: 'Something went wrong' });
     }
 });
+router.use("/buy", PaymentRoutes);
+router.use("/reviews", ReviewsRouter);
 
 module.exports = router;
