@@ -24,21 +24,37 @@ import WidgetsDropdown from "../DashboardComponents/widgets/WidgetsDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../../redux/actions/ProductsActions";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Loader from "../../Loader/Loader";
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!products.length) {
+    if (products.length <= 0) {
       dispatch(getAllProducts());
     }
   }, [dispatch]);
 
   const mejorValorado = products.find((e) => e.rating === 5);
+  let titleMVP = "";
+  if (mejorValorado) {
+    titleMVP = mejorValorado.name;
+  } else {
+    titleMVP = "No se pudo cargar el producto.";
+  }
+
   const peorValorado = products.find((e) => e.rating === 1);
-  
+  let titleWVP = "";
+  if (peorValorado) {
+    titleWVP = peorValorado.name;
+  } else {
+    titleMVP = "No se pudo cargar el producto.";
+  }
 
   let loreal = 0;
   let maybelline = 0;
@@ -80,6 +96,9 @@ const Dashboard = () => {
     Colourpop;
 
   const brands = [...new Set(products.map((e) => e.brand))];
+  if (products.length <= 0) {
+    return <Loader />;
+  }
 
   return (
     <div style={{ maxWidth: "100vw", overflowX: "hidden", marginTop: "20px" }}>
@@ -155,7 +174,7 @@ const Dashboard = () => {
             style={{ cursor: "pointer" }}
             icon={<CIcon icon={cilStarHalf} height={36} />}
             value="Peor valorado"
-            title={peorValorado.name + " - " + peorValorado.rating + "⭐"}
+            title={titleWVP}
             progress={{ color: "danger", value: 100 }}
             className="mb-4"
           />
@@ -183,7 +202,7 @@ const Dashboard = () => {
             style={{ cursor: "pointer" }}
             icon={<CIcon icon={cilStar} height={36} />}
             value="Mejor valorado"
-            title={mejorValorado.name + " - " + mejorValorado.rating + "⭐"}
+            title={titleMVP}
             progress={{ color: "success", value: 100 }}
             className="mb-4"
           />
