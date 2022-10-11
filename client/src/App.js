@@ -97,8 +97,6 @@ function App() {
             <CarroCompras
               cartItems={cartItems}
               onAddCarrito={onAddCarrito}
-              onRemoveCarrito={onRemoveCarrito}
-              onRemoveItemCarrito={onRemoveItemCarrito}
             />
           }
         />

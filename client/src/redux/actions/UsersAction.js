@@ -77,13 +77,4 @@ export function getCompras(compras) {
   };
 }
 
-export function updateUser(id, payload) {
-  return async function () {
-    var json = await axios.put(
-      process.env.REACT_APP_URL_API + `/users/update/${id}`,
-      payload
-    );
-    console.log(payload);
-    return json;
-  };
-}
+
