@@ -30,9 +30,6 @@ import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 import swal from "sweetalert2";
 
 function App() {
-  const checkoutinfo = JSON.parse(localStorage.getItem("carrito"));
-  let valor = checkoutinfo.map((e) => e);
-  let total = valor.map((e) => e.cantidad * e.price).reduce((a, b) => a + b, 0);
 
   const [logueado, setlogueado] = useState(() => {
     try {
@@ -67,10 +64,10 @@ function App() {
             : item
         )
       );
-      total += product.price;
+ 
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
-      total += product.price;
+ 
       swal.fire({
         position: "bottom-start",
         icon: "success",
