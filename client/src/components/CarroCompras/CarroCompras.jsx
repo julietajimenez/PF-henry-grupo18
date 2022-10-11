@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 function CarroCompras(props) {
+  const logueado = JSON.parse(localStorage.logueado);
   const [cartItems, setCartItems] = useState(() => {
     try {
       const prodEnLocalStorage = localStorage.getItem("carrito");
@@ -98,11 +99,15 @@ function CarroCompras(props) {
         </div>
       ))}
 
-      {total > 0 ? (
+      {total > 0 && logueado ? (
         <>
-          <Link to="/checkout"><button>PAGAR</button></Link>
+          <Link to="/checkout">
+            <button>PAGAR</button>
+          </Link>
           <h3>Total: $ {total.toFixed(2)}</h3>
         </>
+      ) : total > 0 && !logueado ? (
+        <h3>Debes iniciar sesión para comprar.</h3>
       ) : (
         <h3>Su carrito está vacío</h3>
       )}

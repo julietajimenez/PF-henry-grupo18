@@ -21,6 +21,7 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.INTEGER,
       allowNull: true,
+      defaultValue: 1,
     },
     price: {
       type: DataTypes.STRING,
