@@ -4,6 +4,7 @@ export function getAllUsers() {
   return async function (dispatch) {
     try {
       var json = await axios.get(process.env.REACT_APP_URL_API + "/users");
+      // process.env.REACT_APP_URL_API +
       return dispatch({
         type: "GET_USERS",
         payload: json.data,
@@ -76,5 +77,3 @@ export function getCompras(compras) {
     }
   };
 }
-
-

@@ -17,6 +17,9 @@ function Catalogo(props) {
   const { onAddCarrito } = props;
 
   const productos = useSelector((state) => state.products.allProducts);
+  const usuarios = useSelector((state) => state.users.users);
+  // console.log(usuarios)
+
   //const filtered = useSelector(state=>state.products.filtered)
   const page = useSelector((state) => state.products.pages);
   //const [filter, setFilter] = useState(false)
