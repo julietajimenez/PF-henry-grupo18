@@ -64,17 +64,11 @@ function App() {
     console.log(product);
     const productAdd = cartItems.find((item) => item.id === product.id);
     if (productAdd) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...productAdd, cantidad: productAdd.cantidad + 1 }
-            : item
-        )
-      );
+  
       swal.fire({
         position: "bottom-start",
-        icon: "success",
-        title: "El producto ha sido añadido al carrito",
+        icon: "warning",
+        title: "Producto en carrito",
         showConfirmButton: false,
         timer: 1500,
       });

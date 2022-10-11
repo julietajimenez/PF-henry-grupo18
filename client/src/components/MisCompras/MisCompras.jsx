@@ -18,6 +18,7 @@ function MisCompras() {
 
   const users = useSelector((state) => state.users.allUsers);
   const comprasDelUsuario = useSelector((state) => state.users.compras);
+  console.log(comprasDelUsuario)
   let compras;
   const navigate = useNavigate();
   
