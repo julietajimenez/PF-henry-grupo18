@@ -24,8 +24,9 @@ function MisCompras() {
     compras = u.compras
   }
   useEffect(() => {
-    
-    dispatch(getAllUsers())
+    if(!users.length){
+      dispatch(getAllUsers())
+    }
     if(compras){
       dispatch(getCompras(compras))
     }

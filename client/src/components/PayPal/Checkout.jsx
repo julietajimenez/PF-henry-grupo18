@@ -11,6 +11,7 @@ import { getAllUsers, updateUser } from "../../redux/actions/UsersAction";
 function Checkout({ descripcion, valor, cantidad, productos }) {
 
   const {logueado, setlogueado} = useContext(UserContext)
+  
 
   const dispatch = useDispatch()
   
