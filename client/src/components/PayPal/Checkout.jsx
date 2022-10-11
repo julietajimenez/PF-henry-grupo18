@@ -91,7 +91,7 @@ function Checkout({}) {
             });
           }}
           onApprove={async (data, actions) => {
-            const set = new Set(productos);
+            const set = new Set(precio);
             const order = await actions.order.capture();
             const productosComprados = [...set];
             let prodComp = productosComprados.map((item) => item);
