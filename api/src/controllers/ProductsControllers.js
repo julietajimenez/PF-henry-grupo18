@@ -83,11 +83,9 @@ const getProductById = async (req, res, next) => {
 
 const postProducts = async (req, res, next) => {
   const { name, brand, price, description, category, image, stock } = req.body;
-  console.log(req.body);
   try {
     const obj = { name, brand, price, description, category, image, stock };
     const newProduct = await Products.create(obj);
-    console.log(newProduct.__proto__);
     res.json(newProduct);
   } catch (error) {
     next(error);

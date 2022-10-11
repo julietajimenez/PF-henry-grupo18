@@ -34,6 +34,7 @@ router.get('/images', async (_req, res) => {
 router.post('/upload', async (req, res) => {
     const {file, name} = req.body;
 
+    console.log(file, '****************************************');
     try {
         const uploadResponse = await cloudinary.uploader.upload(file, {
             upload_preset: 'online-shop',
@@ -43,7 +44,6 @@ router.post('/upload', async (req, res) => {
         },{
             where: {name: name }
         })
-        
         res.json(productImage);
     } catch (err) {
         console.error(err);

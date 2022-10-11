@@ -38,8 +38,8 @@ function CreacionProductos() {
   const handleChangeImage = (e)=>{
     setSelectedFile(e.target.files[0])
     setFileInputState(e.target.value)
+    console.log(e.target.value);
   }
-
 
   function handleSelect(e){
     setInput({
@@ -48,7 +48,6 @@ function CreacionProductos() {
     })
 }
 //const payload = {...input, image}
-
 
 
 
@@ -70,6 +69,19 @@ function CreacionProductos() {
       input.brand &&  
       input.category
       ) { */
+      function readURL(fileInputState) {
+        if (fileInputState.files && fileInputState.files[0]) {
+          var read = new FileReader();
+          read.onload = function (e) {
+            ('#blah')
+              .attr('src', e.target.result)
+              .width(150)
+              .height(200);
+          };
+          read.readAsDataURL(fileInputState.files[0]);
+        }
+        console.log(read);
+      }
       dispatch(postProducts({
         name: input.name,
       brand: input.brand,

@@ -120,7 +120,7 @@ export function removeFilters() {
 export function image_post(payload, name) {
   return async function (dispatch) {
     try {
-      let json = await axios.post("http://localhost:3001/upload", {
+      let json = await axios.post(process.env.REACT_APP_URL_API + "/upload", {
         file: payload,
         name: name,
       });
