@@ -30,8 +30,12 @@ import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 import swal from "sweetalert2";
 import Review from "./components/Review/Review";
 import MisCompras from "./components/MisCompras/MisCompras";
+import { useDispatch } from "react-redux";
+import { getAllUsers } from "./redux/actions/UsersAction";
+import { getAllProducts } from "./redux/actions/ProductsActions";
 
 function App() {
+  const dispatch = useDispatch();
   const [logueado, setlogueado] = useState(() => {
     try {
       const userLogueado = localStorage.getItem("logueado");
@@ -51,6 +55,8 @@ function App() {
   });
 
   useEffect(() => {
+    dispatch(getAllUsers());
+    dispatch(getAllProducts());
     localStorage.setItem("carrito", JSON.stringify(cartItems));
   }, [cartItems]);
 

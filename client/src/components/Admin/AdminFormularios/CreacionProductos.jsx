@@ -95,7 +95,7 @@ function CreacionProductos() {
    
     alert("creado con exito");
     setInput(initialState);
-    navigate('/catalogo')
+    navigate('/')
   }
   return (
     <div className={styles.flexContainer}>
