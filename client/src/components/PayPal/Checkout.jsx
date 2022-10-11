@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import sentEmail from "./Firebase/sentEmail";
 
 function Checkout({ descripcion }) {
-  // const {logueado, setlogueado} = useContext(UserContext);
   const logueado = JSON.parse(localStorage.logueado);
   const checkoutinfo = JSON.parse(localStorage.getItem("carrito"));
   let precio = checkoutinfo.map((e) => e);
