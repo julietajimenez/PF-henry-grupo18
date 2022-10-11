@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/actions/ProductsActions.js";
-import { getAllCategorys } from '../../redux/actions/CategorysActions'
+import { getAllCategorys } from "../../redux/actions/CategorysActions";
 import Pager from "../Paginado/Pager.jsx";
 import Card from "../Cards/Cards.jsx";
 import { Link } from "react-router-dom";
@@ -15,21 +15,19 @@ import BrandFiltered from "../Filters/Filter Brand/BrandFilter";
 function Catalogo(props) {
   const dispatch = useDispatch();
   const { onAddCarrito } = props;
+
   const productos = useSelector((state) => state.products.allProducts);
   //const filtered = useSelector(state=>state.products.filtered)
-  const page = useSelector(state => state.products.pages)
+  const page = useSelector((state) => state.products.pages);
   //const [filter, setFilter] = useState(false)
 
   const [currentPage, setCurrentPage] = useState(page);
 
-
   useEffect(() => {
-    if(!productos.length){
+    if (!productos.length) {
       dispatch(getAllProducts());
     }
   }, [dispatch]);
-
-
 
   const handlePage = (number) => {
     setCurrentPage(number);
@@ -39,13 +37,10 @@ function Catalogo(props) {
     indexOfFirstVideo = indexOfLastVideo - videosPerPage,
     currentProducts = productos.slice(indexOfFirstVideo, indexOfLastVideo);
 
-
-
-
   if (productos.length <= 0) {
-    return <Loader />
+    return <Loader />;
   }
-  
+
   console.log(productos);
 
   return (
@@ -57,11 +52,11 @@ function Catalogo(props) {
         <CategoryFilter
           setCurrentPage={setCurrentPage}
           className={styles.category}
-        //setFilter ={setFilter}
+          //setFilter ={setFilter}
         />
         <BrandFiltered
           setCurrentPage={setCurrentPage}
-        //setFilter ={setFilter}
+          //setFilter ={setFilter}
         />
       </div>
 
@@ -74,10 +69,10 @@ function Catalogo(props) {
               return aDate - bDate;
             })
             .map((e) => {
-/*               var categoria = e.categories
+              /*               var categoria = e.categories
                 ? (categoria = e.categories.map((e) => e.name))
                 : null; */
-               /*  if(e.active === true){ */
+              /*  if(e.active === true){ */
               return (
                 <Card
                   key={e.id}
@@ -87,11 +82,10 @@ function Catalogo(props) {
                   price={e.price}
                   category={e.category}
                   stock={e.stock}
-                  
                   onAddCarrito={onAddCarrito}
                 />
-              )} 
-              )}
+              );
+            })}
       </div>
 
       <div className={styles.paginado}>
@@ -106,4 +100,4 @@ function Catalogo(props) {
   );
 }
 
-export default Catalogo;;
+export default Catalogo;

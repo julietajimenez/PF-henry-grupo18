@@ -30,6 +30,10 @@ import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 import swal from "sweetalert2";
 
 function App() {
+  const checkoutinfo = JSON.parse(localStorage.getItem("carrito"));
+  let valor = checkoutinfo.map((e) => e);
+  let total = valor.map((e) => e.cantidad * e.price).reduce((a, b) => a + b, 0);
+
   const [logueado, setlogueado] = useState(() => {
     try {
       const userLogueado = localStorage.getItem("logueado");
@@ -63,8 +67,10 @@ function App() {
             : item
         )
       );
+      total += product.price;
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
+      total += product.price;
       swal.fire({
         position: "bottom-start",
         icon: "success",
@@ -73,23 +79,6 @@ function App() {
         timer: 1500,
       });
     }
-  };
-
-  const onRemoveCarrito = (product) => {
-    const productRemove = cartItems.find((item) => item.id === product.id);
-    if (productRemove.cantidad !== 1) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...productRemove, cantidad: productRemove.cantidad - 1 }
-            : item
-        )
-      );
-    }
-  };
-
-  const onRemoveItemCarrito = (product) => {
-    setCartItems(cartItems.filter((item) => item.id !== product.id));
   };
 
   return (
@@ -102,7 +91,10 @@ function App() {
           {/* /* //////////ADMIN////////////////////////// */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/createcategory" element={<CreacionCategorias />} />
-          <Route path="/dashboard/products/create" element={<CreacionProductos />} />
+          <Route
+            path="/dashboard/products/create"
+            element={<CreacionProductos />}
+          />
           <Route path="/dashboard/update/:id" element={<UpdateUsuarios />} />
           <Route path="/dashboard/update" element={<UpdateUsers />} />
           <Route
@@ -123,17 +115,7 @@ function App() {
           <Route path="/card" element={<Cards />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route
-            path="/carrito"
-            element={
-              <CarroCompras
-                cartItems={cartItems}
-                onAddCarrito={onAddCarrito}
-                onRemoveCarrito={onRemoveCarrito}
-                onRemoveItemCarrito={onRemoveItemCarrito}
-              />
-            }
-          />
+          <Route path="/carrito" element={<CarroCompras />} />
           <Route path="products/:id" element={<Detail />} />
           <Route
             path="/products/brands/pacifica"
