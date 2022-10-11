@@ -17,7 +17,7 @@ export default function UpdateUsers (){
              {
                 users && users.map(e => {
                     return(
-                        <Link to={e.id}>{e.email}</Link>
+                        <Link to={e.id}><li>{e.email}</li></Link>
                     )
                 })
             } 
