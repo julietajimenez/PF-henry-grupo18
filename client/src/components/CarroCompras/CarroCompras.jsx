@@ -99,7 +99,7 @@ function CarroCompras(props) {
         </div>
       ))}
 
-      {total > 0 && logueado != "invitado" ? (
+      {total > 0 && logueado.toLowerCase() !== "invitado" ? (
         <>
           <Link to="/checkout">
             <button>PAGAR</button>
