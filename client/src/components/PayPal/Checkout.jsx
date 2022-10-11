@@ -94,15 +94,16 @@ function Checkout({}) {
             const set = new Set(precio);
             const order = await actions.order.capture();
             const productosComprados = [...set];
-            let prodComp = productosComprados.map((item) => item);
+            let prodComp = productosComprados.map((item) => item.id);
             let prod = input.compras.concat(prodComp);
             let usuarioCompras = users;
-            usuarioCompras.compras = prod;
-
+            const prodSet = new Set(prod);
+            usuarioCompras.compras = [...prodSet];
             dispatch(updateUser(users.id, usuarioCompras));
             submitHandler();
             handleApprove(data.orderID);
-            setInput({ ...input, compras: prod });
+            setInput({ ...input, compras: prodComp });
+            localStorage.removeItem("carrito");
           }}
           onCancel={() => {}}
           onError={(err) => {
