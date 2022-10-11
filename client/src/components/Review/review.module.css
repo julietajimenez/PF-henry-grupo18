@@ -7,11 +7,14 @@
     font-family: "Poppins", sans-serif;
   }
   
-  .container {
+  .container{
     border: 1px solid rgb(233, 233, 233);
     padding: 25px;
     border-radius: 10px;
     background-color: #f9f3f3;
+  }
+  .container span  {
+    font-size: 50px;
   }
   .container h2 {
     text-align: center;
@@ -43,19 +46,17 @@
     border: none;
     outline: none;
     color: #000;
-    cursor: none !important;
+    cursor: default !important;
   }
   .off {
     background-color: transparent;
     border: none;
     outline: none;
     color: #ccc;
-    cursor: none !important;
+    cursor: default !important;
   }
   
-span {
-  font-size: 50px;
-}
+
 
 .error {
   margin-top: 5px;

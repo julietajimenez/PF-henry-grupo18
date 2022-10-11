@@ -32,7 +32,6 @@ import Review from "./components/Review/Review";
 import MisCompras from "./components/MisCompras/MisCompras";
 
 function App() {
-
   const [logueado, setlogueado] = useState(() => {
     try {
       const userLogueado = localStorage.getItem("logueado");
@@ -66,10 +65,16 @@ function App() {
             : item
         )
       );
- 
+      swal.fire({
+        position: "bottom-start",
+        icon: "success",
+        title: "El producto ha sido añadido al carrito",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
- 
+
       swal.fire({
         position: "bottom-start",
         icon: "success",
@@ -82,40 +87,50 @@ function App() {
 
   return (
     <div className="App">
-      <UserContext.Provider value={{logueado, setlogueado}}>
-      <NavBar />
-      <Routes>
-        {/* <Route path="/" element={<Landing/>} /> */}
-        <Route path="/" element={<Home onAddCarrito={onAddCarrito}/>} />
-        <Route  path="/catalogo" element={<Catalogo onAddCarrito={onAddCarrito}/>} />
-        <Route path="/card" element={<Cards />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register/>} />
-        <Route
-          path="/carrito"
-          element={
-            <CarroCompras
-              cartItems={cartItems}
-              onAddCarrito={onAddCarrito}
-              onRemoveCarrito={onRemoveCarrito}
-              onRemoveItemCarrito={onRemoveItemCarrito}
-            />
-          }
-        />
-        <Route path="/createcategory" element={<CreacionCategorias />} />
-        <Route path="/createProduct" element={<CreacionProductos />} />
-        <Route path="/update/:id" element={<UpdateUsuarios />} />
-        <Route path="/update" element={<UpdateUsers />} />
-        <Route path="/products/:id" element={<Detail />} />
-        <Route path="/products/update/:id" element={<UpdateProducts />} />
-        <Route path="/products/update/" element={<SearchToModify />} />
-        <Route path="/products/brands/pacifica" element={<Pacifica onAddCarrito={onAddCarrito} />} />
-        <Route path="/products/brands/maybelline" element={<Maybelline onAddCarrito={onAddCarrito} />} />
-        <Route path="/products/brands/revlon" element={<Revlon onAddCarrito={onAddCarrito} />} />
-        <Route path="/products/brands/physiciansFormula" element={<PhysiciansFormula onAddCarrito={onAddCarrito} />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/review/:id" element={<Review />} />
-        <Route path="/miscompras" element={<MisCompras />} />
+      <UserContext.Provider value={{ logueado, setlogueado }}>
+        <NavBar />
+        <Routes>
+          {/* <Route path="/" element={<Landing/>} /> */}
+          <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
+          <Route
+            path="/catalogo"
+            element={<Catalogo onAddCarrito={onAddCarrito} />}
+          />
+          <Route path="/card" element={<Cards />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/carrito"
+            element={
+              <CarroCompras cartItems={cartItems} onAddCarrito={onAddCarrito} />
+            }
+          />
+          <Route path="/createcategory" element={<CreacionCategorias />} />
+          <Route path="/createProduct" element={<CreacionProductos />} />
+          <Route path="/update/:id" element={<UpdateUsuarios />} />
+          <Route path="/update" element={<UpdateUsers />} />
+          <Route path="/products/:id" element={<Detail />} />
+          <Route path="/products/update/:id" element={<UpdateProducts />} />
+          <Route path="/products/update/" element={<SearchToModify />} />
+          <Route
+            path="/products/brands/pacifica"
+            element={<Pacifica onAddCarrito={onAddCarrito} />}
+          />
+          <Route
+            path="/products/brands/maybelline"
+            element={<Maybelline onAddCarrito={onAddCarrito} />}
+          />
+          <Route
+            path="/products/brands/revlon"
+            element={<Revlon onAddCarrito={onAddCarrito} />}
+          />
+          <Route
+            path="/products/brands/physiciansFormula"
+            element={<PhysiciansFormula onAddCarrito={onAddCarrito} />}
+          />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/review/:id" element={<Review />} />
+          <Route path="/miscompras" element={<MisCompras />} />
 
           {/* /* //////////ADMIN////////////////////////// */}
           <Route path="/dashboard" element={<Dashboard />} />

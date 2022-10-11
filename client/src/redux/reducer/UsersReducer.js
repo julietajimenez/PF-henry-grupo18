@@ -1,7 +1,7 @@
 const initialState = {
   users: [],
   allUsers: [],
-  user: "",
+  user:[],
   compras: [],
 };
 

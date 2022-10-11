@@ -4,7 +4,7 @@ const { Router } = require("express");
 const ProductsRoutes = require("./ProductsRoutes.js");
 const UsersRoutes = require('./UsersRoutes.js');
 const CategoryRoutes = require("./CategoryRoutes");
-const PaymentRoutes = require("./PaymentRoutes");
+
 const ReviewsRouter = require('./ReviewsRoutes')
 const cloudinary = require('../utils/cloudinary')
 const {Products} = require('../db.js')
@@ -47,7 +47,6 @@ router.post('/upload', async (req, res) => {
         res.status(500).json({ err: 'Something went wrong' });
     }
 });
-router.use("/buy", PaymentRoutes);
 router.use("/reviews", ReviewsRouter);
 
 module.exports = router;

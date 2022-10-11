@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/userContext";
 
-import UserContext from "../../context/userContext";
 
 function CarroCompras(props) {
   const { logueado, setlogueado } = useContext(UserContext);

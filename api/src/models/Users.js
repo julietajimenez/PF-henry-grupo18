@@ -42,6 +42,7 @@ module.exports = (sequelize) => {
     },
     compras: {
       type: DataTypes.JSON,
+      defaultValue: [],
     },
   });
 };

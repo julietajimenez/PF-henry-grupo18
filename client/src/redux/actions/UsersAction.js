@@ -3,7 +3,8 @@ import axios from "axios";
 export function getAllUsers() {
   return async function (dispatch) {
     try {
-      var json = await axios.get(process.env.REACT_APP_URL_API + "/users");
+      var json = await axios.get("http://localhost:3001/users");
+      // process.env.REACT_APP_URL_API + 
       return dispatch({
         type: "GET_USERS",
         payload: json.data,
@@ -14,16 +15,7 @@ export function getAllUsers() {
   };
 }
 
-export function updateUser(id, payload) {
-  return async function () {
-    var json = await axios.put(
-      process.env.REACT_APP_URL_API + `/users/update/${id}`,
-      payload
-    );
-    console.log(payload);
-    return json;
-  };
-}
+
 
 export function verifyUser(id) {
   return async function (dispatch) {
