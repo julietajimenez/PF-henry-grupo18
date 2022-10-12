@@ -21,16 +21,16 @@ function CarroCompras(props) {
   }, [cartItems]);
 
   const onAddCarrito = (product) => {
-    console.log(product);
     const productAdd = cartItems.find((item) => item.id === product.id);
     if (productAdd) {
       setCartItems(
         cartItems.map((item) =>
           item.id === product.id
-            ? { ...productAdd, cantidad: productAdd.cantidad + 1 }
+            ? { ...productAdd, cantidad: productAdd.cantidad + 1, stock: productAdd.stock -1 }
             : item
         )
       );
+      console.log(productAdd);
       total += product.price;
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
@@ -51,10 +51,11 @@ function CarroCompras(props) {
       setCartItems(
         cartItems.map((item) =>
           item.id === product.id
-            ? { ...productRemove, cantidad: productRemove.cantidad - 1 }
+            ? { ...productRemove, cantidad: productRemove.cantidad - 1, stock: productRemove.stock + 1 }
             : item
         )
       );
+      console.log(productRemove);
     }
   };
   const onRemoveItemCarrito = (product) => {
@@ -70,6 +71,7 @@ function CarroCompras(props) {
       {cartItems.length === 0 && <div>Su carrito de compras está vacío</div>}
 
       {cartItems.map((item) => (
+        
         <div key={item.id} className={styles.itemsContainer}>
           <div hidden>
             {(count = count + 1)}
@@ -92,7 +94,10 @@ function CarroCompras(props) {
                 <button onClick={() => onRemoveCarrito(item)}>-</button>
                 {/* ///////ELIMINAR UN ITEM AL CARRITO */}
                 <span>{item.cantidad}</span>
-                <button onClick={() => onAddCarrito(item)}>+</button>{" "}
+                {/* <button onClick={() => onAddCarrito(item)}>+</button>{" "} */}
+                {
+                  item.stock <= 1 ? (<button onClick={() => onAddCarrito(item)} disabled={true}>+</button>) : (<button onClick={() => onAddCarrito(item)} disabled={false}>+</button>)
+                }
                 {/* ///////AGREGAR UN ITEM AL CARRITO */}
               </div>
               <p>

@@ -13,7 +13,7 @@ const Cards = ({
   stock,
   onAddCarrito,
 }) => {
-  let producto = { id, name, price, category, image, categories };
+  let producto = { id, name, price, category, image, categories, stock };
   const navigate = useNavigate()
 
   return (
