@@ -4,15 +4,12 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import UserContext from "../../context/userContext";
 
-
-
 const Login = () => {
-
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
 
-  const {logueado, setlogueado} = useContext(UserContext)
+  const { logueado, setlogueado } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -32,7 +29,7 @@ const Login = () => {
       };
       setLoading(true);
       await axios
-        .post(process.env.REACT_APP_URL_API+"/users/login", Usuario)
+        .post(process.env.REACT_APP_URL_API + "/users/login", Usuario)
         .then((res) => {
           const { data } = res;
           setMensaje(data.mensaje);
@@ -40,7 +37,7 @@ const Login = () => {
             setMensaje("");
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
-            setlogueado(data?.usuario)
+            setlogueado(data?.usuario);
 
             navigate(`/`);
           }, 1500);
@@ -56,7 +53,7 @@ const Login = () => {
       setLoading(false);
     }
   };
-console.log(logueado.email);
+  console.log(logueado.email);
   return (
     <div className={styles.flexContainer}>
       <div className={styles.container}>
@@ -70,7 +67,7 @@ console.log(logueado.email);
               name="email"
               id="email"
               type="email"
-              placeholder="email..."
+              placeholder="example@email.com"
               autoComplete="off"
             />
           </div>
@@ -83,7 +80,7 @@ console.log(logueado.email);
               name="password"
               id="password"
               type="password"
-              placeholder="password..."
+              placeholder="passwordexample"
               autoComplete="off"
             />
           </div>
