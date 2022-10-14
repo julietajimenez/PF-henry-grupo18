@@ -6,6 +6,7 @@ const UsersRoutes = require('./UsersRoutes.js');
 const CategoryRoutes = require("./CategoryRoutes");
 
 const ReviewsRouter = require('./ReviewsRoutes')
+const ComprasRouter = require('./ComprasRoutes')
 const cloudinary = require('../utils/cloudinary')
 const {Products} = require('../db.js')
 const router = Router();
@@ -48,5 +49,6 @@ router.post('/upload', async (req, res) => {
     }
 });
 router.use("/reviews", ReviewsRouter);
+router.use("/compras", ComprasRouter);
 
 module.exports = router;

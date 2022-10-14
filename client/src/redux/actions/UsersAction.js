@@ -60,19 +60,3 @@ export function getUser(id) {
     }
   };
 }
-
-export function getCompras(compras) {
-  return async function (dispatch) {
-    try {
-      var json = await axios.get(
-        process.env.REACT_APP_URL_API + `/users/getCompras/` + compras
-      );
-      return dispatch({
-        type: "GET_COMPRAS",
-        payload: json.data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}

@@ -7,10 +7,10 @@ import UserContext from "../../context/userContext";
 import { productById } from "../../redux/actions/ProductsActions";
 import {
   getUser,
-  getCompras,
   getAllUsers,
 } from "../../redux/actions/UsersAction";
 import Loader from "../Loader/Loader";
+import { getCompras } from "../../redux/actions/ComprasAction";
 
 function MisCompras() {
   // const {logueado, setlogueado} = useContext(UserContext)
@@ -18,24 +18,19 @@ function MisCompras() {
 
   const users = useSelector((state) => state.users.allUsers);
   const comprasDelUsuario = useSelector((state) => state.users.compras);
-  console.log(comprasDelUsuario)
+
   let compras;
   const navigate = useNavigate();
   
   const dispatch = useDispatch();
   const userLogueado = users.find((e) => e.email === logueado.email);
-  console.log(userLogueado);
-  if (userLogueado) {
-    compras = userLogueado.compras;
-    console.log(compras)
-  }
+  
   useEffect(() => {
     if (!users.length) {
       dispatch(getAllUsers());
     }
-    if (compras) {
-      dispatch(getCompras(compras));
-    }
+    dispatch(getCompras(userLogueado.email));
+    
   }, [dispatch]);
 
   if (!comprasDelUsuario) {
@@ -50,21 +45,28 @@ function MisCompras() {
 
       {comprasDelUsuario.map((item) => (
         <div key={item.id} className={styles.itemsContainer}>
-          <div className={styles.flexDataContainer}>
-            <p>{item.name}</p>
-          </div>
+          <h2>CompraId: {item.id}</h2>
+          <h4>fecha: {item.createdAt}</h4>
+        {item.products.map( p => {
+          {{console.log(p)}}
 
-          <div className={styles.imgNameContainer}>
-            <div className={styles.leftSideContainer}>
-              <div className={styles.pepe}>
-                <img src={item.image} alt="" />
+
+          return <div className="col-md-12">
+            <div className="col-md-4">
+              <div className="col-md-4">
+                <img src={p.image} alt="" />
               </div>
-              <button onClick={() => navigate(`/review/${item.id}`)}>
+              <button onClick={() => navigate(`/review/${p.id}`)}>
                 Opinar
               </button>
             </div>
           </div>
-        </div>
+
+        })}
+          <div >
+            <h3>total: ${item.total}</h3>
+          </div>
+      </div>
       ))}
     </div>
   );
