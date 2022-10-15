@@ -13,12 +13,15 @@ const login = async (req, res, next) => {
 
       bcrypt.compare(password, usuario.password).then((esCorrecta) => {
         if (esCorrecta) {
-          const { id, name, email } = usuario;
+          const { id, name, email, category, status, active } = usuario;
 
           const data = {
             id,
             name,
             email,
+            category,
+            status,
+            active,
           };
 
           const token = jwt.sign(data, "secreto", {
@@ -31,7 +34,10 @@ const login = async (req, res, next) => {
               id,
               name,
               email,
+              category,
               token,
+              status,
+              active,
             },
           });
         } else {

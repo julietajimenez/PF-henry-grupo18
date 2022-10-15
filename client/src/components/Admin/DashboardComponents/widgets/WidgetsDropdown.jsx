@@ -43,37 +43,20 @@ const WidgetsDropdown = () => {
         <CWidgetStatsA
           className="mb-4"
           style={styles}
-          color="secondary"
+          color="primary"
           value="Usuarios registrados"
           title={usuariosRegistrados}
-          action={
-            <CDropdown alignment="end">
-              <CDropdownToggle
-                color="transparent"
-                caret={false}
-                className="p-0"
-              >
-                <CIcon
-                  icon={cilOptions}
-                  className="text-high-emphasis-inverse"
-                />
-              </CDropdownToggle>
-              <CDropdownMenu>
-                <CDropdownItem onClick={() => navigate("update/")}>
-                  Actualizar Usuario
-                </CDropdownItem>
-              </CDropdownMenu>
-            </CDropdown>
-          }
+          onClick={() => navigate("/dashboard/update")}
         />
       </CCol>
       <CCol sm={6} lg={3}>
         <CWidgetStatsA
           style={styles}
           className="mb-4"
-          color="primary"
+          color="warning"
           value="Usuarios verificados"
           title={usuariosVerificados.length}
+          onClick={() => navigate("/dashboard/update")}
         />
       </CCol>
       <CCol sm={6} lg={3}>
@@ -83,6 +66,7 @@ const WidgetsDropdown = () => {
           color="success"
           value="Usuarios no verificados "
           title={usuariosNoVerificados.length}
+          onClick={() => navigate("/dashboard/update")}
         />
       </CCol>
       <CCol sm={6} lg={3}>
@@ -92,6 +76,7 @@ const WidgetsDropdown = () => {
           color="danger"
           value="Usuarios baneados "
           title={usuariosBaneados.length}
+          onClick={() => navigate("/dashboard/update")}
         />
       </CCol>
     </CRow>
