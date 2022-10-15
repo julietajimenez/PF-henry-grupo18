@@ -12,8 +12,8 @@ import CIcon from "@coreui/icons-react";
 import {
   cilSpeech,
   cilBasket,
-  cilArrowBottom,
-  cilArrowTop,
+/*   cilArrowBottom,
+  cilArrowTop, */
   cilBalanceScale,
   cilBrush,
   cilStarHalf,
@@ -30,7 +30,7 @@ import Loader from "../../Loader/Loader";
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
+/*   const [loading, setLoading] = useState(false); */
 
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();

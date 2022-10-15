@@ -5,6 +5,7 @@ import { getAllUsers, updateUser } from "../../redux/actions/UsersAction";
 import swal from "sweetalert";
 import { Link, useNavigate } from "react-router-dom";
 import sentEmail from "./Firebase/sentEmail";
+import style from './Checkout.module.css'
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ function Checkout() {
   const handleApprove = (orderID) => {
     setPaidFor(true);
     swal(
-      "¡Gracias por comprar en Cosmetista Henry",
+      "¡Gracias por comprar en Pure Glow!",
       "Se envió un ticket de compra a su correo electrónico.😃"
     );
     setTimeout((navigate("/"), 5000));
@@ -57,15 +58,16 @@ function Checkout() {
   }
 
   return (
-    <div style={{ minHeight: "70vh" }}>
+    <div className={style.card} style={{ minHeight: "70vh" }}>
       <h1>¡Gracias por su compra!</h1>
-      <div>
-        Esto es lo que usted estará comprando:{" "}
+      <div className={style.resumen}>
+        RESUMEN DEL PEDIDO:{" "}
         {precio.map((e) => (
-          <li key={e.id}>{e.name + ": por " + "$" + e.price + " c/u"}</li>
+          <li key={e.id}>{e.name + " por: " + "$" + e.price + " c/u"}</li>
         ))}
-        Total será de: ${valor}
+        TOTAL: ${valor}
       </div>
+     
       <PayPalScriptProvider
         options={{ "client-id": REACT_APP_PAYPAL_CLIENT_ID }}
       >
@@ -84,7 +86,7 @@ function Checkout() {
             return actions.order.create({
               purchase_units: [
                 {
-                  description: `Compra en Henry Cosmetista`,
+                  description: `Compra en Pure Glow`,
                   amount: {
                     value: valor, //ACÁ IRÍA EL PRECIO DEL CARRITO
                   },
@@ -114,7 +116,8 @@ function Checkout() {
           }}
         />
       </PayPalScriptProvider>
-      <Link to="/carrito">Volver</Link>
+      <Link className={style.button} to="/carrito">Volver</Link>
+
     </div>
   );
 }

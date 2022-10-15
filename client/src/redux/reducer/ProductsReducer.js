@@ -4,7 +4,8 @@ const initialState = {
   detail: {},
   filtered: [],
   pages: 1,
-  reviews: []
+  reviews: [],
+  favorite: [],
 
 };
 
@@ -79,6 +80,22 @@ export function products(state = initialState, action) {
       return {
         ...state,
       };
+      case 'ADD_FAV':
+        return {
+          ...state,
+          favorite: action.payload,
+        };
+      case 'DELETE_FAV':
+        return {
+          ...state,
+          favorite: action.payload,
+        };
+        case 'GET_FAV':
+        return {
+          ...state,
+          favorite: action.payload,
+        };
+        
     default:
       return state;
   }

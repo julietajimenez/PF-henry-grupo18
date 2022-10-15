@@ -1,12 +1,10 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Catalogo from "./components/Catalogo/Catalogo.jsx";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import Cards from "./components/Cards/Cards";
 import CarroCompras from "./components/CarroCompras/CarroCompras";
 import Login from "./components/Login/Login";
-import Searchbar from "./components/Searchbar/Searchbar.jsx";
-import Category from "./components/Filters/Filter Category/CategoryFilter.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
@@ -33,6 +31,7 @@ import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/actions/UsersAction";
 import { getAllProducts } from "./redux/actions/ProductsActions";
+import Favorites from "./components/Favorites/Favorites";
 
 function App() {
   const dispatch = useDispatch();
@@ -98,10 +97,10 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<Landing/>} /> */}
           <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
-          <Route
+         {/*  <Route
             path="/catalogo"
             element={<Catalogo onAddCarrito={onAddCarrito} />}
-          />
+          /> */}
           <Route path="/card" element={<Cards />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -160,7 +159,7 @@ function App() {
           <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
           <Route
             path="/catalogo"
-            element={<Catalogo onAddCarrito={onAddCarrito} />}
+            element={<Catalogo logueado={logueado} onAddCarrito={onAddCarrito} />}
           />
           <Route path="/card" element={<Cards />} />
           <Route path="/login" element={<Login />} />
@@ -185,6 +184,8 @@ function App() {
           />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/verify/:id" element={<Verify />} />
+          <Route path="/favoritos" element={<Favorites />} />
+
         </Routes>
         <Footer />
       </UserContext.Provider>

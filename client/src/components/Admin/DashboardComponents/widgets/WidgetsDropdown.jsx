@@ -11,7 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../../redux/actions/UsersAction";
 import { cilOptions } from "@coreui/icons";
-import { CChartLine } from "@coreui/react-chartjs";
+/* import { CChartLine } from "@coreui/react-chartjs"; */
 import CIcon from "@coreui/icons-react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./CarroCompras.module.css";
-import Checkout from "../PayPal/Checkout";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/userContext";
@@ -110,10 +109,10 @@ function CarroCompras(props) {
 
       {total > 0 && logueado !== "invitado" ? (
         <>
-          <Link to="/checkout">
-            <button>PAGAR</button>
-          </Link>
           <h3>Total: $ {total.toFixed(2)}</h3>
+          <Link to="/checkout">
+            <button className={styles.button}>PAGAR</button>
+          </Link>
         </>
       ) : total > 0 && logueado === "invitado" ? (
         <h3>Debes iniciar sesión para comprar.</h3>

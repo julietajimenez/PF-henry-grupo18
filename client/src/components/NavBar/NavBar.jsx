@@ -47,6 +47,9 @@ function NavBar() {
           <Link to={"/dashboard"} className={styles.underline}>
             <li>Admin</li>
           </Link>
+          <Link to={'/favoritos'} className={styles.underline}>
+            <li>Favoritos</li>
+          </Link>
           {logueado.email ? <li onClick={logout}>Log Out</li> : 
           <Link to={"/login"} className={styles.underline}>
             <li>Login</li>

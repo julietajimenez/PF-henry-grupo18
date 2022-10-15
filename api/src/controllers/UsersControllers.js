@@ -4,6 +4,7 @@ const { getProductByIdCompras } = require("./ProductsControllers.js");
 const getAllUsers = async (req, res, next) => {
   try {
     const allUsers = await Users.findAll();
+
     res.json(allUsers);
   } catch (error) {
     next(error);
@@ -18,7 +19,7 @@ const postUsers = async (req, res, next) => {
     if (!getEmail.find((e) => e === email)) {
       const obj = { name, email, avatar, password };
       const newUser = await Users.create(obj);
-
+      console.log('hola',newUser.__proto__);
       res.json(newUser);
     } else {
       return res.json({ message: "Usuario ya existente" });

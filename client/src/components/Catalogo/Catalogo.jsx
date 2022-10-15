@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/ProductsActions.js";
-import { getAllCategorys } from "../../redux/actions/CategorysActions";
+import { getAllProducts, getFavorites } from "../../redux/actions/ProductsActions.js";
 import Pager from "../Paginado/Pager.jsx";
 import Card from "../Cards/Cards.jsx";
-import { Link } from "react-router-dom";
 import SearchBar from "../Searchbar/Searchbar.jsx";
 import Loader from "../Loader/Loader.jsx";
 import CategoryFilter from "../Filters/Filter Category/CategoryFilter.jsx";
@@ -17,7 +15,8 @@ function Catalogo(props) {
   const { onAddCarrito } = props;
 
   const productos = useSelector((state) => state.products.allProducts);
-  const usuarios = useSelector((state) => state.users.users);
+/*   const usuarios = useSelector((state) => state.users.users);
+  const favorites = useSelector(state=> state.products.favorite) */
   // console.log(usuarios)
 
   //const filtered = useSelector(state=>state.products.filtered)
@@ -29,6 +28,7 @@ function Catalogo(props) {
   useEffect(() => {
     if (!productos.length) {
       dispatch(getAllProducts());
+      dispatch(getFavorites(props.logueado.email))
     }
   }, [dispatch]);
 
@@ -44,7 +44,7 @@ function Catalogo(props) {
     return <Loader />;
   }
 
-  console.log(productos);
+
 
   return (
     <div className={styles.catalogoContainer}>
@@ -72,10 +72,7 @@ function Catalogo(props) {
               return aDate - bDate;
             })
             .map((e) => {
-              /*               var categoria = e.categories
-                ? (categoria = e.categories.map((e) => e.name))
-                : null; */
-              /*  if(e.active === true){ */
+
               return (
                 <Card
                   key={e.id}
@@ -86,7 +83,9 @@ function Catalogo(props) {
                   category={e.category}
                   stock={e.stock}
                   onAddCarrito={onAddCarrito}
+                  /* favoriteId= {favorites.map(f => f.id == e.id)} */
                 />
+                
               );
             })}
       </div>

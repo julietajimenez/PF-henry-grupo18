@@ -5,7 +5,6 @@ export function getAllProducts() {
   return async function (dispatch) {
     try {
       var json = await axios.get(process.env.REACT_APP_URL_API + "/products");
-      console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS",
         payload: json.data,
@@ -130,6 +129,47 @@ export function image_post(payload, name) {
       });
     } catch (e) {
       console.log(e);
+    }
+  };
+}
+
+export function addFavorite (idUser, idProduct){
+  return async function (dispatch){
+    try {
+      let response = await axios.post(process.env.REACT_APP_URL_API +'/favorites/create', {idUser, idProduct})
+      return dispatch({
+        type: 'ADD_FAV',
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function deleteFavorites (idUser, idProduct){
+  return async function (dispatch){
+    try {
+      let response = await axios.delete(process.env.REACT_APP_URL_API +`/favorites/delete?idUser=${idUser}&idProduct=${idProduct}`)
+      return dispatch({
+        type: 'DELETE_FAV',
+        payload: response.data
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function getFavorites(user) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(process.env.REACT_APP_URL_API +`/favorites/${user}`);
+      return dispatch({ 
+        type: 'GET_FAV', 
+        payload: response.data });
+    } catch (error) {
+      console.log(error);
     }
   };
 }
