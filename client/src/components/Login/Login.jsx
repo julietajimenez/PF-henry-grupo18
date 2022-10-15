@@ -41,6 +41,7 @@ const Login = () => {
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
             setlogueado(data?.usuario)
+            console.log(data)
 
             navigate(`/`);
           }, 1500);
