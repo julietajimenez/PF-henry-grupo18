@@ -38,7 +38,6 @@ function CreacionProductos() {
   const handleChangeImage = (e)=>{
     setSelectedFile(e.target.files[0])
     setFileInputState(e.target.value)
-    console.log(e.target.value);
   }
 
   function handleSelect(e){
@@ -80,7 +79,6 @@ function CreacionProductos() {
           };
           read.readAsDataURL(fileInputState.files[0]);
         }
-        console.log(read);
       }
       dispatch(postProducts({
         name: input.name,

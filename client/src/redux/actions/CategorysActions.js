@@ -12,7 +12,6 @@ export function getAllCategorys() {
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
     }
   };
 }

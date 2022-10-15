@@ -12,7 +12,6 @@ export default function Pacifica (props){
     const product = useSelector(state=> state.products.allProducts)
     const page = useSelector(state=> state.products.pages)
 
-    console.log(product.map(e => e.name));
     useEffect(()=>{
         dispatch(getProductsByBrand("l'oreal"))
         return ()=> {

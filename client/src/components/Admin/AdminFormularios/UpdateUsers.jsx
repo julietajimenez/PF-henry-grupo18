@@ -31,7 +31,7 @@ export default function UpdateUsers() {
           {users?.map((e) => {
             return (
               <tr>
-                <td>{(count += 1)}</td>
+                <td>{e.id.slice(0,13)}</td>
                 <td>{e.name}</td>
                 <td>{e.email}</td>
                 <td>{e.category}</td>

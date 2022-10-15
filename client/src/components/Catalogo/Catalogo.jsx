@@ -18,7 +18,6 @@ function Catalogo(props) {
 
   const productos = useSelector((state) => state.products.allProducts);
   const usuarios = useSelector((state) => state.users.users);
-  // console.log(usuarios)
 
   //const filtered = useSelector(state=>state.products.filtered)
   const page = useSelector((state) => state.products.pages);
@@ -44,7 +43,6 @@ function Catalogo(props) {
     return <Loader />;
   }
 
-  console.log(productos);
 
   return (
     <div className={styles.catalogoContainer}>

@@ -33,8 +33,6 @@ function Checkout() {
 
   const updateStock = (id, cantidad, stockProducto) => {
     const newStock = parseInt(stockProducto) - parseInt(cantidad);
-    console.log('ESTO ES STOCK', parseInt(stockProducto))
-    console.log('ESTO ES CANTIDAAAAAAD', parseInt(cantidad))
     setProductStock({
       stock: newStock,
     });
@@ -50,7 +48,6 @@ function Checkout() {
   const [input, setInput] = useState({
     compras: users.compras,
   });
-  console.log(input.compras);
 
   const descripcion = precio.map((e) => e.name);
 
@@ -138,7 +135,6 @@ function Checkout() {
           onCancel={() => {}}
           onError={(err) => {
             setError(err);
-            console.log("Error en el checkout", err);
           }}
         />
       </PayPalScriptProvider>

@@ -30,7 +30,6 @@ function CarroCompras(props) {
             : item
         )
       );
-      console.log(productAdd);
       total += product.price;
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
@@ -55,7 +54,6 @@ function CarroCompras(props) {
             : item
         )
       );
-      console.log(productRemove);
     }
   };
   const onRemoveItemCarrito = (product) => {

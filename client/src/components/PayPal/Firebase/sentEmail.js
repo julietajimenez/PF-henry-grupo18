@@ -14,6 +14,5 @@ export default async function sentEmail(email, subject, body) {
       // LO MISMO QUE TEXT, SOLAMENTE QUE ACÁ SE PUEDE ARMAR LA PLANTILLA (TODAVÍA NO SE COMO SE HACE)
     },
   };
-  console.log("Listo para ser enviado");
   return await addDoc(collectionRef, emailContent);
 }

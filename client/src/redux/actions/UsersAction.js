@@ -9,7 +9,6 @@ export function getAllUsers() {
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
     }
   };
 }
@@ -20,7 +19,6 @@ export function updateUser(id, payload) {
       process.env.REACT_APP_URL_API + `/users/update/${id}`,
       payload
     );
-    console.log(payload);
     return json;
   };
 }
@@ -31,10 +29,8 @@ export function verifyUser(id) {
       const response = await axios.put(
         process.env.REACT_APP_URL_API + `/users/verify/${id}`
       );
-      console.log("response", response);
       return dispatch({ type: "CONFIRMATION_MAIL" });
     } catch (error) {
-      console.log(error);
     }
   };
 }
@@ -56,7 +52,6 @@ export function getUser(id) {
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
     }
   };
 }
@@ -72,7 +67,6 @@ export function getCompras(compras) {
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
     }
   };
 }

@@ -12,7 +12,6 @@ export function getAllReview(idProduct) {
   return async function (dispatch) {
     try {
       var json = await axios.get(process.env.REACT_APP_URL_API + `/reviews/` + idProduct);
-      console.log(json)
       return dispatch({
         type: "GET_REVIEWS_BY_PRODUCT",
         payload: json.data, 

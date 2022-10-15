@@ -5,13 +5,11 @@ export function getAllProducts() {
   return async function (dispatch) {
     try {
       var json = await axios.get(process.env.REACT_APP_URL_API + "/products");
-      console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS",
         payload: json.data,
       });
     } catch (error) {
-      console.log(process.env.REACT_APP_URL_API);
     }
   };
 }
@@ -44,7 +42,6 @@ export function postProducts(payload) {
       process.env.REACT_APP_URL_API + "/products/create",
       payload
     );
-    console.log(payload);
     return json;
   };
 }
@@ -55,7 +52,6 @@ export function productById(id) {
       var json = await axios.get(
         process.env.REACT_APP_URL_API + `/products/byId/${id}`
       );
-      console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS_BY_ID",
         payload: json.data,
@@ -76,7 +72,6 @@ export function updateProducts(id, payload) {
       process.env.REACT_APP_URL_API + `/products/update/${id}`,
       payload
     );
-    console.log(payload);
     return json;
   };
 }
@@ -86,7 +81,6 @@ export function stockUpdate(id, payload) {
       process.env.REACT_APP_URL_API + `/products/stockupdate/${id}?stock=${payload}`,
       payload
     );
-    console.log(payload);
     return json;
   };
 }
@@ -97,13 +91,11 @@ export function getProductsByBrand(brand) {
       var json = await axios.get(
         process.env.REACT_APP_URL_API + `/products/byBrand?brand=${brand}`
       );
-      console.log(json.data);
       return dispatch({
         type: "GET_PRODUCTS_BY_BRAND",
         payload: json.data,
       });
     } catch (error) {
-      console.log(error);
     }
   };
 }
@@ -139,7 +131,6 @@ export function image_post(payload, name) {
         payload: json.data,
       });
     } catch (e) {
-      console.log(e);
     }
   };
 }

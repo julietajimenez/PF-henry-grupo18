@@ -47,7 +47,6 @@ function UpdateUsuarios() {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(updateUser(id, input));
-    console.log(input);
     alert("Usuario actualizado");
     setInput({
       name: '',

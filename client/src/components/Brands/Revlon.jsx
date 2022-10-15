@@ -13,7 +13,6 @@ export default function Revlon(props) {
     const product = useSelector(state => state.products.allProducts)
     const page = useSelector(state => state.products.pages)
     const labialRevlon = product.find(e => e.id === '8580de77-bd8b-4c91-bcf6-f7e001c74933')
-    console.log(labialRevlon);
 
     useEffect(() => {
         dispatch(getProductsByBrand('revlon'))

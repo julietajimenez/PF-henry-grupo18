@@ -18,16 +18,13 @@ function MisCompras() {
 
   const users = useSelector((state) => state.users.allUsers);
   const comprasDelUsuario = useSelector((state) => state.users.compras);
-  console.log(comprasDelUsuario)
   let compras;
   const navigate = useNavigate();
   
   const dispatch = useDispatch();
   const userLogueado = users.find((e) => e.email === logueado.email);
-  console.log(userLogueado);
   if (userLogueado) {
     compras = userLogueado.compras;
-    console.log(compras)
   }
   useEffect(() => {
     if (!users.length) {
