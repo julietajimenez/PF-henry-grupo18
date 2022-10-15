@@ -28,7 +28,6 @@ export default function Detail() {
   }, [id]);
 
   
-  console.log(reviews)
   return product.name ? (
     <div className={styles.container}>
       <div className={styles.description}>
@@ -60,7 +59,7 @@ export default function Detail() {
       <div>
         <h2>Reviews</h2>
         <div>
-          {reviews ?
+          {reviews.length > 0 ?
           reviews.sort((a, b) => {
             const aDate = new Date(a.createdAt);
             const bDate = new Date(b.createdAt);
@@ -73,7 +72,7 @@ export default function Detail() {
               <p>{r.comment}</p>
               <p>De: {r.userEmail}</p>
             </div>
-          }) : 'No hay reviews'}
+          }) : <h6>No hay reviews</h6>}
         </div>
       </div>
     </div>

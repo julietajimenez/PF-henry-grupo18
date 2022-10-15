@@ -79,6 +79,16 @@ export function updateProducts(id, payload) {
     return json;
   };
 }
+export function stockUpdate(id, payload) {
+  return async function () {
+    var json = await axios.put(
+      process.env.REACT_APP_URL_API + `/products/stockupdate/${id}?stock=${payload}`,
+      payload
+    );
+    console.log(payload);
+    return json;
+  };
+}
 
 export function getProductsByBrand(brand) {
   return async function (dispatch) {
