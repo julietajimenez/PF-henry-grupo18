@@ -46,7 +46,7 @@ const WidgetsDropdown = () => {
           color="violet"
           value="Usuarios registrados"
           title={usuariosRegistrados}
-          onClick={navigate('/update')}
+          onClick={() => navigate('/update')}
         />
       </CCol>
       <CCol sm={6} lg={3}>
@@ -56,7 +56,7 @@ const WidgetsDropdown = () => {
           color="warning"
           value="Usuarios verificados"
           title={usuariosVerificados.length}
-          onClick={navigate('/update')}
+          onClick={() => navigate('/update')}
         />
       </CCol>
       <CCol sm={6} lg={3}>
@@ -66,7 +66,7 @@ const WidgetsDropdown = () => {
           color="success"
           value="Usuarios no verificados "
           title={usuariosNoVerificados.length}
-          onClick={navigate('/update')}
+          onClick={() => navigate('/update')}
         />
       </CCol>
       <CCol sm={6} lg={3}>
@@ -76,7 +76,7 @@ const WidgetsDropdown = () => {
           color="danger"
           value="Usuarios baneados "
           title={usuariosBaneados.length}
-          onClick={navigate('/update')}
+          onClick={() => navigate('/update')}
         />
       </CCol>
     </CRow>
