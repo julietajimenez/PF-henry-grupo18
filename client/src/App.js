@@ -143,8 +143,8 @@ function App() {
             logueado.status === "UNVERIFIED" &&
             logueado.active === true ? (
             <>
-              <Route path="/*" element={<UserUnverified />} />
               <Route path="/verify/:id" element={<Verify />} />
+              <Route path="/*" element={<UserUnverified />} />
             </>
           ) : logueado !== "invitado" &&
             logueado.category === "user" &&
