@@ -37,7 +37,7 @@ export default function UpdateUsers() {
                 <td>{e.category}</td>
                 <td>{e.active === true ? 'Activo' : 'Inactivo'}</td>
                 <td>{e.status}</td>
-                <td><Link to={`/${e.id}`}>Actualizar</Link></td>
+                <td><Link to={`/dashboard/update/${e.id}`}>Actualizar</Link></td>
               </tr>
             );
           })}
