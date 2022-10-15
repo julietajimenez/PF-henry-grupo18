@@ -13,14 +13,10 @@ export default function UpdateUsers() {
     dispatch(getAllUsers());
   }, []);
   let count = 0;
+  console.log(users);
   return (
-    <>
-      {dark === "white" ? (
-        <button onClick={setDark("dark")}>🌙</button>
-      ) : (
-        <button onClick={setDark("white")}>☀️</button>
-      )}
-      <Table striped bordered hover variant={dark}>
+    <div style={{ minHeight: "80vh" }}>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
@@ -32,22 +28,21 @@ export default function UpdateUsers() {
             <th> </th>
           </tr>
         </thead>
-        {users?.map((e) => {
-          <tbody>
-            <tr>
-              <td>{(count += 1)}</td>
-              <td>{e.name}</td>
-              <td>{e.email}</td>
-              <td>{e.category}</td>
-              <td>{e.active}</td>
-              <td>{e.status}</td>
-              <td>
-                <Link to={`/${e.id}`}>Actualizar </Link>
-              </td>
-            </tr>
-          </tbody>;
-        })}
+        <tbody>
+          {users?.map((e) => {
+            return (
+              <tr>
+                <td>{(count += 1)}</td>
+                <td>{e.name}</td>
+                <td>{e.email}</td>
+                <td>{e.category}</td>
+                <td>{e.active}</td>
+                <td>{e.status}</td>
+              </tr>
+            );
+          })}
+        </tbody>
       </Table>
-    </>
+    </div>
   );
 }

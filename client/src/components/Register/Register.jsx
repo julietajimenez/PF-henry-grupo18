@@ -97,6 +97,7 @@ function Register() {
         password: "",
       });
     }
+    window.location.href = process.env.REACT_APP_URL_API+'/login'
   };
 
   return (
