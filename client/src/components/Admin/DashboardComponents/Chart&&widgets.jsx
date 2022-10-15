@@ -163,7 +163,7 @@ const Dashboard = () => {
           <CWidgetStatsC
             onClick={() => navigate("/dashboard/products/create")}
             icon={<CIcon icon={cilBrush} height={36} />}
-            value="Productos"
+            value="Añadir producto"
             title="Crear un producto nuevo"
             progress={{ color: "default", value: 100 }}
             className="mb-4"
