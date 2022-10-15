@@ -27,7 +27,7 @@ function CreacionCategorias() {
   useEffect(() => {});
 
   return (
-    <div>
+    <div style={{ minHeight: "80vh" }}>
       <form autoComplete="off" autoCapitalize="on" onSubmit={handleSubmit}>
         <label>Nombre de la categoría:</label>
         <input

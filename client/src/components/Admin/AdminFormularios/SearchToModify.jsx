@@ -18,7 +18,7 @@ export default function SearchToModify (){
         return <Loader />
       }
     return (
-        <div> 
+        <div style={{ minHeight: "80vh" }}> 
              {
                 products && products.map(e => {
                     return(

@@ -13,7 +13,6 @@ export default function UpdateUsers() {
     dispatch(getAllUsers());
   }, []);
   let count = 0;
-  console.log(users);
   return (
     <div style={{ minHeight: "80vh" }}>
       <Table striped bordered hover>

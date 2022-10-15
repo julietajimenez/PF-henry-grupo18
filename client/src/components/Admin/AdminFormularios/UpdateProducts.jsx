@@ -54,7 +54,7 @@ function UpdateProducts() {
     });
   };
   return (
-    <div>
+    <div style={{ minHeight: "80vh" }}>
       {
         products && products.map(e => {
 

@@ -59,7 +59,7 @@ function UpdateUsuarios() {
     });
   };
   return (
-    <div>
+    <div style={{ minHeight: "80vh" }}>
       {
         users && users.map(e => {
 
