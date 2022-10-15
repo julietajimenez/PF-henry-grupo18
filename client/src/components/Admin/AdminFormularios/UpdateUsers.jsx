@@ -38,6 +38,7 @@ export default function UpdateUsers() {
                 <td>{e.category}</td>
                 <td>{e.active}</td>
                 <td>{e.status}</td>
+                <td><Link to={`/${e.id}`}>Actualizar</Link></td>
               </tr>
             );
           })}
