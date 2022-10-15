@@ -82,8 +82,8 @@ const getProductById = async (req, res, next) => {
 };
 
 const getProductByIdCompras = async (id) => {
-    const product = await Products.findByPk(id);
-    return product;
+  const product = await Products.findByPk(id);
+  return product;
 };
 
 const postProducts = async (req, res, next) => {
@@ -155,6 +155,26 @@ const putProducts = async (req, res, next) => {
     next(error);
   }
 };
+const stockUpdate = async (req, res, next) => {
+  const { id } = req.params;
+  const stock = req.query;
+  try {
+    // const obj = {
+    //   stock,
+    // };
+    const productUpdate = await Products.update(
+      stock,
+      {
+        where: {
+          id: id,
+        },
+      }
+    );
+    res.json({modificado: true});
+  } catch (error) {
+    next(error);
+  }
+};
 
 const deleteProduct = async (req, res, next) => {
   const { id } = req.params;
@@ -178,5 +198,6 @@ module.exports = {
   getProductByBrand,
   putProducts,
   deleteProduct,
-  getProductByIdCompras
+  getProductByIdCompras,
+  stockUpdate,
 };

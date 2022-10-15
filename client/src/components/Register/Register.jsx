@@ -9,16 +9,27 @@ function Register() {
   const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
+  const [shown, setShown] = useState(false);
+  const switchShown = () => setShown(!shown);
 
   const [input, setInput] = useState({
     name: "",
     email: "",
     avatar: "",
     password: "",
+    confirmPassword: "",
   });
 
   const [mensaje, setMensaje] = useState();
   const { logueado, setlogueado } = useContext(UserContext);
+  function mostrarContrasena() {
+    var tipo = document.getElementById("password");
+    if (tipo.type == "password") {
+      tipo.type = "text";
+    } else {
+      tipo.type = "password";
+    }
+  }
 
   function handleChange(e) {
     setInput({
@@ -45,6 +56,9 @@ function Register() {
     if (!input.password) {
       errors.password = "Se requiere una contraseña!";
     }
+    if (input.confirmPassword !== input.password) {
+      errors.confirmPassword = "Sus contraseñas deben ser iguales.";
+    }
     return errors;
   };
 
@@ -56,6 +70,7 @@ function Register() {
       email: input.email,
       avatar: input.avatar,
       password: input.password,
+      confirmPassword: input.confirmPassword,
     };
 
     if (input.name !== "" && input.email !== "" && input.password !== "") {
@@ -78,6 +93,7 @@ function Register() {
         name: "",
         email: "",
         avatar: "",
+        confirmPassword: "",
         password: "",
       });
     }
@@ -102,16 +118,6 @@ function Register() {
           {errors.name && <p className={styles.error}>{errors.name}</p>}
         </div>
         <div className={styles.formInputs}>
-          <label>Email: </label>
-          <input
-            type="email"
-            name="email"
-            value={input.email}
-            onChange={handleChange}
-          />
-          {errors.email && <p className={styles.error}>{errors.email}</p>}
-        </div>
-        <div className={styles.formInputs}>
           <label>Avatar: </label>
           <input
             type={"text"}
@@ -123,17 +129,46 @@ function Register() {
         <div className={styles.formInputs}>
           <label>Contraseña: </label>
           <input
-            type="password"
+            type={shown ? "text" : "password"}
             name="password"
+            id="password"
             value={input.password}
             onChange={handleChange}
           />
           {errors.password && <p className={styles.error}>{errors.password}</p>}
         </div>
-
-        <button className={styles.btnLogin} type="submit">
-          Registrarse
-        </button>
+        <div className={styles.formInputs}>
+          <label>Confirmar contraseña: </label>
+          <input
+            type={shown ? "text" : "password"}
+            name="confirmPassword"
+            value={input.confirmPassword}
+            onChange={handleChange}
+          />
+          <button onClick={switchShown} className="btn btn-primary">
+            {shown ? "Ocultar" : "👁️"}
+          </button>
+          {errors.confirmPassword && (
+            <p className={styles.error}>{errors.confirmPassword}</p>
+          )}
+        </div>
+        <div className={styles.formInputs}>
+          <label>Email: </label>
+          <input
+            type="email"
+            name="email"
+            value={input.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p className={styles.error}>{errors.email}</p>}
+        </div>
+        {errors ? (
+          "Algo"
+        ) : (
+          <button className={styles.btnLogin} type="submit">
+            Registrarse
+          </button>
+        )}
       </form>
       {mensaje && <div>{mensaje}</div>}
     </div>

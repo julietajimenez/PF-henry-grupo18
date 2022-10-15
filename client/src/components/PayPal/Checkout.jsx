@@ -5,23 +5,46 @@ import { getAllUsers, updateUser } from "../../redux/actions/UsersAction";
 import swal from "sweetalert";
 import { Link, useNavigate } from "react-router-dom";
 import sentEmail from "./Firebase/sentEmail";
+import {
+  getAllProducts,
+  stockUpdate,
+} from "../../redux/actions/ProductsActions";
 
 function Checkout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+  const productos = useSelector((state) => state.products.products);
+  const [productStock, setProductStock] = useState({
+    stock: 0,
+  });
 
   const usuarios = useSelector((state) => state.users.users);
   const logueado = JSON.parse(localStorage.logueado);
   const checkoutinfo = JSON.parse(localStorage.getItem("carrito"));
   let precio = checkoutinfo.map((e) => e);
 
+  useEffect(() => {
+    if (!productos.length) {
+      dispatch(getAllProducts());
+    }
+
+    dispatch(getAllUsers());
+  }, [dispatch]);
+
+  const updateStock = (id, cantidad, stockProducto) => {
+    const newStock = parseInt(stockProducto) - parseInt(cantidad);
+    console.log('ESTO ES STOCK', parseInt(stockProducto))
+    console.log('ESTO ES CANTIDAAAAAAD', parseInt(cantidad))
+    setProductStock({
+      stock: newStock,
+    });
+    dispatch(stockUpdate(id, newStock));
+  };
+
   const valor = precio
     .map((e) => e.cantidad * e.price)
-    .reduce((a, b) => a + b, 0).toFixed(2);
+    .reduce((a, b) => a + b, 0)
+    .toFixed(2);
 
   let users = usuarios.find((user) => user.email === logueado.email);
   const [input, setInput] = useState({
@@ -104,6 +127,11 @@ function Checkout() {
             dispatch(updateUser(users.id, usuarioCompras));
             submitHandler();
             handleApprove(data.orderID);
+            {
+              precio.map((e) => {
+                updateStock(e.id, e.cantidad, e.stock);
+              });
+            }
             setInput({ ...input, compras: prodComp });
             localStorage.removeItem("carrito");
           }}
