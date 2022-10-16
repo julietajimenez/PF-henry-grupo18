@@ -1,10 +1,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Catalogo from "./components/Catalogo/Catalogo.jsx";
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Cards from "./components/Cards/Cards";
 import CarroCompras from "./components/CarroCompras/CarroCompras";
 import Login from "./components/Login/Login";
+import Searchbar from "./components/Searchbar/Searchbar.jsx";
+import Category from "./components/Filters/Filter Category/CategoryFilter.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
@@ -31,10 +33,11 @@ import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/actions/UsersAction";
 import { getAllProducts } from "./redux/actions/ProductsActions";
-import Favorites from "./components/Favorites/Favorites";
 import UserBanned from "./components/UserBanned/UserBanned";
 import UserUnverified from "./components/UserUnverified/UserUnverified";
 import Error404 from "./components/Error404/Error404";
+import Favorites from "./components/Favorites/Favorites";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -102,6 +105,7 @@ function App() {
               <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
               <Route path="/card" element={<Cards />} />
               <Route path="/miscompras" element={<MisCompras />} />
+              <Route path="/favoritss" element={<Favorites />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route
@@ -229,7 +233,6 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/carrito" element={<CarroCompras />} />
               <Route path="products/:id" element={<Detail />} />
-              <Route path="/favoritos" element={<Favorites />} />
               <Route
                 path="/products/brands/pacifica"
                 element={<Pacifica onAddCarrito={onAddCarrito} />}

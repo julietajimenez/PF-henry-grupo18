@@ -1,0 +1,25 @@
+.div{
+    background-color: rgb(246, 230, 243);
+}
+.container {
+    margin-left: 15%;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height:600px;
+    gap: 20px;
+  }
+
+
+/*   .container {
+    margin-left: 50%;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5.5%;
+    gap: 20px;
+  } */
