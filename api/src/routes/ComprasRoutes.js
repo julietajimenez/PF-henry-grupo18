@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getAllCompras, postCompras } = require('../controllers/ComprasControllers');
+const { getAllCompras, postCompras, getComprasById } = require('../controllers/ComprasControllers');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -7,6 +7,7 @@ const { getAllCompras, postCompras } = require('../controllers/ComprasController
 const router = Router();
 
 router.get('/:userEmail', getAllCompras)
+router.get('/ById/:id', getComprasById)
 router.post('/comprar', postCompras)
 
 

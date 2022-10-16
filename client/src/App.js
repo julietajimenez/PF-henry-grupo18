@@ -33,6 +33,7 @@ import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/actions/UsersAction";
 import { getAllProducts } from "./redux/actions/ProductsActions";
+import DetailCompras from "./components/DetailCompras/DetailCompras";
 
 function App() {
   const dispatch = useDispatch();
@@ -179,6 +180,7 @@ function App() {
           />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/verify/:id" element={<Verify />} />
+          <Route path="/compras/:id" element={<DetailCompras />} />
         </Routes>
         <Footer />
       </UserContext.Provider>

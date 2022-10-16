@@ -39,30 +39,19 @@ function MisCompras() {
 
   return (
     <div className={styles.carroContainer}>
-      {comprasDelUsuario.length === 0 && (
-        <div>Su historial de compras está vacío</div>
-      )}
-
-      {comprasDelUsuario.map((item) => (
-        <div key={item.id} className={styles.itemsContainer}>
-          <h2>CompraId: {item.id}</h2>
-          <h4>fecha: {item.createdAt}</h4>
-        {item.products.map( p => {
-          {{console.log(p)}}
-
-
-          return <div className="col-md-12">
-            <div className="col-md-4">
-              <div className="col-md-4">
-                <img src={p.image} alt="" />
-              </div>
-              <button onClick={() => navigate(`/review/${p.id}`)}>
-                Opinar
-              </button>
-            </div>
-          </div>
-
-        })}
+      {comprasDelUsuario.length === 0 ?
+        <div>Su historial de compras está vacío</div> :
+      comprasDelUsuario
+        .sort((a, b) => {
+          const aDate = new Date(a.createdAt);
+          const bDate = new Date(b.createdAt);
+          return bDate - aDate;
+        })
+      .map((item) => (
+        <div key={item.id} className={styles.itemsContainer} onClick={()=>navigate(`/compras/${item.id}`)}>
+          <h2>CompraId: #{item.id}</h2>
+          <h6>fecha: {item.createdAt}</h6>
+        
           <div >
             <h3>total: ${item.total}</h3>
           </div>

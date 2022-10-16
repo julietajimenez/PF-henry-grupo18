@@ -15,6 +15,18 @@ const getAllCompras = async (req, res, next) => {
     }
 }
 
+const getComprasById = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const compra = await Compras.findByPk(id, {
+            include: Products
+        })
+        return res.json(compra); 
+    } catch (error) {
+        next(error)
+    }
+}
+
 // const getCompras = async (listProd) => {
 //     listProd = listProd.split(",");
 //     let products = [];
@@ -49,5 +61,6 @@ const postCompras = async (req, res, next) => {
 
 module.exports = {
     getAllCompras,
-    postCompras
+    postCompras,
+    getComprasById
 }

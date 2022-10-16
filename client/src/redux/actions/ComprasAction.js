@@ -26,3 +26,20 @@ export function getCompras(userEmail) {
         }
     };
 }
+
+
+export function getCompraById(id) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.get(
+                process.env.REACT_APP_URL_API + `/compras/ById/` + id
+            );
+            return dispatch({
+                type: "GET_COMPRA_BY_ID",
+                payload: json.data,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+}
