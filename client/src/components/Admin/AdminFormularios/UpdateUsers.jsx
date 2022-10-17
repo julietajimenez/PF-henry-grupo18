@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllUsers } from "../../../redux/actions/UsersAction";
+import { getAllUsers} from "../../../redux/actions/UsersAction";
 import Table from "react-bootstrap/Table";
+import Searchbar from "./Searchbar";
 
 export default function UpdateUsers() {
   const dispatch = useDispatch();
-  const [dark, setDark] = useState("white");
-  const users = useSelector((state) => state.users.allUsers);
+  const users = useSelector((state) => state.users.users);
   useEffect(() => {
     dispatch(getAllUsers());
-  }, []);
-  let count = 0;
+  }, [dispatch]);
+console.log(users)
   return (
     <div style={{ minHeight: "80vh" }}>
       <Table striped bordered hover>
@@ -24,20 +24,24 @@ export default function UpdateUsers() {
             <th>Categoría</th>
             <th>Activo/Inactivo</th>
             <th>Estado</th>
-            <th> </th>
+            <th>
+              <Searchbar />
+            </th>
           </tr>
         </thead>
         <tbody>
-          {users?.map((e) => {
+          {users && users.map((e) => {
             return (
               <tr>
-                <td>{e.id.slice(0,13)}</td>
+                <td>{e.id.slice(0, 13)}</td>
                 <td>{e.name}</td>
                 <td>{e.email}</td>
                 <td>{e.category}</td>
-                <td>{e.active === true ? 'Activo' : 'Inactivo'}</td>
+                <td>{e.active === true ? "Activo" : "Inactivo"}</td>
                 <td>{e.status}</td>
-                <td><Link to={`/dashboard/update/${e.id}`}>Actualizar</Link></td>
+                <td>
+                  <Link to={`/dashboard/update/${e.id}`}>Actualizar</Link>
+                </td>
               </tr>
             );
           })}

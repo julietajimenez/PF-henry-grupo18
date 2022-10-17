@@ -1,12 +1,10 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Catalogo from "./components/Catalogo/Catalogo.jsx";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Cards from "./components/Cards/Cards";
 import CarroCompras from "./components/CarroCompras/CarroCompras";
 import Login from "./components/Login/Login";
-import Searchbar from "./components/Searchbar/Searchbar.jsx";
-import Category from "./components/Filters/Filter Category/CategoryFilter.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
@@ -16,7 +14,6 @@ import UpdateUsers from "./components/Admin/AdminFormularios/UpdateUsers";
 import Detail from "./components/Details/Detail";
 import SearchToModify from "./components/Admin/AdminFormularios/SearchToModify";
 import UpdateProducts from "./components/Admin/AdminFormularios/UpdateProducts";
-//import Landing from "./components/Landing/Landing";
 import Home from "./components/Home/Home";
 import Pacifica from "./components/Brands/Pacifica";
 import Maybelline from "./components/Brands/Maybelline";
@@ -28,7 +25,6 @@ import UserContext from "./context/userContext";
 import Verify from "./components/VerificadorUsers/Verify";
 import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 import swal from "sweetalert2";
-import Review from "./components/Review/Review";
 import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/actions/UsersAction";
@@ -47,7 +43,6 @@ function App() {
       return "invitado";
     }
   });
-  console.log(logueado);
 
   const [cartItems, setCartItems] = useState(() => {
     try {
@@ -62,10 +57,9 @@ function App() {
     dispatch(getAllUsers());
     dispatch(getAllProducts());
     localStorage.setItem("carrito", JSON.stringify(cartItems));
-  }, [cartItems]);
+  }, [cartItems, dispatch]);
 
   const onAddCarrito = (product) => {
-    console.log(product);
     const productAdd = cartItems.find((item) => item.id === product.id);
     if (productAdd) {
       swal.fire({

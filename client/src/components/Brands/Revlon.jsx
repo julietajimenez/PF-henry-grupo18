@@ -2,8 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeDetail, pagesControl, getProductsByBrand, getAllProducts } from "../../redux/actions/ProductsActions";
-import Cards from "../Cards/Cards";
+import { removeDetail, pagesControl, getProductsByBrand} from "../../redux/actions/ProductsActions";
 import styles from '../Details/Detail.module.css'
 
 export default function Revlon(props) {
@@ -19,7 +18,7 @@ export default function Revlon(props) {
         return () => {
             dispatch(removeDetail())
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <div className={styles.container}>
@@ -39,7 +38,7 @@ export default function Revlon(props) {
             <div className={styles.description}>
                 <h1>{"Revlon Ultra HD Matte Lipcolor"}</h1>
                 <h4>{"revlon"}</h4>
-                <img src={"https://d3t32hsnjxo7q6.cloudfront.net/i/8e5fad1f09c17ff8b312508a2a7da161_ra,w158,h184_pa,w158,h184.png"} />
+                <img src={"https://d3t32hsnjxo7q6.cloudfront.net/i/8e5fad1f09c17ff8b312508a2a7da161_ra,w158,h184_pa,w158,h184.png"} alt='img-revlon' />
                 <h4>{"10.99"}</h4>
                 <p>{"Revlon Ultra HD Matte Lipcolor gives you lightweight, high definition velvety matte color. It has a moisturizing, velvety \nfeel with a 100% wax-free, gel formula. Features: Creamy mango and whipped vanilla fragrance \nPlush velvety applicator Shade Range: (top row, left to right / bottom row, left to right) Devotion, Obsession, Addiction, Temptation / Flirtation, Love, Seduction, Passion"}</p>
                 <button onClick={() => onAddCarrito(labialRevlon)}>Agregar al carrito</button>

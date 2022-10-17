@@ -12,25 +12,21 @@ import CIcon from "@coreui/icons-react";
 import {
   cilSpeech,
   cilBasket,
-  cilArrowBottom,
-  cilArrowTop,
+ 
   cilBalanceScale,
   cilBrush,
   cilStarHalf,
   cilStar,
 } from "@coreui/icons";
-// import "../DashboardComponents/style.scss";
 import WidgetsDropdown from "../DashboardComponents/widgets/WidgetsDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../../redux/actions/ProductsActions";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import Loader from "../../Loader/Loader";
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(false);
 
   const products = useSelector((state) => state.products.allProducts);
   const dispatch = useDispatch();
@@ -38,7 +34,7 @@ const Dashboard = () => {
     if (products.length <= 0) {
       dispatch(getAllProducts());
     }
-  }, [dispatch]);
+  }, [dispatch,products.length]);
 
   const mejorValorado = products.find((e) => e.rating === 5);
   let titleMVP = "";

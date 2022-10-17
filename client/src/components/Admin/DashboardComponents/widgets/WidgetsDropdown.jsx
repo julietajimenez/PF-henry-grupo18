@@ -1,18 +1,8 @@
 import React, { useEffect } from "react";
-import {
-  CRow,
-  CCol,
-  CWidgetStatsA,
-  CDropdown,
-  CDropdownToggle,
-  CDropdownMenu,
-  CDropdownItem,
-} from "@coreui/react";
+import { CRow, CCol, CWidgetStatsA } from "@coreui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../../redux/actions/UsersAction";
-import { cilOptions } from "@coreui/icons";
-import { CChartLine } from "@coreui/react-chartjs";
-import CIcon from "@coreui/icons-react";
+
 import { useNavigate } from "react-router-dom";
 
 const WidgetsDropdown = () => {
@@ -28,15 +18,15 @@ const WidgetsDropdown = () => {
   const usuariosBaneados = [];
 
   users.map((e) =>
-    e.status == "VERIFIED"
+    e.status === "VERIFIED"
       ? usuariosVerificados.push(e)
       : usuariosNoVerificados.push(e)
   );
-  users.map((e) => (e.active == false ? usuariosBaneados.push(e) : null));
+  users.map((e) => (e.active === false ? usuariosBaneados.push(e) : null));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllUsers());
-  }, []);
+  }, [dispatch]);
   return (
     <CRow>
       <CCol sm={6} lg={3}>

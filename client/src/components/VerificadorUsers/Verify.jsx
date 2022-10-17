@@ -1,13 +1,8 @@
 import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import {
-  getAllUsers,
-  verifyRoute,
-  verifyUser,
-} from "../../redux/actions/UsersAction";
+
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { verifyUser } from "../../redux/actions/UsersAction";
 import swal from "sweetalert2";
 
 export default function Verify() {
@@ -18,7 +13,7 @@ export default function Verify() {
     dispatch(verifyUser(id));
     swal.fire({
       icon: "success",
-      text: '¡Cuenta verificada!',
+      text: "¡Cuenta verificada!",
     });
   }
 

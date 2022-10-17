@@ -23,7 +23,7 @@ function UpdateProducts() {
 
   useEffect(() => {
     dispatch(getAllProducts())
-  }, [])
+  }, [dispatch])
 
   function handleChange(e) {
     setInput({

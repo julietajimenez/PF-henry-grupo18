@@ -29,7 +29,12 @@ export function users(state = initialState, action) {
         ...state,
         compras: action.payload,
       };
-
+      case "GET_BY_EMAIL":
+        return {
+          ...state,
+          users: action.payload,
+          allUsers: action.payload,
+        };
     default:
       return state;
   }

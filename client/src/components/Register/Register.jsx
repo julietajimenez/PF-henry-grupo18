@@ -1,12 +1,10 @@
 import React from "react";
 import { useState, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
 import UserContext from "../../context/userContext";
 
 function Register() {
-  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({});
   const [shown, setShown] = useState(false);
@@ -22,14 +20,7 @@ function Register() {
 
   const [mensaje, setMensaje] = useState();
   const { logueado, setlogueado } = useContext(UserContext);
-  function mostrarContrasena() {
-    var tipo = document.getElementById("password");
-    if (tipo.type == "password") {
-      tipo.type = "text";
-    } else {
-      tipo.type = "password";
-    }
-  }
+
 
   function handleChange(e) {
     setInput({

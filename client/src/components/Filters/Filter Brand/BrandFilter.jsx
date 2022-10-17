@@ -1,12 +1,11 @@
  import React from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByBrand, removeFilters } from "../../../redux/actions/ProductsActions";
 
 export default function BrandFiltered (props){
     const dispatch = useDispatch()
     const allProducts = useSelector(state=> state.products.allProducts)
-    const products = useSelector(state=> state.products.products)
+
 
     
 

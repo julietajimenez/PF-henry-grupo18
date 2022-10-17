@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./MisCompras.module.css";
 
-import UserContext from "../../context/userContext";
-import { productById } from "../../redux/actions/ProductsActions";
+
 import {
-  getUser,
   getCompras,
   getAllUsers,
 } from "../../redux/actions/UsersAction";
@@ -33,7 +31,7 @@ function MisCompras() {
     if (compras) {
       dispatch(getCompras(compras));
     }
-  }, [dispatch]);
+  }, [dispatch, compras, users.length]);
 
   if (!comprasDelUsuario) {
     return <Loader />;

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers, updateUser } from "../../redux/actions/UsersAction";
@@ -29,7 +29,7 @@ function Checkout() {
     }
 
     dispatch(getAllUsers());
-  }, [dispatch]);
+  }, [dispatch, productos.length]);
 
   const updateStock = (id, cantidad, stockProducto) => {
     const newStock = parseInt(stockProducto) - parseInt(cantidad);
@@ -124,11 +124,11 @@ function Checkout() {
             dispatch(updateUser(users.id, usuarioCompras));
             submitHandler();
             handleApprove(data.orderID);
-            {
+            
               precio.map((e) => {
                 updateStock(e.id, e.cantidad, e.stock);
               });
-            }
+            
             setInput({ ...input, compras: prodComp });
             localStorage.removeItem("carrito");
           }}

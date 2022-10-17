@@ -25,7 +25,7 @@ export default function Detail() {
     return () => {
       dispatch(removeDetail());
     };
-  }, [id]);
+  }, [id, dispatch]);
 
   
   return product.name ? (
@@ -41,7 +41,7 @@ export default function Detail() {
             alt="nohayimagen"
           />
         ) : (
-          <img style={{ height: "270px" }} src={imgDefault} />
+          <img style={{ height: "270px" }} src={imgDefault} alt="imagendenoseque" />
         )}
         <h4>${product.price}USD</h4>
 

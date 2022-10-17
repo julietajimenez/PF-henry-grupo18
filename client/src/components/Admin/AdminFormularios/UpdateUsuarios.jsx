@@ -21,7 +21,7 @@ function UpdateUsuarios() {
 
   useEffect(() => {
     dispatch(getAllUsers())
-  }, [])
+  }, [dispatch])
 
   function handleChange(e) {
     setInput({

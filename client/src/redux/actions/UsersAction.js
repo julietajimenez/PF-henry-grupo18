@@ -8,8 +8,7 @@ export function getAllUsers() {
         type: "GET_USERS",
         payload: json.data,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 }
 
@@ -25,13 +24,10 @@ export function updateUser(id, payload) {
 
 export function verifyUser(id) {
   return async function (dispatch) {
-    try {
-      const response = await axios.put(
-        process.env.REACT_APP_URL_API + `/users/verify/${id}`
-      );
-      return dispatch({ type: "CONFIRMATION_MAIL" });
-    } catch (error) {
-    }
+    const response = await axios.put(
+      process.env.REACT_APP_URL_API + `/users/verify/${id}`
+    );
+    return dispatch({ type: "CONFIRMATION_MAIL" });
   };
 }
 
@@ -51,8 +47,7 @@ export function getUser(id) {
         type: "GET_USER",
         payload: json.data,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 }
 
@@ -66,7 +61,18 @@ export function getCompras(compras) {
         type: "GET_COMPRAS",
         payload: json.data,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
+  };
+}
+
+export function searchByEmail(email) {
+  return async function (dispatch) {
+    var json = await axios.get(
+      process.env.REACT_APP_URL_API + `/users/byEmail?email=${email}`
+    );
+    return dispatch({
+      type: "GET_BY_EMAIL",
+      payload: json.data,
+    });
   };
 }

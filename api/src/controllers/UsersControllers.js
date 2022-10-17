@@ -1,5 +1,6 @@
 const { Users, Products } = require("../db.js");
 const { getProductByIdCompras } = require("./ProductsControllers.js");
+const { Op } = require("sequelize");
 
 const getAllUsers = async (req, res, next) => {
   try {
@@ -87,6 +88,20 @@ const getUserById = async (req, res, next) => {
   }
 };
 
+const getUserByEmail = async (req, res, next) => {
+  const { email } = req.query;
+  try {
+    const user = await Users.findAll({
+      where: {
+        email: { [Op.iLike]: "%" + email + "%" },
+      },
+    });
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const confirm = async (req, res) => {
   try {
     const { token } = req.params;
@@ -137,4 +152,5 @@ module.exports = {
   confirm,
   verifyUser,
   getCompras,
+  getUserByEmail,
 };

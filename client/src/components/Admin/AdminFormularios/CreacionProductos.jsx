@@ -26,7 +26,7 @@ function CreacionProductos() {
 
   useEffect(() => {
     dispatch(getAllCategorys());
-  }, []);
+  }, [dispatch]);
   function handleChange(e) {
     setInput({
       ...input,
@@ -59,27 +59,18 @@ function CreacionProductos() {
     reader.onloadend = () => {
       dispatch(image_post(reader.result, input.name));
     };
-    
-    /*     if (
-      input.description &&
-      input.name &&
-      input.price && 
-      input.image &&
-      input.brand &&  
-      input.category
-      ) { */
-      function readURL(fileInputState) {
-        if (fileInputState.files && fileInputState.files[0]) {
-          var read = new FileReader();
-          read.onload = function (e) {
-            ('#blah')
-              .attr('src', e.target.result)
-              .width(150)
-              .height(200);
-          };
-          read.readAsDataURL(fileInputState.files[0]);
-        }
-      }
+      // function readURL(fileInputState) {
+      //   if (fileInputState.files && fileInputState.files[0]) {
+      //     var read = new FileReader();
+      //     read.onload = function (e) {
+      //       ('#blah')
+      //         .attr('src', e.target.result)
+      //         .width(150)
+      //         .height(200);
+      //     };
+      //     read.readAsDataURL(fileInputState.files[0]);
+      //   }
+      // }
       dispatch(postProducts({
         name: input.name,
       brand: input.brand,

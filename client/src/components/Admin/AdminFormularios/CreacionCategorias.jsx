@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createCategory } from "../../../redux/actions/CategorysActions.js";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert"
@@ -24,7 +24,6 @@ function CreacionCategorias() {
     });
   };
 
-  useEffect(() => {});
 
   return (
     <div style={{ minHeight: "80vh" }}>

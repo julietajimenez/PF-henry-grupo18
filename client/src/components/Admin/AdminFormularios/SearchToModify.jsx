@@ -12,7 +12,7 @@ export default function SearchToModify (){
     const products = useSelector(state=> state.products.products)
     useEffect(()=>{
         dispatch(getAllProducts())
-    }, [])
+    }, [dispatch])
 
     if (products.length <= 0) {
         return <Loader />
