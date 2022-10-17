@@ -154,13 +154,10 @@ function Register() {
           />
           {errors.email && <p className={styles.error}>{errors.email}</p>}
         </div>
-        {errors ? (
-          "Algo"
-        ) : (
           <button className={styles.btnLogin} type="submit">
             Registrarse
           </button>
-        )}
+
       </form>
       {mensaje && <div>{mensaje}</div>}
     </div>

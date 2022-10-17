@@ -14,7 +14,7 @@ function UpdateUsuarios() {
     name: users.name,
     email: users.email,
     avatar: users.avatar,
-    password: '',
+    password: users.password,
     active: users.active,
     category: users.category
   })

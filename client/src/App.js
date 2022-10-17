@@ -10,7 +10,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import CreacionCategorias from "./components/Admin/AdminFormularios/CreacionCategorias";
 import CreacionProductos from "./components/Admin/AdminFormularios/CreacionProductos";
 import UpdateUsuarios from "./components/Admin/AdminFormularios/UpdateUsuarios";
-import UpdateUsers from "./components/Admin/AdminFormularios/UpdateUsers";
+import UpdateUsers from "./components/Admin/AdminFormularios/TabladeUsuarios";
 import Detail from "./components/Details/Detail";
 import SearchToModify from "./components/Admin/AdminFormularios/SearchToModify";
 import UpdateProducts from "./components/Admin/AdminFormularios/UpdateProducts";
@@ -187,12 +187,7 @@ function App() {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/verify/:id" element={<Verify />} />
               <Route path="/createcategory" element={<CreacionCategorias />} />
-              {/* <Route path="/createProduct" element={<CreacionProductos />} /> */}
-              {/* <Route path="/update/:id" element={<UpdateUsuarios />} /> */}
-              {/* <Route path="/update" element={<UpdateUsers />} /> */}
               <Route path="/products/:id" element={<Detail />} />
-              {/* <Route path="/products/update/:id" element={<UpdateProducts />} />
-              <Route path="/products/update/" element={<SearchToModify />} /> */}
               <Route path="/dashboard" element={<Dashboard />} />
               <Route
                 path="/dashboard/products/create"

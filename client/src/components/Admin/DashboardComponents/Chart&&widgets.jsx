@@ -97,7 +97,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div style={{ maxWidth: "100vw", overflowX: "hidden", marginTop: "20px" }}>
+    <div style={{minHeight:"100vh", maxWidth: "100vw", overflowX: "hidden", marginTop: "20px" }}>
       <WidgetsDropdown />
       <div
         style={{
