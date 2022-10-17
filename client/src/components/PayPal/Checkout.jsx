@@ -110,6 +110,7 @@ function Checkout() {
             return actions.order.create({
               purchase_units: [
                 {
+      
                   description: `Compra en Henry Cosmetista`,
                   amount: {
                     value: valor, //ACÁ IRÍA EL PRECIO DEL CARRITO
