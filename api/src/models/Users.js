@@ -40,9 +40,5 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
     },
-    compras: {
-      type: DataTypes.JSON,
-      defaultValue: [],
-    },
   });
 };

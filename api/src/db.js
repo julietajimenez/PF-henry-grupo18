@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_DIALECT, PGHOST, PGPORT, PGNAME, PGPASSWORD, PGUSER } = process.env;
@@ -38,7 +38,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Users, Products, Reviews, Payments, Category } = sequelize.models;
+const { Users, Products, Reviews, Payments, Category, Compras } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -50,6 +50,25 @@ Users.hasMany(Reviews)
 Reviews.belongsTo(Users)
 Reviews.belongsTo(Products)
 Products.hasMany(Reviews)
+
+
+const DetalleCompras = sequelize.define("detalle_Compras", {
+    cantidad: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+}, { timestamps: false });
+
+Products.belongsToMany(Compras, { through: DetalleCompras });
+Compras.belongsToMany(Products, { through: DetalleCompras });
+
+Users.hasMany(Compras)
+Compras.belongsTo(Users)
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

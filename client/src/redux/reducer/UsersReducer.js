@@ -3,6 +3,7 @@ const initialState = {
   allUsers: [],
   user:[],
   compras: [],
+  compraDetail: []
 };
 
 export function users(state = initialState, action) {
@@ -35,6 +36,13 @@ export function users(state = initialState, action) {
           users: action.payload,
           allUsers: action.payload,
         };
+
+    case "GET_COMPRA_BY_ID":
+      return {
+        ...state,
+        compraDetail: action.payload,
+      };
+      
     default:
       return state;
   }

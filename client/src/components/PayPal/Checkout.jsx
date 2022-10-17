@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers, updateUser } from "../../redux/actions/UsersAction";
+import { postCompras } from "../../redux/actions/ComprasAction";
 import swal from "sweetalert";
 import { Link, useNavigate } from "react-router-dom";
 import sentEmail from "./Firebase/sentEmail";
@@ -50,6 +51,11 @@ function Checkout() {
   });
 
   const descripcion = precio.map((e) => e.name);
+
+
+  const comprar = (userEmail, total, listProd) => {
+    dispatch(postCompras({userEmail, total, listProd}))
+  }
 
   function submitHandler() {
     let email = logueado.email; // ASIGNO EL VALOR DE CORREO SEGÚN LO ENVIADO POR INPUT
@@ -113,15 +119,16 @@ function Checkout() {
             });
           }}
           onApprove={async (data, actions) => {
-            const set = new Set(precio);
-            const order = await actions.order.capture();
-            const productosComprados = [...set];
-            let prodComp = productosComprados.map((item) => item.id);
-            let prod = input.compras.concat(prodComp);
-            let usuarioCompras = users;
-            const prodSet = new Set(prod);
-            usuarioCompras.compras = [...prodSet];
-            dispatch(updateUser(users.id, usuarioCompras));
+            // const set = new Set(precio);
+            // const order = await actions.order.capture();
+            // const productosComprados = [...set];
+            // let prodComp = productosComprados.map((item) => item.id);
+            // let prod = input.compras.concat(prodComp);
+            // let usuarioCompras = users;
+            // const prodSet = new Set(prod);
+            // usuarioCompras.compras = [...prodSet];
+            // dispatch(updateUser(users.id, usuarioCompras));
+            comprar(users.email, valor, precio)
             submitHandler();
             handleApprove(data.orderID);
             
@@ -129,7 +136,7 @@ function Checkout() {
                 updateStock(e.id, e.cantidad, e.stock);
               });
             
-            setInput({ ...input, compras: prodComp });
+/*             setInput({ ...input, compras: prodComp }); */
             localStorage.removeItem("carrito");
           }}
           onCancel={() => {}}

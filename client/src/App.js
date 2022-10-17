@@ -32,6 +32,7 @@ import { getAllProducts } from "./redux/actions/ProductsActions";
 import UserBanned from "./components/UserBanned/UserBanned";
 import UserUnverified from "./components/UserUnverified/UserUnverified";
 import Error404 from "./components/Error404/Error404";
+import DetailCompras from "./components/DetailCompras/DetailCompras";
 
 function App() {
   const dispatch = useDispatch();
@@ -131,6 +132,7 @@ function App() {
                 element={<PhysiciansFormula onAddCarrito={onAddCarrito} />}
               />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/compras/:id" element={<DetailCompras />} />
             </>
           ) : logueado !== "invitado" &&
             logueado.category === "user" &&

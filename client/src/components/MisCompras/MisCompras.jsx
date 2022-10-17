@@ -6,9 +6,11 @@ import styles from "./MisCompras.module.css";
 
 import {
   getCompras,
+  getUser,
   getAllUsers,
 } from "../../redux/actions/UsersAction";
 import Loader from "../Loader/Loader";
+import { getCompras } from "../../redux/actions/ComprasAction";
 
 function MisCompras() {
   // const {logueado, setlogueado} = useContext(UserContext)
@@ -16,22 +18,19 @@ function MisCompras() {
 
   const users = useSelector((state) => state.users.allUsers);
   const comprasDelUsuario = useSelector((state) => state.users.compras);
-  let compras;
+
   const navigate = useNavigate();
   
   const dispatch = useDispatch();
   const userLogueado = users.find((e) => e.email === logueado.email);
-  if (userLogueado) {
-    compras = userLogueado.compras;
-  }
+
   useEffect(() => {
     if (!users.length) {
       dispatch(getAllUsers());
     }
-    if (compras) {
-      dispatch(getCompras(compras));
-    }
-  }, [dispatch, compras, users.length]);
+    dispatch(getCompras(userLogueado.email));
+    
+  }, [dispatch]);
 
   if (!comprasDelUsuario) {
     return <Loader />;
@@ -39,27 +38,23 @@ function MisCompras() {
 
   return (
     <div className={styles.carroContainer}>
-      {comprasDelUsuario.length === 0 && (
-        <div>Su historial de compras está vacío</div>
-      )}
-
-      {comprasDelUsuario.map((item) => (
-        <div key={item.id} className={styles.itemsContainer}>
-          <div className={styles.flexDataContainer}>
-            <p>{item.name}</p>
+      {comprasDelUsuario.length === 0 ?
+        <div>Su historial de compras está vacío</div> :
+      comprasDelUsuario
+        .sort((a, b) => {
+          const aDate = new Date(a.createdAt);
+          const bDate = new Date(b.createdAt);
+          return bDate - aDate;
+        })
+      .map((item) => (
+        <div key={item.id} className={styles.itemsContainer} onClick={()=>navigate(`/compras/${item.id}`)}>
+          <h2>CompraId: #{item.id}</h2>
+          <h6>fecha: {item.createdAt}</h6>
+        
+          <div >
+            <h3>total: ${item.total}</h3>
           </div>
-
-          <div className={styles.imgNameContainer}>
-            <div className={styles.leftSideContainer}>
-              <div className={styles.pepe}>
-                <img src={item.image} alt="" />
-              </div>
-              <button onClick={() => navigate(`/review/${item.id}`)}>
-                Opinar
-              </button>
-            </div>
-          </div>
-        </div>
+      </div>
       ))}
     </div>
   );
