@@ -4,9 +4,9 @@ const { Router } = require("express");
 const ProductsRoutes = require("./ProductsRoutes.js");
 const UsersRoutes = require('./UsersRoutes.js');
 const CategoryRoutes = require("./CategoryRoutes");
-
-const ReviewsRouter = require('./ReviewsRoutes')
-const cloudinary = require('../utils/cloudinary')
+const ReviewsRouter = require('./ReviewsRoutes');
+const cloudinary = require('../utils/cloudinary');
+const FavoriteRoutes = require('./FavoriteRoutes');
 const {Products} = require('../db.js')
 const router = Router();
 
@@ -15,6 +15,7 @@ const router = Router();
 router.use("/products", ProductsRoutes);
 router.use("/users", UsersRoutes);
 router.use("/category", CategoryRoutes);
+router.use("/favorites", FavoriteRoutes)
 /* router.use("/cloudinary", CloudinaryRoutes); */
 
 

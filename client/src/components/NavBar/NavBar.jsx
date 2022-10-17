@@ -46,9 +46,14 @@ function NavBar({ usuario }) {
             </svg>
           </li>
           {usuario !== "invitado" && usuario.category === "user" ? (
-            <Link to={"/miscompras"} className={styles.underline}>
-              <li>Mis Compras</li>
-            </Link>
+            <>
+              <Link to={"/miscompras"} className={styles.underline}>
+                <li>Mis Compras</li>
+              </Link>
+              <Link to={'/favoritos'} className={styles.underline}>
+                <li>Favoritos</li>
+              </Link>
+            </>
           ) : usuario !== "invitado" ? (
             <Link to={"/dashboard"} className={styles.underline}>
               <li>Admin</li>
@@ -61,9 +66,9 @@ function NavBar({ usuario }) {
           {usuario.email ? (
             <li onClick={logout}>Log Out</li>
           ) : (
-            <Link to={"/login"} className={styles.underline}>
-              <li>Login</li>
-            </Link>
+              <Link to={"/login"} className={styles.underline}>
+                <li>Login</li>
+              </Link>
           )}
         </ul>
       </div>

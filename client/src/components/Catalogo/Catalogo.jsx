@@ -10,6 +10,7 @@ import Loader from "../Loader/Loader.jsx";
 import CategoryFilter from "../Filters/Filter Category/CategoryFilter.jsx";
 import styles from "./Catalogo.module.css";
 import BrandFiltered from "../Filters/Filter Brand/BrandFilter";
+import toast, { Toaster } from 'react-hot-toast';
 //import OtroFiltro from "../Filters/OtroFiltro.jsx";
 
 function Catalogo(props) {
@@ -40,11 +41,19 @@ function Catalogo(props) {
     indexOfFirstVideo = indexOfLastVideo - videosPerPage,
     currentProducts = productos.slice(indexOfFirstVideo, indexOfLastVideo);
 
+    const notifyRemove=  ()=> toast.error("Removido de favoritos!",{style:{
+      background:"red",
+      color:"white"
+  }})
+  
+  const notifyAddFav = () => toast.success('Agregado a favoritos!',{style:{
+    background: "rgb(67, 160, 71)",
+    color:"white"
+  }});
+
   if (productos.length <= 0) {
     return <Loader />;
   }
-
-  console.log(productos);
 
   return (
     <div className={styles.catalogoContainer}>
@@ -86,6 +95,8 @@ function Catalogo(props) {
                   category={e.category}
                   stock={e.stock}
                   onAddCarrito={onAddCarrito}
+                  notifyRemove= {notifyRemove}
+                  notifyAddFav={notifyAddFav}
                 />
               );
             })}
@@ -99,6 +110,10 @@ function Catalogo(props) {
           totalItems={productos.length}
         />
       </div>
+      <Toaster
+      position="bottom-left"
+      reverseOrder={false}
+       />
     </div>
   );
 }

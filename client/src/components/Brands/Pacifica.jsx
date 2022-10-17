@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { removeDetail, pagesControl, getProductsByBrand, getAllProducts } from "../../redux/actions/ProductsActions";
+import { removeDetail, pagesControl, getProductsByBrand } from "../../redux/actions/ProductsActions";
 import Cards from "../Cards/Cards";
 import styles from '../Catalogo/Catalogo.module.css'
 

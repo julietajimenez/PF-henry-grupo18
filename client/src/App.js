@@ -36,6 +36,7 @@ import { getAllProducts } from "./redux/actions/ProductsActions";
 import UserBanned from "./components/UserBanned/UserBanned";
 import UserUnverified from "./components/UserUnverified/UserUnverified";
 import Error404 from "./components/Error404/Error404";
+import Favorites from "./components/Favorites/Favorties";
 
 function App() {
   const dispatch = useDispatch();
@@ -103,6 +104,7 @@ function App() {
               <Route path="/" element={<Home onAddCarrito={onAddCarrito} />} />
               <Route path="/card" element={<Cards />} />
               <Route path="/miscompras" element={<MisCompras />} />
+              <Route path="/favoritos" element={<Favorites />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route
