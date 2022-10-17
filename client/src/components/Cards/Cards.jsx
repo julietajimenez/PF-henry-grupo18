@@ -18,6 +18,7 @@ const Cards = ({
 
   return (
     <div key={id} className={styles.card}>
+      
       <div className={styles.imgContainer}>
         { image? <img src={image} alt="nohay" /> : <img style={{height:'270px'}} src={imgDefault} alt="nohay"/>}
       </div>
