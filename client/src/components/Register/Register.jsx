@@ -137,7 +137,7 @@ function Register() {
             value={input.confirmPassword}
             onChange={handleChange}
           />
-          <button onClick={switchShown} className="btn btn-primary">
+          <button onClick={()=>switchShown()} className="btn btn-primary">
             {shown ? "Ocultar" : "👁️"}
           </button>
           {errors.confirmPassword && (
