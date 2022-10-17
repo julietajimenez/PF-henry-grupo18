@@ -33,6 +33,7 @@ import UserBanned from "./components/UserBanned/UserBanned";
 import UserUnverified from "./components/UserUnverified/UserUnverified";
 import Error404 from "./components/Error404/Error404";
 import DetailCompras from "./components/DetailCompras/DetailCompras";
+import Review from "./components/Review/Review";
 
 function App() {
   const dispatch = useDispatch();
@@ -133,6 +134,7 @@ function App() {
               />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/compras/:id" element={<DetailCompras />} />
+              <Route path="/review/:id" element={<Review />} />
             </>
           ) : logueado !== "invitado" &&
             logueado.category === "user" &&

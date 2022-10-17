@@ -5,7 +5,6 @@ import styles from "./MisCompras.module.css";
 
 
 import {
-  getCompras,
   getUser,
   getAllUsers,
 } from "../../redux/actions/UsersAction";
@@ -49,7 +48,7 @@ function MisCompras() {
       .map((item) => (
         <div key={item.id} className={styles.itemsContainer} onClick={()=>navigate(`/compras/${item.id}`)}>
           <h2>CompraId: #{item.id}</h2>
-          <h6>fecha: {item.createdAt}</h6>
+          <h6>fecha: {item.createdAt.slice(0, 10)}</h6>
         
           <div >
             <h3>total: ${item.total}</h3>
