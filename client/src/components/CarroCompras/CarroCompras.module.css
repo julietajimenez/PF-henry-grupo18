@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-height: 70vh;
+  min-height: 61.7vh;
   font-family: "Poppins", sans-serif;
 }
 
@@ -65,4 +65,16 @@
   background-color: white;
   cursor: pointer;
   width: 100%;
+}
+.button{
+  border: none;
+  color: black;
+  background-color: #f7d9d9;
+  border-radius: 7px;
+  cursor: pointer;
+  width: 13%;
+  height: 30px;
+  margin-left: 1160px;
+  text-align: center;
+
 }

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../../context/userContext";
 
 
+
 function CarroCompras(props) {
   const { logueado, setlogueado } = useContext(UserContext);
   const [cartItems, setCartItems] = useState(() => {
@@ -107,10 +108,10 @@ function CarroCompras(props) {
 
       {total > 0 && logueado !== "invitado" ? (
         <>
-          <Link to="/checkout">
+          <h3>Total: $ {total.toFixed(2)}</h3>
+          <Link className={styles.button} to="/checkout">
             <button>PAGAR</button>
           </Link>
-          <h3>Total: $ {total.toFixed(2)}</h3>
         </>
       ) : total > 0 && logueado === "invitado" ? (
         <h3>Debes iniciar sesión para comprar.</h3>

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import {
-  getCompraById,
+  getCompraById, removeDetailCompra,
 } from "../../redux/actions/ComprasAction";
 import styles from "./DetailCompras.module.css";
 
@@ -16,6 +16,9 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getCompraById(id));
+    return ()=>{
+      dispatch(removeDetailCompra())
+    }
   }, [id]);
 
   

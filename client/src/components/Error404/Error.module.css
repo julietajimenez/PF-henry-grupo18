@@ -1,0 +1,20 @@
+.container{
+    background: linear-gradient(to right, #ECD6D0, #FEF0F0);
+    display: flex;
+}
+.img{
+    width: 80%;
+    height: 750px;
+    margin-left: 10%;
+    justify-content: center;
+}
+.button{
+    background-color: #f7d9d9;
+    position: absolute;
+    left: 39%;
+    bottom: 4.5%;
+    color: black;
+    width: 300px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

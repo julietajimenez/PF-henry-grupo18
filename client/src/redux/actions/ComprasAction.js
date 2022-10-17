@@ -43,3 +43,8 @@ export function getCompraById(id) {
         }
     };
 }
+export const removeDetailCompra = () => {
+    return {
+      type: "REMOVE_DETAIL",
+    };
+  };

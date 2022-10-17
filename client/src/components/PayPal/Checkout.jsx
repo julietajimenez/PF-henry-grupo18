@@ -10,6 +10,7 @@ import {
   getAllProducts,
   stockUpdate,
 } from "../../redux/actions/ProductsActions";
+import style from './Checkout.module.css';
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -79,18 +80,18 @@ function Checkout() {
   };
 
   if (error) {
-    alert(error);
+    console.log(error);
   }
 
   return (
-    <div style={{ minHeight: "70vh" }}>
+    <div className={style.card} style={{ minHeight: "70vh" }}>
       <h1>¡Gracias por su compra!</h1>
-      <div>
-        Esto es lo que usted estará comprando:{" "}
+      <div className={style.resumen}>
+        RESUMEN DEL PEDIDO:{" "}
         {precio.map((e) => (
           <li key={e.id}>{e.name + ": por " + "$" + e.price + " c/u"}</li>
         ))}
-        Total será de: ${valor}
+        TOTAL: ${valor}
       </div>
       <PayPalScriptProvider
         options={{ "client-id": REACT_APP_PAYPAL_CLIENT_ID }}
@@ -146,7 +147,7 @@ function Checkout() {
           }}
         />
       </PayPalScriptProvider>
-      <Link to="/carrito">Volver</Link>
+      <Link className={style.button} to="/carrito">Volver</Link>
     </div>
   );
 }

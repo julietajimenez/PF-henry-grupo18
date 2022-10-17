@@ -1,9 +1,9 @@
 .container {
-  min-height: 70vh;
+  min-height: 80vh;
 }
 
 .img {
   margin-left: 25%;
   width: 50%;
-  height: 649px;
+  height: 500px;
 }

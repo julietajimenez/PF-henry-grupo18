@@ -42,7 +42,11 @@ export function users(state = initialState, action) {
         ...state,
         compraDetail: action.payload,
       };
-      
+    case "REMOVE_DETAIL":
+      return {
+        ...state,
+        compraDetail: []
+      }
     default:
       return state;
   }
