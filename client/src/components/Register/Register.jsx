@@ -8,7 +8,11 @@ function Register() {
 
   const [errors, setErrors] = useState({});
   const [shown, setShown] = useState(false);
-  const switchShown = () => setShown(!shown);
+  const switchShown = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setShown(!shown)
+  }
 
   const [input, setInput] = useState({
     name: "",
@@ -88,7 +92,7 @@ function Register() {
         password: "",
       });
     }
-    window.location.href = process.env.REACT_APP_URL_API+'/login'
+    window.location.href = '/login'
   };
 
   return (
@@ -137,9 +141,9 @@ function Register() {
             value={input.confirmPassword}
             onChange={handleChange}
           />
-          <button onClick={()=>switchShown()} className="btn btn-primary">
+{/*           <button onClick={()=>switchShown()} className="btn btn-primary">
             {shown ? "Ocultar" : "👁️"}
-          </button>
+          </button> */}
           {errors.confirmPassword && (
             <p className={styles.error}>{errors.confirmPassword}</p>
           )}
@@ -154,7 +158,7 @@ function Register() {
           />
           {errors.email && <p className={styles.error}>{errors.email}</p>}
         </div>
-          <button className={styles.btnLogin} type="submit">
+          <button className={styles.btnLogin} type="submit" >
             Registrarse
           </button>
 

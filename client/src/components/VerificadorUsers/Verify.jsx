@@ -18,14 +18,14 @@ export default function Verify() {
   }
 
   return (
-    <>
-      <div>
+    <div style={{minHeight:'80vh'}}>
+      <div >
         <h2>¡Bienvenido a Pure Glow!</h2>
         <p>Para activar su cuenta, clickee en el botón de confirmar.</p>
       </div>
 
       <button onClick={handleClick}>CONFIRMAR</button>
       <p>Si recibió este correo por error, ignore este mensaje.</p>
-    </>
+    </div>
   );
 }
