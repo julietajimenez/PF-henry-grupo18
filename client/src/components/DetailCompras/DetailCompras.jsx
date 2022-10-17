@@ -32,7 +32,7 @@ export default function Detail() {
             <div >
               <div >
                 <p>{p.detalle_Compras.cantidad} x <strong>{p.name}</strong></p>
-                <p></p>
+                <p>{p.detalle_Compras.price}</p>
                 <img src={p.image} alt="" />
               </div>
               <button onClick={() => navigate(`/review/${p.id}`)}>

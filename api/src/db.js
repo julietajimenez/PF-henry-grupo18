@@ -57,6 +57,10 @@ const DetalleCompras = sequelize.define("detalle_Compras", {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    price: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
 }, { timestamps: false });
 
 Products.belongsToMany(Compras, { through: DetalleCompras });

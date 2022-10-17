@@ -27,20 +27,6 @@ const getComprasById = async (req, res, next) => {
     }
 }
 
-// const getCompras = async (listProd) => {
-//     listProd = listProd.split(",");
-//     let products = [];
-//     try {
-//       for (const idProduct of listProd) {
-//         products.push(await getProductByIdCompras(idProduct));
-//       }
-  
-//       res.json(products);
-//     } catch (error) {
-//       next(error);
-//     }
-//   };
-
 
 const postCompras = async (req, res, next) => {
      const { userEmail, total, listProd} = req.body;
@@ -51,7 +37,8 @@ const postCompras = async (req, res, next) => {
             console.log(listProd[i])
               const prod = await Products.findByPk(listProd[i].id) 
               const cantidad = listProd[i].cantidad
-              await newCompra.addProduct(prod, { through: { cantidad: cantidad } })
+              const precio = listProd[i].price
+              await newCompra.addProduct(prod, { through: { cantidad: cantidad, price: precio } })
           }
         res.json('exito')
      } catch (error) {
