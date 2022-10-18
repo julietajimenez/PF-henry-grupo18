@@ -239,6 +239,7 @@ const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
               />
             </>
           ) : null}
+          <Route path="/" element={<Home />} />
           <Route path="/*" element={<Error404 />} />
         </Routes>
         <Toaster

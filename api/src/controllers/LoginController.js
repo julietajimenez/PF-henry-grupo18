@@ -11,7 +11,7 @@ const login = async (req, res, next) => {
         return res.json({ mensaje: "Usuario no encontrado" });
       }
       if (googleAccount) {
-        const { id, name, email } = usuario;
+        const { id, name, email, category, status, active } = usuario;
 
         res.json({
           mensaje: "Usuario logueado correctamente",
@@ -19,6 +19,9 @@ const login = async (req, res, next) => {
             id,
             name,
             email,
+            category,
+            status,
+            active
           },
         });
       }
