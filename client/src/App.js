@@ -132,6 +132,7 @@ const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/compras/:id" element={<DetailCompras />} />
               <Route path="/review/:id" element={<Review />} />
+              <Route path="/review/edit/:id/:idReview" element={<Review edit="edit"/>} />
             </>
           ) : logueado !== "invitado" &&
             logueado.category === "user" &&

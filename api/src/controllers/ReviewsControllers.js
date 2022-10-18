@@ -23,6 +23,16 @@ const getAllReviewsFromProduct = async (req, res, next) => {
     }
 };
 
+const getReviews = async (req, res, next) => {
+    try {
+        const reviews = await Reviews.findAll()
+        res.json(reviews);
+
+    } catch (error) {
+        next(error);
+    }
+};
+
 const addReview = async (req, res, next) => {
     const { idProduct, comment, rating, userEmail } = req.body
 
@@ -34,8 +44,52 @@ const addReview = async (req, res, next) => {
     }
 }
 
+const editReview = async (req, res, next) => {
+    const { idProduct, comment, rating, userEmail, idReview } = req.body
+    console.log(req.body)
+    try {
+        const review = { comment, rating, productId:idProduct, userEmail }
+        const reviewUpdate = await Reviews.update(review, {
+            where: {
+                id: idReview
+            },
+          });
+          res.json({ modificado: true });
+    } catch (error) {
+        next(error)
+    }
+}
+
+const putProducts = async (req, res, next) => {
+    const { id } = req.params;
+    const { name, brand, price, description, category, image, stock, active } =
+      req.body;
+    try {
+      const obj = {
+        id,
+        name,
+        brand,
+        price,
+        description,
+        category,
+        image,
+        stock,
+        active,
+      };
+      const productUpdate = await Products.update(obj, {
+        where: {
+          id: id,
+        },
+      });
+      res.json({ modificado: true });
+    } catch (error) {
+      next(error);
+    }
+  };
 
 module.exports = {
     getAllReviewsFromProduct,
-    addReview
+    addReview,
+    editReview,
+    getReviews
 }

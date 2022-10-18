@@ -35,6 +35,11 @@ export function products(state = initialState, action) {
           ...state,
           reviews: action.payload
         }
+      case "GET_REVIEWS":
+        return {
+          ...state,
+          reviews: action.payload
+        }
       case 'REMOVE_DETAIL': 
       return {
         ...state,
