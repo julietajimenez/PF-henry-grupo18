@@ -33,6 +33,7 @@ import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/actions/UsersAction";
 import { getAllProducts } from "./redux/actions/ProductsActions";
+import { AuthContextProvider } from "./context/authContext";
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,7 @@ function App() {
 
   return (
     <div className="App">
+      <AuthContextProvider>
       <UserContext.Provider value={{ logueado, setlogueado }}>
         <NavBar />
         <Routes>
@@ -182,6 +184,7 @@ function App() {
         </Routes>
         <Footer />
       </UserContext.Provider>
+      </AuthContextProvider>
     </div>
   );
 }

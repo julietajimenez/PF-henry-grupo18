@@ -10,6 +10,7 @@ import Loader from "../Loader/Loader.jsx";
 import CategoryFilter from "../Filters/Filter Category/CategoryFilter.jsx";
 import styles from "./Catalogo.module.css";
 import BrandFiltered from "../Filters/Filter Brand/BrandFilter";
+import { UserAuth } from "../../context/authContext.js";
 //import OtroFiltro from "../Filters/OtroFiltro.jsx";
 
 function Catalogo(props) {

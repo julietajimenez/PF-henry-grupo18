@@ -44,5 +44,9 @@ module.exports = (sequelize) => {
       type: DataTypes.JSON,
       defaultValue: [],
     },
+    googleAccount:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
   });
 };
