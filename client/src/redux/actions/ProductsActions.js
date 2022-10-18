@@ -183,3 +183,8 @@ export function getFavorites(user) {
     }
   };
 }
+export const removeStateFav = () => {
+  return {
+    type: "REMOVE_STATE_FAV",
+  };
+};

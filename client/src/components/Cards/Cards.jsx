@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import {useNavigate} from 'react-router-dom';
 import styles from "./Cards.module.css";
 import imgDefault from './imageDefault.jpg';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react";
-import { addFavorite, deleteFavorites } from "../../redux/actions/ProductsActions";
+import { addFavorite, deleteFavorites, getFavorites } from "../../redux/actions/ProductsActions";
 import swal from "sweetalert";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
@@ -27,18 +27,26 @@ const Cards = ({
   const [user, setUser] = useState(false)
   const [favorite, setFavorite] = useState(false)
   /*   const obj = {
-      idUser: logueado.email,
-      idProduct: producto.id
-    } */
-
+    idUser: logueado.email,
+    idProduct: producto.id
+  } */
+  
   useEffect(() => {
+    //dispatch(getFavorites(logueado.email))
     if (Object.keys(logueado).length !== 0) {
       setUser(true)
-
+      
     }
-    if (Object.keys(logueado).length === 0) return setUser(false)
-  }, [logueado,])
+    if (Object.keys(logueado).length === 0) return setUser(false) 
+  }, [dispatch])
+/*   
+  const fav = useSelector(state=> state.products.favorite)
 
+  fav.map(e=>{
+    if(e.id === producto.id){
+      setFavorite(true)
+    } 
+  }) */
   function handleFavorite() {
     if (favorite == false) {
       if (logueado) {

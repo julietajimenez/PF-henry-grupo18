@@ -89,11 +89,16 @@ export function products(state = initialState, action) {
           ...state,
           favorite: action.payload,
         };
-        case 'GET_FAV':
+      case 'GET_FAV':
         return {
           ...state,
           favorite: action.payload,
         };
+      case "REMOVE_STATE_FAV":
+        return {
+          ...state,
+          favorite: []
+        }
     default:
       return state;
   }
