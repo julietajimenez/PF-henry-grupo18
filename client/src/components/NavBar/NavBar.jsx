@@ -3,12 +3,16 @@ import styles from "./NavBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 import UserContext from "../../context/userContext";
+import { UserAuth } from "../../context/authContext";
 
 function NavBar({ usuario }) {
   const navigate = useNavigate();
   const { logueado, setlogueado } = useContext(UserContext);
+  const { logOut, user } = UserAuth();
 
-  const logout = () => {
+  const logout = async () => {
+    await logOut();
+    console.log('TE DESLOGUEASTE')
     setlogueado("invitado");
     localStorage.removeItem("token");
     localStorage.removeItem("carrito");

@@ -7,6 +7,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "daisyui": "^2.31.0",
-    "react-bootstrap-table-next": "^4.0.3"
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-google-button": "^0.7.2"
   }
 }

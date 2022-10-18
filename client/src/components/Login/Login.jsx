@@ -1,17 +1,95 @@
 import axios from "axios";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import UserContext from "../../context/userContext";
+import { UserAuth } from "../../context/authContext";
+import { GoogleButton } from "react-google-button";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUsers } from "../../redux/actions/UsersAction";
 
 const Login = () => {
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const usersDataBase = useSelector((state) => state.users.allUsers);
 
   const { logueado, setlogueado } = useContext(UserContext);
+  const { googleSignIn, user } = UserAuth();
 
-  const navigate = useNavigate();
+  const handleGoogleSignIn = () => {
+    if (user != null) {
+      let usuarioYaExiste = usersDataBase.find((e) => e.email === user.email);
+
+      if (usuarioYaExiste) {
+        axios
+          .post(process.env.REACT_APP_URL_API + "/users/login", usuarioYaExiste)
+          .then((res) => {
+            const { data } = res;
+            setMensaje(data.mensaje);
+            setTimeout(() => {
+              setMensaje("");
+              localStorage.setItem("token", data?.usuario.token);
+              localStorage.setItem("logueado", JSON.stringify(data?.usuario));
+              setlogueado(data?.usuario);
+              navigate("/");
+            }, 1500);
+          })
+          .catch((error) => {
+            console.error(error);
+            setMensaje("email u password incorrecta");
+            setTimeout(() => {
+              setMensaje("");
+            }, 1500);
+          });
+      } else {
+        const Usuario = {
+          name: user.displayName,
+          email: user.email,
+          password: user.uid,
+          status: "VERIFIED",
+          googleAccount: true,
+        };
+        axios
+          .post(process.env.REACT_APP_URL_API + "/users/register", Usuario)
+          .then((res) => {
+            const { data } = res;
+            setMensaje(data.mensaje);
+            setTimeout(() => {
+              setMensaje("");
+              // localStorage.setItem("token", data?.usuario.token);
+
+              localStorage.setItem("logueado", JSON.stringify(Usuario));
+
+              setlogueado(Usuario);
+              navigate("/");
+            }, 1500);
+          });
+      }
+    }
+  };
+  const loguearse = async () => {
+    try {
+      await googleSignIn();
+      setTimeout(() => {
+        handleGoogleSignIn();
+      }, 1500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+    handleGoogleSignIn();
+
+    if (logueado !== "invitado") {
+      navigate("/");
+    }
+  }, [user]);
 
   const { email, password } = inputs;
 
@@ -87,6 +165,7 @@ const Login = () => {
           <button type="submit" className={styles.btnLogin}>
             {loading ? "Cargando..." : "Iniciar Sesión"}
           </button>
+          <GoogleButton onClick={loguearse} />
           <p>
             Aun no tienes cuenta?{" "}
             <b
