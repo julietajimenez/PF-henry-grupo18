@@ -130,6 +130,7 @@ function App() {
             element={<PhysiciansFormula onAddCarrito={onAddCarrito} />}
           />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/review/edit/:id/:idReview" element={<Review edit="edit"/>} />
           <Route path="/review/:id" element={<Review />} />
           <Route path="/miscompras" element={<MisCompras />} />
 
