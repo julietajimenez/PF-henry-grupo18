@@ -36,7 +36,7 @@ function NavBar({ usuario }) {
       <div>
         <ul className={styles.ulContainer}>
           <li>
-            {logueado === "invitado" ? "Invitado" : logueado.email}
+            {logueado === "invitado" ? "Invitado" : 'Hola,' + logueado.name /*ACÁ TIENE QUE IR UN MENÚ DESPLEGABLE*/ } 
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="28"
@@ -49,6 +49,7 @@ function NavBar({ usuario }) {
               ></path>
             </svg>
           </li>
+          {/* TODO LO DE ACÁ ABAJO VA EN EL MENU DESPLEGABLE */}
           {usuario !== "invitado" && usuario.category === "user" ? (
             <Link to={"/miscompras"} className={styles.underline}>
               <li>Mis Compras</li>
