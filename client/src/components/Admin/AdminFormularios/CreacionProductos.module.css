@@ -52,3 +52,9 @@
 .btnLogin:hover {
   background-color: #ec80a4;
 }
+
+.div{
+  margin-right: 1200px;
+  margin-bottom: -30%;
+  position: absolute;
+} 

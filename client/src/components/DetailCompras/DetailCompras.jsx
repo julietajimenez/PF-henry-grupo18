@@ -25,30 +25,30 @@ export default function Detail() {
   
   
   return compraDetail.products ? (
-    <div>
+    <div className={styles.card}>
     <h2>CompraId: #{compraDetail.id}</h2>
     <h6>fecha: {compraDetail.createdAt}</h6>
   
     {compraDetail.products.map( p => {      
       
-      return <div>
+      return <div className={styles.divProducto}>
             <div >
               <div >
                 <p>{p.detalle_Compras.cantidad} x <strong>{p.name}</strong></p>
-                <p>{p.detalle_Compras.price}</p>
+                <p>Precio: ${p.detalle_Compras.price}</p>
                 <img src={p.image} alt="" />
               </div>
-              <button onClick={() => navigate(`/review/${p.id}`)}>
-                Opinar
-              </button>
+              <button className={styles.opinion} onClick={() => navigate(`/review/${p.id}`)}>Click aquí para dejar tu opinión sobre este producto</button>
             </div>
           </div>
 
 })}
     <div >
-      <h3>total: ${compraDetail.total}</h3>
+      <h3 style={{margin:'20px'}}>TOTAL: ${compraDetail.total}</h3>
     </div>
-    <Link to="/miscompras">Volver</Link>
+    <div className={styles.button}>
+    <Link className={styles.link} to="/miscompras">Volver</Link>
+    </div>
 </div>
 ) : (
     <>

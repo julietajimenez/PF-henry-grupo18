@@ -3,7 +3,7 @@ import styles from "./CarroCompras.module.css";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/userContext";
-
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function CarroCompras(props) {
@@ -20,6 +20,12 @@ function CarroCompras(props) {
     localStorage.setItem("carrito", JSON.stringify(cartItems));
   }, [cartItems]);
 
+
+const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
+  background: "rgb(67, 160, 71)",
+  color:"white"
+}});
+
   const onAddCarrito = (product) => {
     const productAdd = cartItems.find((item) => item.id === product.id);
     if (productAdd) {
@@ -34,13 +40,14 @@ function CarroCompras(props) {
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
       total += product.price;
-      Swal.fire({
+/*       Swal.fire({
         position: "bottom-start",
         icon: "success",
         title: "El producto ha sido añadido al carrito",
         showConfirmButton: false,
         timer: 1500,
-      });
+      }); */
+      notifyAddCart()
     }
   };
 
@@ -79,7 +86,7 @@ function CarroCompras(props) {
           <div className={styles.imgNameContainer}>
             <div className={styles.leftSideContainer}>
               <div>
-                <img src={item.image} alt="" />
+                <img style={{height:'270px'}} src={item.image} alt="" />
               </div>
               <button onClick={() => onRemoveItemCarrito(item)}>
                 Eliminar
@@ -94,7 +101,11 @@ function CarroCompras(props) {
                 <span>{item.cantidad}</span>
                 {/* <button onClick={() => onAddCarrito(item)}>+</button>{" "} */}
                 {
-                  item.stock <= 1 ? (<button onClick={() => onAddCarrito(item)} disabled={true}>+</button>) : (<button onClick={() => onAddCarrito(item)} disabled={false}>+</button>)
+                  item.stock <= 1 ? (
+                  <>
+                  <button onClick={() => onAddCarrito(item) }  disabled={true}>+</button>
+                  <p style={{fontSize:'15px'}}>La cantidad pedida no está disponible</p>
+                  </>) : (<button onClick={() => onAddCarrito(item)} disabled={false}>+</button>)
                 }
                 {/* ///////AGREGAR UN ITEM AL CARRITO */}
               </div>
@@ -118,6 +129,10 @@ function CarroCompras(props) {
       ) : (
         <h3>Su carrito está vacío</h3>
       )}
+      <Toaster
+      position="bottom-left"
+      reverseOrder={false}
+       />
     </div>
   );
 }

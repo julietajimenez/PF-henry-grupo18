@@ -24,7 +24,7 @@ import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
 import Verify from "./components/VerificadorUsers/Verify";
 import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
-import swal from "sweetalert2";
+//import swal from "sweetalert2";
 import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/actions/UsersAction";
@@ -34,6 +34,7 @@ import UserUnverified from "./components/UserUnverified/UserUnverified";
 import Error404 from "./components/Error404/Error404";
 import DetailCompras from "./components/DetailCompras/DetailCompras";
 import Review from "./components/Review/Review";
+import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
   const dispatch = useDispatch();
@@ -61,26 +62,33 @@ function App() {
     localStorage.setItem("carrito", JSON.stringify(cartItems));
   }, [cartItems, dispatch]);
 
+
+const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
+  background: "rgb(67, 160, 71)",
+  color:"white"
+}});
+
   const onAddCarrito = (product) => {
     const productAdd = cartItems.find((item) => item.id === product.id);
     if (productAdd) {
-      swal.fire({
+/*       swal.fire({
         position: "bottom-start",
         icon: "warning",
         title: "Producto en carrito",
         showConfirmButton: false,
         timer: 1500,
-      });
+      }); */
+      notifyAddCart()
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
-
-      swal.fire({
+      notifyAddCart()
+/*       swal.fire({
         position: "bottom-start",
         icon: "success",
         title: "El producto ha sido añadido al carrito",
         showConfirmButton: false,
         timer: 1500,
-      });
+      }); */
     }
   };
 
@@ -243,6 +251,10 @@ function App() {
           ) : null}
           <Route path="/*" element={<Error404 />} />
         </Routes>
+        <Toaster
+      position="bottom-left"
+      reverseOrder={false}
+       />
         <Footer />
       </UserContext.Provider>
     </div>

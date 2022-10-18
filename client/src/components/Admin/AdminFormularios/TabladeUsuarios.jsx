@@ -1,20 +1,25 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getAllUsers} from "../../../redux/actions/UsersAction";
+import { Link, useNavigate } from "react-router-dom";
+import { getAllUsers } from "../../../redux/actions/UsersAction";
 import Table from "react-bootstrap/Table";
 import Searchbar from "./Searchbar";
+import styles from "./CreacionProductos.module.css";
 
 export default function UpdateUsers() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const users = useSelector((state) => state.users.users);
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
-console.log(users)
+  console.log(users)
   return (
     <div style={{ minHeight: "80vh" }}>
+      <div className={styles.div}>
+        <button className={`${styles.btnLogin}`} style={{marginTop:'450px', marginLeft:'30px'}} onClick={() => navigate(-1)}>VOLVER</button>
+      </div>
       <Table striped bordered hover>
         <thead>
           <tr>

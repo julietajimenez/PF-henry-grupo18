@@ -2,3 +2,34 @@
   max-width: 100%;
   padding: 5px;
 }
+.input{
+  float: right;
+  margin-right: 0px;
+  padding: 5px 0px 5px 0px;
+  font-family:'Nunito', sans-serif;
+  color: black;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #f7d9d9;
+  outline: none;
+}
+.button{
+  float: right;
+  margin-right: 20px;
+  padding: 5px 30px 5px 30px;
+  font-family:'Nunito', sans-serif;
+  color: black;
+  background-color: #f7d9d9;
+  border: 1px solid transparent;
+  outline: none;
+  transition: all cubic-bezier(0.215, 0.610, 0.355, 1) .5s;
+  font-size: 1rem;
+}
+.button:hover{
+  cursor: pointer;
+  transform: translateY(-3px);
+  background-color: #ec80a4;
+}
+.button:active{
+  transform: translateY(3px);
+}

@@ -73,7 +73,7 @@ function Checkout() {
   const handleApprove = (orderID) => {
     setPaidFor(true);
     swal(
-      "¡Gracias por comprar en Cosmetista Henry",
+      "¡Gracias por comprar en Pure Glow",
       "Se envió un ticket de compra a su correo electrónico.😃"
     );
     setTimeout((navigate("/"), 5000));
@@ -112,7 +112,7 @@ function Checkout() {
               purchase_units: [
                 {
       
-                  description: `Compra en Henry Cosmetista`,
+                  description: `Compra en Pure Glow`,
                   amount: {
                     value: valor, //ACÁ IRÍA EL PRECIO DEL CARRITO
                   },

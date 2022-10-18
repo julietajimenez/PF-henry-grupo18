@@ -1,6 +1,7 @@
  import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filterByBrand, removeFilters } from "../../../redux/actions/ProductsActions";
+import style from './BrandFilter.module.css'
 
 export default function BrandFiltered (props){
     const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function BrandFiltered (props){
             })
         }
     </select>
-    <button onClick={handleClick}>Limpiar filtros</button>
+    <button className={style.button} onClick={handleClick}>Limpiar filtros</button>
     </>
     )
 } 
