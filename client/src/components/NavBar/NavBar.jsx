@@ -12,7 +12,6 @@ function NavBar({ usuario }) {
 
   const logout = async () => {
     await logOut();
-    console.log('TE DESLOGUEASTE')
     setlogueado("invitado");
     localStorage.removeItem("token");
     localStorage.removeItem("carrito");
@@ -34,6 +33,7 @@ function NavBar({ usuario }) {
         </ul>
       </div>
       <div>
+        {console.log(logueado)}
         <ul className={styles.ulContainer}>
           <li>
             {logueado === "invitado" ? "Invitado" : 'Hola,' + logueado.name /*ACÁ TIENE QUE IR UN MENÚ DESPLEGABLE*/ } 
@@ -50,11 +50,11 @@ function NavBar({ usuario }) {
             </svg>
           </li>
           {/* TODO LO DE ACÁ ABAJO VA EN EL MENU DESPLEGABLE */}
-          {usuario !== "invitado" && usuario.category === "user" ? (
+          {logueado !== "invitado" && logueado.category === "user" ? (
             <Link to={"/miscompras"} className={styles.underline}>
               <li>Mis Compras</li>
             </Link>
-          ) : usuario !== "invitado" ? (
+          ) : logueado !== "invitado" ? (
             <Link to={"/dashboard"} className={styles.underline}>
               <li>Admin</li>
             </Link>
@@ -63,7 +63,7 @@ function NavBar({ usuario }) {
           <Link to={"/carrito"} className={styles.underline}>
             <li>Carrito</li>
           </Link>
-          {usuario.email ? (
+          {logueado.email ? (
             <li onClick={logout}>Log Out</li>
           ) : (
             <Link to={"/login"} className={styles.underline}>

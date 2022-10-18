@@ -5,13 +5,14 @@ const nodemailer = require("nodemailer");
 
 const login = async (req, res, next) => {
   try {
-    const { email, password, googleAccount } = req.body;
+    const { email, password, googleAccount, category, status, active } =
+      req.body;
     await Users.findOne({ where: { email: email } }).then((usuario) => {
       if (!usuario) {
         return res.json({ mensaje: "Usuario no encontrado" });
       }
       if (googleAccount) {
-        const { id, name, email } = usuario;
+        const { id, name, email, category, status, active } = usuario;
 
         res.json({
           mensaje: "Usuario logueado correctamente",
@@ -19,6 +20,9 @@ const login = async (req, res, next) => {
             id,
             name,
             email,
+            category,
+            status,
+            active,
           },
         });
       }
