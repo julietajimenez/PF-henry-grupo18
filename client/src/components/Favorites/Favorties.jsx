@@ -32,7 +32,7 @@ export default function Favorites() {
                 favorites.length >0?
                 favorites.map(e => {
                     return (
-                        <>
+                        <div className={style.div}>
                         <Cards
                             id={e.id}
                             name={e.name}
@@ -41,8 +41,8 @@ export default function Favorites() {
                             category={e.category}
                             stock={e.stock}
                             />
-                            <button onClick={()=>removeFav(logueado.email, e.id)}>Eliminar de favoritos</button>
-                        </>
+                            <button className={style.button} onClick={()=>removeFav(logueado.email, e.id)}>Eliminar de favoritos</button>
+                        </div>
                     )
                 })  :
                 <h2>Aún no tienes favoritos</h2>
