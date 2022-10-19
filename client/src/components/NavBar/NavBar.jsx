@@ -10,8 +10,9 @@ function NavBar({ usuario }) {
   const { logueado, setlogueado } = useContext(UserContext);
   const { logOut, user } = UserAuth();
 
-  const logout = async () => {
-    await logOut();
+  const logiout = async () => {
+    //console.log('TE DESLOGUEASTE')
+    //await logOut();
     setlogueado("invitado");
     localStorage.removeItem("token");
     localStorage.removeItem("carrito");
@@ -63,8 +64,8 @@ function NavBar({ usuario }) {
           <Link to={"/carrito"} className={styles.underline}>
             <li>Carrito</li>
           </Link>
-          {logueado.email ? (
-            <li onClick={logout}>Log Out</li>
+          {usuario.email ? (
+            <li onClick={logiout}>Log Out</li>
           ) : (
             <Link to={"/login"} className={styles.underline}>
               <li>Login</li>

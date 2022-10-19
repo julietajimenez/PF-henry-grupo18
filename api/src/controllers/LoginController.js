@@ -22,7 +22,7 @@ const login = async (req, res, next) => {
             email,
             category,
             status,
-            active,
+            active
           },
         });
       }

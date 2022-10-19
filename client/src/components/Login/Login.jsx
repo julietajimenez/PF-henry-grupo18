@@ -21,9 +21,8 @@ const Login = () => {
   const { googleSignIn, user } = UserAuth();
 
   const handleGoogleSignIn = () => {
-    if (user != null) {
+    if (user != null && JSON.stringify(user)!=='{}') {
       let usuarioYaExiste = usersDataBase.find((e) => e.email === user.email);
-
       if (usuarioYaExiste) {
         axios
           .post(process.env.REACT_APP_URL_API + "/users/login", usuarioYaExiste)
