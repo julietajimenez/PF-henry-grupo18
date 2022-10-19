@@ -12,7 +12,7 @@ function NavBar({ usuario }) {
 
   const logiout = async () => {
     //console.log('TE DESLOGUEASTE')
-    //await logOut();
+    await logOut();
     setlogueado("invitado");
     localStorage.removeItem("token");
     localStorage.removeItem("carrito");
@@ -20,6 +20,7 @@ function NavBar({ usuario }) {
     navigate("/login");
     window.location.reload();
   };
+  console.log(logueado);
 
   return (
     <nav className={styles.navContainer}>
@@ -37,7 +38,12 @@ function NavBar({ usuario }) {
         {console.log(logueado)}
         <ul className={styles.ulContainer}>
           <li>
-            {logueado === "invitado" ? "Invitado" : 'Hola,' + logueado.name /*ACÁ TIENE QUE IR UN MENÚ DESPLEGABLE*/ } 
+            {
+              logueado === "invitado"
+                ? "Invitado"
+                : "Hola, " +
+                  logueado.name /*ACÁ TIENE QUE IR UN MENÚ DESPLEGABLE*/
+            }
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="28"
@@ -55,7 +61,7 @@ function NavBar({ usuario }) {
             <Link to={"/miscompras"} className={styles.underline}>
               <li>Mis Compras</li>
             </Link>
-          ) : logueado !== "invitado" ? (
+          ) : logueado !== "invitado" && logueado.category === "admin" ? (
             <Link to={"/dashboard"} className={styles.underline}>
               <li>Admin</li>
             </Link>

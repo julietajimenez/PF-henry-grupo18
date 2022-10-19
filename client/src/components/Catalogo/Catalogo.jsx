@@ -40,22 +40,15 @@ function Catalogo(props) {
     return <Loader />;
   }
 
-
   return (
     <div className={styles.catalogoContainer}>
       <div className={styles.boxCategorySearch}>
         <SearchBar />
-        {/*         <OtroFiltro
-        setCurrentPage={setCurrentPage}/> */}
         <CategoryFilter
           setCurrentPage={setCurrentPage}
           className={styles.category}
-          //setFilter ={setFilter}
         />
-        <BrandFiltered
-          setCurrentPage={setCurrentPage}
-          //setFilter ={setFilter}
-        />
+        <BrandFiltered setCurrentPage={setCurrentPage} />
       </div>
 
       <div className={styles.cardsContainer}>
@@ -67,10 +60,6 @@ function Catalogo(props) {
               return aDate - bDate;
             })
             .map((e) => {
-              /*               var categoria = e.categories
-                ? (categoria = e.categories.map((e) => e.name))
-                : null; */
-              /*  if(e.active === true){ */
               return (
                 <Card
                   key={e.id}

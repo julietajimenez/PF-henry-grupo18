@@ -47,6 +47,7 @@ const Login = () => {
       } else {
         const Usuario = {
           name: user.displayName,
+          category: 'user',
           email: user.email,
           password: user.uid,
           status: "VERIFIED",
