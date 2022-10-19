@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styles from "./NavBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
-
+import img from './PureGlow2.png'
 import UserContext from "../../context/userContext";
 
 function NavBar({ usuario }) {
@@ -22,9 +22,9 @@ function NavBar({ usuario }) {
       <div>
         <ul className={styles.ulContainer}>
           <Link to={"/"} className={styles.underline}>
-            <li>Logo</li>
+            <li><img src={img} style={{width:'100px', height:'80px', marginLeft:'0%'}}/></li>
           </Link>
-          <Link to={"/catalogo"} className={styles.underline}>
+          <Link to={"/catalogo"} style={{marginTop:'25px'}} className={styles.underline}>
             <li>Catalogo</li>
           </Link>
         </ul>

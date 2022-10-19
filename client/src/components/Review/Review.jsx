@@ -9,6 +9,8 @@ import { useParams } from 'react-router-dom';
 
 import UserContext from "../../context/userContext";
 import styles from "./review.module.css";
+import Swal from "sweetalert2";
+import toast, { Toaster } from "react-hot-toast";
 
 
 
@@ -38,7 +40,16 @@ function Review() {
     e.preventDefault();
 
       dispatch(postReview(input));
-      alert("Gracias por su opinion");
+      /* Swal.fire({
+        position: "bottom-start",
+        icon: "success",
+        title: "Gracias por su opinion",
+        showConfirmButton: false,
+        timer: 1500,
+      }); */
+      toast("Gracias por su opinion", {
+        icon: '👏',
+      });
       setInput({
           comment: 'Espectacular',
           rating: 5
@@ -129,7 +140,10 @@ function Review() {
         </button>
       </form>
 
-      
+      <Toaster
+      position="top-center"
+      reverseOrder={true}
+       />
     </div>
 
   );
