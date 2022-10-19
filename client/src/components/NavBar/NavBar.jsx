@@ -3,12 +3,16 @@ import styles from "./NavBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import img from './PureGlow2.png'
 import UserContext from "../../context/userContext";
+import { UserAuth } from "../../context/authContext";
 
 function NavBar({ usuario }) {
   const navigate = useNavigate();
   const { logueado, setlogueado } = useContext(UserContext);
+  const { logOut, user } = UserAuth();
 
-  const logout = () => {
+  const logiout = async () => {
+    //console.log('TE DESLOGUEASTE')
+    await logOut();
     setlogueado("invitado");
     localStorage.removeItem("token");
     localStorage.removeItem("carrito");
@@ -16,6 +20,7 @@ function NavBar({ usuario }) {
     navigate("/login");
     window.location.reload();
   };
+  console.log(logueado);
 
   return (
     <nav className={styles.navContainer}>
@@ -30,9 +35,15 @@ function NavBar({ usuario }) {
         </ul>
       </div>
       <div>
+        {console.log(logueado)}
         <ul className={styles.ulContainer}>
           <li>
-            {logueado === "invitado" ? "Invitado" : logueado.email}
+            {
+              logueado === "invitado"
+                ? "Invitado"
+                : "Hola, " +
+                  logueado.name /*ACÁ TIENE QUE IR UN MENÚ DESPLEGABLE*/
+            }
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="28"
@@ -45,11 +56,12 @@ function NavBar({ usuario }) {
               ></path>
             </svg>
           </li>
-          {usuario !== "invitado" && usuario.category === "user" ? (
+          {/* TODO LO DE ACÁ ABAJO VA EN EL MENU DESPLEGABLE */}
+          {logueado !== "invitado" && logueado.category === "user" ? (
             <Link to={"/miscompras"} className={styles.underline}>
               <li>Mis Compras</li>
             </Link>
-          ) : usuario !== "invitado" ? (
+          ) : logueado !== "invitado" && logueado.category === "admin" ? (
             <Link to={"/dashboard"} className={styles.underline}>
               <li>Admin</li>
             </Link>
@@ -59,7 +71,7 @@ function NavBar({ usuario }) {
             <li>Carrito</li>
           </Link>
           {usuario.email ? (
-            <li onClick={logout}>Log Out</li>
+            <li onClick={logiout}>Log Out</li>
           ) : (
             <Link to={"/login"} className={styles.underline}>
               <li>Login</li>

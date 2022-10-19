@@ -1,9 +1,10 @@
 const initialState = {
   users: [],
   allUsers: [],
-  user:[],
+  user: [],
   compras: [],
-  compraDetail: []
+  compraDetail: [],
+  comprasTotales: [],
 };
 
 export function users(state = initialState, action) {
@@ -30,12 +31,17 @@ export function users(state = initialState, action) {
         ...state,
         compras: action.payload,
       };
-      case "GET_BY_EMAIL":
-        return {
-          ...state,
-          users: action.payload,
-          allUsers: action.payload,
-        };
+    case "GET_ALL_COMPRAS":
+      return {
+        ...state,
+        comprasTotales: action.payload,
+      };
+    case "GET_BY_EMAIL":
+      return {
+        ...state,
+        users: action.payload,
+        allUsers: action.payload,
+      };
 
     case "GET_COMPRA_BY_ID":
       return {
@@ -45,8 +51,8 @@ export function users(state = initialState, action) {
     case "REMOVE_DETAIL":
       return {
         ...state,
-        compraDetail: []
-      }
+        compraDetail: [],
+      };
     default:
       return state;
   }

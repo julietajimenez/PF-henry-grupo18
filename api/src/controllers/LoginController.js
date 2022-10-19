@@ -5,12 +5,27 @@ const nodemailer = require("nodemailer");
 
 const login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, googleAccount, category, status, active } =
+      req.body;
     await Users.findOne({ where: { email: email } }).then((usuario) => {
       if (!usuario) {
         return res.json({ mensaje: "Usuario no encontrado" });
       }
+      if (googleAccount) {
+        const { id, name, email, category, status, active } = usuario;
 
+        res.json({
+          mensaje: "Usuario logueado correctamente",
+          usuario: {
+            id,
+            name,
+            email,
+            category,
+            status,
+            active
+          },
+        });
+      }
       bcrypt.compare(password, usuario.password).then((esCorrecta) => {
         if (esCorrecta) {
           const { id, name, email, category, status, active } = usuario;
@@ -52,7 +67,7 @@ const login = async (req, res, next) => {
 
 const register = async (req, res, next) => {
   try {
-    const { name, email, avatar, password } = req.body;
+    const { name, email, avatar, password, status, googleAccount } = req.body;
 
     Users.findOne({ where: { email: email } }).then((usuario) => {
       if (usuario) {
@@ -63,12 +78,16 @@ const register = async (req, res, next) => {
         bcrypt.hash(password, 10, async (error, passwordHasheada) => {
           if (error) res.json({ error });
           else {
-            const nuevoUsuario = {
+            let nuevoUsuario = {
               name,
               email,
               avatar,
+              status,
               password: passwordHasheada,
             };
+            if (googleAccount === true) {
+              nuevoUsuario.googleAccount = googleAccount;
+            }
 
             await Users.create(nuevoUsuario);
 

@@ -24,7 +24,6 @@ import Checkout from "./components/PayPal/Checkout";
 import UserContext from "./context/userContext";
 import Verify from "./components/VerificadorUsers/Verify";
 import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
-//import swal from "sweetalert2";
 import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
 import { getAllUsers } from "./redux/actions/UsersAction";
@@ -35,6 +34,7 @@ import Error404 from "./components/Error404/Error404";
 import DetailCompras from "./components/DetailCompras/DetailCompras";
 import Review from "./components/Review/Review";
 import toast, { Toaster } from 'react-hot-toast';
+import { AuthContextProvider } from "./context/authContext";
 
 function App() {
   const dispatch = useDispatch();
@@ -71,29 +71,18 @@ const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
   const onAddCarrito = (product) => {
     const productAdd = cartItems.find((item) => item.id === product.id);
     if (productAdd) {
-/*       swal.fire({
-        position: "bottom-start",
-        icon: "warning",
-        title: "Producto en carrito",
-        showConfirmButton: false,
-        timer: 1500,
-      }); */
+
       notifyAddCart()
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
       notifyAddCart()
-/*       swal.fire({
-        position: "bottom-start",
-        icon: "success",
-        title: "El producto ha sido añadido al carrito",
-        showConfirmButton: false,
-        timer: 1500,
-      }); */
+
     }
   };
 
   return (
     <div className="App">
+      <AuthContextProvider>
       <UserContext.Provider value={{ logueado, setlogueado }}>
         <NavBar usuario={logueado} />
         <Routes>
@@ -143,6 +132,7 @@ const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/compras/:id" element={<DetailCompras />} />
               <Route path="/review/:id" element={<Review />} />
+              <Route path="/review/edit/:id/:idReview" element={<Review edit="edit"/>} />
             </>
           ) : logueado !== "invitado" &&
             logueado.category === "user" &&
@@ -249,6 +239,7 @@ const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
               />
             </>
           ) : null}
+          <Route path="/" element={<Home />} />
           <Route path="/*" element={<Error404 />} />
         </Routes>
         <Toaster
@@ -257,6 +248,7 @@ const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
        />
         <Footer />
       </UserContext.Provider>
+      </AuthContextProvider>
     </div>
   );
 }

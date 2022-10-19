@@ -4,7 +4,7 @@ import { useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from 'react-router-dom';
-import { postReview } from "../../redux/actions/ReviewsActions";
+import { postReview, editReview } from "../../redux/actions/ReviewsActions";
 import { useParams } from 'react-router-dom';
 
 import UserContext from "../../context/userContext";
@@ -14,9 +14,9 @@ import toast, { Toaster } from "react-hot-toast";
 
 
 
-function Review() {
+function Review({edit}) {
+    const { id, idReview } = useParams();
 
-    const { id } = useParams();
     
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -38,8 +38,13 @@ function Review() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-      dispatch(postReview(input));
+      if(edit) {
+        input.idReview = idReview
+        console.log(input)
+        dispatch(editReview(input));
+      } else {
+        dispatch(postReview(input));
+      }
       /* Swal.fire({
         position: "bottom-start",
         icon: "success",
@@ -60,7 +65,7 @@ function Review() {
       } else {
         navigate('/products/' + id)
       }
-
+  
   }
 
   const handleRating = (index) => {

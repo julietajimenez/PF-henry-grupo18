@@ -7,7 +7,7 @@ import {
   removeDetail,
   pagesControl,
 } from "../../redux/actions/ProductsActions";
-import { getAllReview } from '../../redux/actions/ReviewsActions'
+import { getAllReview } from "../../redux/actions/ReviewsActions";
 import styles from "./Detail.module.css";
 import imgDefault from "./imageDefault.jpg";
 
@@ -27,7 +27,6 @@ export default function Detail() {
     };
   }, [id, dispatch]);
 
-  
   return product.name ? (
     <div className={styles.container}>
       <div className={styles.description}>
@@ -41,9 +40,14 @@ export default function Detail() {
             alt="nohayimagen"
           />
         ) : (
-          <img style={{ height: "270px" }} src={imgDefault} alt="imagendenoseque" />
+          <img
+            style={{ height: "270px" }}
+            src={imgDefault}
+            alt="imagendenoseque"
+          />
         )}
         <h4>${product.price}USD</h4>
+        <h4>{product.rating === null ? "1" : product.rating}⭐</h4>
 
         <p>{product.description}</p>
         {product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null}
@@ -59,20 +63,26 @@ export default function Detail() {
       <div>
         <h2>Reviews</h2>
         <div>
-          {reviews.length > 0 ?
-          reviews.sort((a, b) => {
-            const aDate = new Date(a.createdAt);
-            const bDate = new Date(b.createdAt);
-            return bDate - aDate ;
-          }) 
-          .map((r) => {
-            return <div className={styles.review}>
-              <p>Rating: {r.rating}</p>
-              <label>Comentario: </label>
-              <p>{r.comment}</p>
-              <p>De: {r.userEmail}</p>
-            </div>
-          }) : <h6>No hay reviews</h6>}
+          {reviews.length > 0 ? (
+            reviews
+              .sort((a, b) => {
+                const aDate = new Date(a.createdAt);
+                const bDate = new Date(b.createdAt);
+                return bDate - aDate;
+              })
+              .map((r) => {
+                return (
+                  <div className={styles.review}>
+                    <p>Rating: {r.rating}</p>
+                    <label>Comentario: </label>
+                    <p>{r.comment}</p>
+                    <p>De: {r.userEmail}</p>
+                  </div>
+                );
+              })
+          ) : (
+            <h6>No hay reviews</h6>
+          )}
         </div>
       </div>
     </div>

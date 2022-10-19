@@ -12,7 +12,6 @@ import CIcon from "@coreui/icons-react";
 import {
   cilSpeech,
   cilBasket,
- 
   cilBalanceScale,
   cilBrush,
   cilStarHalf,
@@ -23,18 +22,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../../redux/actions/ProductsActions";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../Loader/Loader";
+import { getReviews } from "../../../redux/actions/ReviewsActions";
+import { getAllCompras } from "../../../redux/actions/ComprasAction";
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
-
   const products = useSelector((state) => state.products.allProducts);
+  const reviews = useSelector((state) => state.products.reviews);
+  const comprasTotales = useSelector((state) => state.users.comprasTotales);
+  let cantidadVendidos = 0;
+  comprasTotales.map((e) => (cantidadVendidos += e.cantidad));
+
+  console.log(cantidadVendidos);
   const dispatch = useDispatch();
   useEffect(() => {
     if (products.length <= 0) {
       dispatch(getAllProducts());
     }
-  }, [dispatch,products.length]);
+    if (reviews.length <= 0) {
+      dispatch(getReviews());
+    }
+    if (comprasTotales.length <= 0) {
+      dispatch(getAllCompras());
+    }
+  }, [dispatch, products.length, comprasTotales.length, reviews.length]);
 
   const mejorValorado = products.find((e) => e.rating === 5);
   let titleMVP = "";
@@ -44,12 +56,12 @@ const Dashboard = () => {
     titleMVP = "No se pudo cargar el producto.";
   }
 
-  const peorValorado = products.find((e) => e.rating === 1);
+  const peorValorado = products.find((e) => e.rating === 1 || e.rating === 2);
   let titleWVP = "";
   if (peorValorado) {
     titleWVP = peorValorado.name;
   } else {
-    titleMVP = "No se pudo cargar el producto.";
+    titleWVP = "No se pudo cargar el producto.";
   }
 
   let loreal = 0;
@@ -97,7 +109,14 @@ const Dashboard = () => {
   }
 
   return (
-    <div style={{minHeight:"100vh", maxWidth: "100vw", overflowX: "hidden", marginTop: "20px" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        maxWidth: "100vw",
+        overflowX: "hidden",
+        marginTop: "20px",
+      }}
+    >
       <WidgetsDropdown />
       <div
         style={{
@@ -151,7 +170,7 @@ const Dashboard = () => {
           {" "}
           <CWidgetStatsC
             icon={<CIcon icon={cilSpeech} height={36} />}
-            value="972"
+            value={reviews?.length || "No hay reviews para mostrar."}
             title="Reseñas totales"
             progress={{ color: "info", value: 100 }}
             className="mb-4"
@@ -179,7 +198,7 @@ const Dashboard = () => {
           {" "}
           <CWidgetStatsC
             icon={<CIcon icon={cilBalanceScale} height={36} />}
-            value="1238"
+            value={cantidadVendidos || "Aún no se ha hecho ninguna venta."}
             title="Productos vendidos"
             progress={{ color: "warning", value: 100 }}
             className="mb-4"
