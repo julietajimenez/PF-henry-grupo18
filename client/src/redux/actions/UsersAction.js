@@ -76,3 +76,24 @@ export function searchByEmail(email) {
     });
   };
 }
+
+
+export function updateCarrito(idUser, payload) {
+  return async function () {
+    var json = await axios.put(
+      process.env.REACT_APP_URL_API + `/users/updateCarrito/${idUser}`,
+      payload
+    );
+    return json;
+  };
+}
+
+export function getCarrito(idUser) {
+  return async function () {
+    var json = await axios.get(
+      process.env.REACT_APP_URL_API + `/users/carrito/${idUser}`,
+    );
+    console.log(json)
+    return json;
+  };
+}

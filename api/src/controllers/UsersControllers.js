@@ -144,6 +144,35 @@ const getCompras = async (req, res, next) => {
   }
 };
 
+const updateCarrito = async (req, res, next) => {
+  const { idUser } = req.params;
+  const carrito = JSON.stringify(req.body);
+  try {
+    const userUpdate = await Users.update({carrito: carrito}, {
+      where: {
+        id: idUser,
+      },
+    });
+    res.json({ modificado: true });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getCarrito = async (req, res, next) => {
+  const { idUser } = req.params;
+  try {
+    const user = await Users.findOne({
+      where: {
+        id: idUser,
+      },
+    });
+    res.json(user.carrito);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllUsers,
   postUsers,
@@ -153,4 +182,6 @@ module.exports = {
   verifyUser,
   getCompras,
   getUserByEmail,
+  updateCarrito,
+  getCarrito
 };

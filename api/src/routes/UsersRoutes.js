@@ -8,6 +8,8 @@ const {
   verifyUser,
   getCompras,
   getUserByEmail,
+  updateCarrito,
+  getCarrito
 } = require("../controllers/UsersControllers");
 const { login, register } = require("../controllers/LoginController");
 // Importar todos los routers;
@@ -27,5 +29,8 @@ router.post("/login", login);
 router.post("/register", register);
 router.get("/confirmed/:token", confirm);
 router.put("/verify/:id", verifyUser);
+router.put("/updateCarrito/:idUser", updateCarrito);
+router.get("/carrito/:idUser", getCarrito);
+
 
 module.exports = router;
