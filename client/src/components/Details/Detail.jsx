@@ -47,7 +47,7 @@ export default function Detail() {
           />
         )}
         <h4>${product.price}USD</h4>
-        <h4>{product.rating === null ? "1" : product.rating}⭐</h4>
+        {/* <h4>{product.rating === null ? "1" : product.rating}⭐</h4> */}
 
         <p>{product.description}</p>
         {product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null}

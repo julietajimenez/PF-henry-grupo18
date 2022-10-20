@@ -199,7 +199,7 @@ const updateRating = async (idProduct) => {
     product.reviews.map(e => rtg += e.rating)
     rtg = rtg / product.reviews.length
 
-    await Products.update({rating: Math.round(rtg)}, {
+    await Products.update({rating: Math.floor(rtg)}, {
       where: {
         id: idProduct,
       },

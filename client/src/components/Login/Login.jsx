@@ -33,7 +33,7 @@ const Login = ({setCartItems}) => {
               setMensaje("");
               localStorage.setItem("token", data?.usuario.token);
               localStorage.setItem("logueado", JSON.stringify(data?.usuario));
-              if(JSON.parse(data.usuario.carrito).length !== 0) {
+              if(JSON.parse(data?.usuario?.carrito)?.length !== 0) {
                 
                 localStorage.setItem("carrito", JSON.stringify(data?.usuario.carrito));
                 setCartItems(JSON.parse(data?.usuario.carrito))

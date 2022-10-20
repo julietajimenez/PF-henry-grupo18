@@ -60,8 +60,14 @@ function Review({edit}) {
           rating: 5
       });
       if(input.rating === 1) {
-        alert("Por favor, comentenos un poco mas sobre el producto");
-        navigate('/contacto/' + id)
+        Swal.fire({
+          position: "bottom-start",
+          icon: "warning",
+          title: "Por favor, comentenos un poco mas sobre el producto",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        navigate('/support')
       } else {
         navigate('/products/' + id)
       }

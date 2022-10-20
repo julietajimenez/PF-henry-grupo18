@@ -73,7 +73,7 @@ function Checkout() {
   const handleApprove = (orderID) => {
     setPaidFor(true);
     swal(
-      "¡Gracias por comprar en Pure Glow",
+      "¡Gracias por comprar en Pure Glow!",
       "Se envió un ticket de compra a su correo electrónico.😃"
     );
     setTimeout((navigate("/"), 5000));
@@ -94,7 +94,7 @@ function Checkout() {
         TOTAL: ${valor}
       </div>
       <PayPalScriptProvider
-        options={{ "client-id": REACT_APP_PAYPAL_CLIENT_ID, "mode":"no cors" }}
+        options={{ "client-id": REACT_APP_PAYPAL_CLIENT_ID}}
       >
         <PayPalButtons
           onClick={(data, actions) => {

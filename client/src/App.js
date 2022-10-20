@@ -321,6 +321,7 @@ function App() {
               </>
             ) : null}
             <Route path="/" element={<Home />} />
+            <Route path="/support" element={<ContactUs />} />
             <Route path="/*" element={<Error404 />} />
           </Routes>
           <Toaster position="bottom-left" reverseOrder={false} />
