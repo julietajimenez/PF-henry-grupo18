@@ -9,9 +9,10 @@ export default function CarruselCards(props) {
 
   return (
     <div >
-
-     <h2 style={{marginTop: '1rem', marginBottom:' 1rem'}}>MEJORES PUNTUADOS</h2>
-     <div style={{display: 'flex', gap:'1rem', marginLeft: '1rem', marginBottom:' 2rem'}}>
+<br />
+     <h2 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>MEJORES PUNTUADOS</h2>
+     <br />
+     <div style={{display: 'flex', gap:'1rem', alignItems: 'center', justifyContent: 'center'}}>
      <Cards
                 key={'ab0f3caa-ef0c-4ef6-96c1-96d03e554825'}
                   id={'61862c95-f680-4f42-89f2-60c4abdeb491'}
