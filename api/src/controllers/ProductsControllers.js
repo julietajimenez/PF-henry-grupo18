@@ -1,4 +1,4 @@
-const { Products, Category } = require("../db");
+const { Products, Category, Reviews } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
 const { URL_API } = process.env;
@@ -190,6 +190,23 @@ const deleteProduct = async (req, res, next) => {
   }
 };
 
+const updateRating = async (idProduct) => {
+
+    const product = await Products.findByPk(idProduct, {
+      include: Reviews
+    })
+    let rtg = 0
+    product.reviews.map(e => rtg += e.rating)
+    rtg = rtg / product.reviews.length
+
+    await Products.update({rating: Math.round(rtg)}, {
+      where: {
+        id: idProduct,
+      },
+    });
+
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
@@ -200,4 +217,5 @@ module.exports = {
   deleteProduct,
   getProductByIdCompras,
   stockUpdate,
+  updateRating
 };

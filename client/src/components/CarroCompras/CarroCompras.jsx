@@ -1,77 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styles from "./CarroCompras.module.css";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import toast, { Toaster } from 'react-hot-toast';
+import { updateCarrito, getCarrito } from "../../redux/actions/UsersAction";
 
 
-function CarroCompras(props) {
+function CarroCompras({cartItems, setCartItems, onAddCarrito, onRemoveCarrito, onRemoveItemCarrito}) {
+  const dispatch = useDispatch();
   const { logueado, setlogueado } = useContext(UserContext);
-  const [cartItems, setCartItems] = useState(() => {
-    try {
-      const prodEnLocalStorage = localStorage.getItem("carrito");
-      return prodEnLocalStorage ? JSON.parse(prodEnLocalStorage) : [];
-    } catch (error) {
-      return [];
-    }
-  });
-  useEffect(() => {
-    localStorage.setItem("carrito", JSON.stringify(cartItems));
-  }, [cartItems]);
 
-  const notifyRemove=  ()=> toast.error("Removido del carrito!",{style:{
-    background:"red",
-    color:"white"
-}})
+  if(logueado !== 'invitado' && JSON.parse(logueado.carrito).length === 0) {
 
-const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
-  background: "rgb(67, 160, 71)",
-  color:"white"
-}});
+    dispatch(updateCarrito(logueado.id, cartItems))
+  }
 
-  const onAddCarrito = (product) => {
-    const productAdd = cartItems.find((item) => item.id === product.id);
-    if (productAdd) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...productAdd, cantidad: productAdd.cantidad + 1, stock: productAdd.stock -1 }
-            : item
-        )
-      );
-      total += product.price;
-    } else {
-      setCartItems([...cartItems, { ...product, cantidad: 1 }]);
-      total += product.price;
-/*       Swal.fire({
-        position: "bottom-start",
-        icon: "success",
-        title: "El producto ha sido añadido al carrito",
-        showConfirmButton: false,
-        timer: 1500,
-      }); */
-      notifyAddCart()
-    }
-  };
-
-  const onRemoveCarrito = (product) => {
-    const productRemove = cartItems.find((item) => item.id === product.id);
-    if (productRemove.cantidad !== 1) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...productRemove, cantidad: productRemove.cantidad - 1, stock: productRemove.stock + 1 }
-            : item
-        )
-      );
-    }
-  };
-  const onRemoveItemCarrito = (product) => {
-    setCartItems(cartItems.filter((item) => item.id !== product.id));
-    notifyRemove()
-  };
-
+  
   let total = cartItems.reduce((a, c) => a + c.price * c.cantidad, 0);
   let descripcion = "";
   let productos = [];

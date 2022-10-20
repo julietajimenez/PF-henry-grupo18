@@ -43,6 +43,9 @@ module.exports = (sequelize) => {
     googleAccount:{
       type: DataTypes.BOOLEAN,
       defaultValue: false
+    },
+    carrito: {
+      type: DataTypes.JSON
     }
   });
 };

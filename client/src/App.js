@@ -26,7 +26,7 @@ import Verify from "./components/VerificadorUsers/Verify";
 import Dashboard from "./components/Admin/DashboardComponents/Chart&&widgets";
 import MisCompras from "./components/MisCompras/MisCompras";
 import { useDispatch } from "react-redux";
-import { getAllUsers } from "./redux/actions/UsersAction";
+import { getAllUsers, updateCarrito } from "./redux/actions/UsersAction";
 import { getAllProducts } from "./redux/actions/ProductsActions";
 import UserBanned from "./components/UserBanned/UserBanned";
 import UserUnverified from "./components/UserUnverified/UserUnverified";
@@ -50,8 +50,13 @@ function App() {
 
   const [cartItems, setCartItems] = useState(() => {
     try {
+      if (cartItems) return cartItems;
       const prodEnLocalStorage = localStorage.getItem("carrito");
-      return prodEnLocalStorage ? JSON.parse(prodEnLocalStorage) : [];
+      return prodEnLocalStorage
+        ? logueado === "invitado" || logueado.carrito.length === 0
+          ? JSON.parse(prodEnLocalStorage)
+          : JSON.parse(JSON.parse(prodEnLocalStorage))
+        : [];
     } catch (error) {
       return [];
     }
@@ -60,6 +65,9 @@ function App() {
   useEffect(() => {
     dispatch(getAllUsers());
     dispatch(getAllProducts());
+    if (logueado.id) {
+      dispatch(updateCarrito(logueado.id, cartItems));
+    }
     localStorage.setItem("carrito", JSON.stringify(cartItems));
   }, [cartItems, dispatch]);
 
@@ -71,14 +79,55 @@ function App() {
       },
     });
 
+  let total = cartItems.reduce((a, c) => a + c.price * c.cantidad, 0);
+
   const onAddCarrito = (product) => {
     const productAdd = cartItems.find((item) => item.id === product.id);
     if (productAdd) {
-      notifyAddCart();
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id
+            ? {
+                ...productAdd,
+                cantidad: productAdd.cantidad + 1,
+                stock: productAdd.stock - 1,
+              }
+            : item
+        )
+      );
+      total += product.price;
     } else {
       setCartItems([...cartItems, { ...product, cantidad: 1 }]);
+      total += product.price;
+      /*       Swal.fire({
+      position: "bottom-start",
+      icon: "success",
+      title: "El producto ha sido añadido al carrito",
+      showConfirmButton: false,
+      timer: 1500,
+    }); */
       notifyAddCart();
     }
+  };
+
+  const onRemoveCarrito = (product) => {
+    const productRemove = cartItems.find((item) => item.id === product.id);
+    if (productRemove.cantidad !== 1) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id
+            ? {
+                ...productRemove,
+                cantidad: productRemove.cantidad - 1,
+                stock: productRemove.stock + 1,
+              }
+            : item
+        )
+      );
+    }
+  };
+  const onRemoveItemCarrito = (product) => {
+    setCartItems(cartItems.filter((item) => item.id !== product.id));
   };
 
   return (
@@ -98,7 +147,6 @@ function App() {
                   path="/"
                   element={<Home onAddCarrito={onAddCarrito} />}
                 />
-                <Route path="/support" element={<ContactUs />} />
                 <Route path="/card" element={<Cards />} />
                 <Route path="/miscompras" element={<MisCompras />} />
                 <Route path="/login" element={<Login />} />
@@ -108,7 +156,10 @@ function App() {
                   element={
                     <CarroCompras
                       cartItems={cartItems}
+                      setCartItems={setCartItems}
                       onAddCarrito={onAddCarrito}
+                      onRemoveCarrito={onRemoveCarrito}
+                      onRemoveItemCarrito={onRemoveItemCarrito}
                     />
                   }
                 />
@@ -234,9 +285,22 @@ function App() {
                   element={<Catalogo onAddCarrito={onAddCarrito} />}
                 />
                 <Route path="/card" element={<Cards />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/login"
+                  element={<Login setCartItems={setCartItems} />}
+                />
                 <Route path="/register" element={<Register />} />
-                <Route path="/carrito" element={<CarroCompras />} />
+                <Route
+                  path="/carrito"
+                  element={
+                    <CarroCompras
+                      cartItems={cartItems}
+                      onAddCarrito={onAddCarrito}
+                      onRemoveCarrito={onRemoveCarrito}
+                      onRemoveItemCarrito={onRemoveItemCarrito}
+                    />
+                  }
+                />
                 <Route path="products/:id" element={<Detail />} />
                 <Route
                   path="/products/brands/pacifica"
@@ -256,7 +320,7 @@ function App() {
                 />
               </>
             ) : null}
-            <Route path="/support" element={<ContactUs />} />
+            <Route path="/" element={<Home />} />
             <Route path="/*" element={<Error404 />} />
           </Routes>
           <Toaster position="bottom-left" reverseOrder={false} />

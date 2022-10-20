@@ -12,9 +12,9 @@ const login = async (req, res, next) => {
         return res.json({ mensaje: "Usuario no encontrado" });
       }
       if (googleAccount) {
-        const { id, name, email, category, status, active } = usuario;
+        const { id, name, email, category, status, active, carrito } = usuario;
 
-        res.json({
+        return res.json({
           mensaje: "Usuario logueado correctamente",
           usuario: {
             id,
@@ -22,13 +22,14 @@ const login = async (req, res, next) => {
             email,
             category,
             status,
-            active
+            active,
+            carrito
           },
         });
       }
       bcrypt.compare(password, usuario.password).then((esCorrecta) => {
         if (esCorrecta) {
-          const { id, name, email, category, status, active } = usuario;
+          const { id, name, email, category, status, active, carrito } = usuario;
 
           const data = {
             id,
@@ -37,6 +38,7 @@ const login = async (req, res, next) => {
             category,
             status,
             active,
+            carrito
           };
 
           const token = jwt.sign(data, "secreto", {
@@ -53,6 +55,7 @@ const login = async (req, res, next) => {
               token,
               status,
               active,
+              carrito
             },
           });
         } else {
