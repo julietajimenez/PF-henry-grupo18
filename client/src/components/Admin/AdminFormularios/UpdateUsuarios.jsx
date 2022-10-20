@@ -15,7 +15,7 @@ function UpdateUsuarios() {
   const [input, setInput] = useState({
     name: users.name,
     email: users.email,
-    avatar: users.avatar,
+/*     avatar: users.avatar, */
     password: users.password,
     active: users.active,
     category: users.category
@@ -53,7 +53,7 @@ function UpdateUsuarios() {
     setInput({
       name: '',
       email: '',
-      avatar: '',
+  /*     avatar: '', */
       password: '',
       active: '',
       category: ''
@@ -78,10 +78,10 @@ function UpdateUsuarios() {
                     <label>Email: </label>
                     <input type={'text'} name='email' value={input.email} defaultValue={e.email} onChange={handleChange} />
                   </div>
-                  <div className={styles.formInputs}>
+{/*                   <div className={styles.formInputs}>
                     <label>Avatar: </label>
                     <input type={'text'} name='avatar' value={input.avatar} defaultValue={e.avatar} onChange={handleChange} />
-                  </div>
+                  </div> */}
                   {/*                 <div className={styles.formInputs}>
                   <label>Contraseña: </label>
                   <input type={'text'} name='password' value={input.password} defaultValue={e.password} onChange={handleChange} />

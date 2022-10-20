@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getProductsByName } from "../../redux/actions/ProductsActions";
 import styles from "./Searchbar.module.css";
 
+
 export default function SearchBar() {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
@@ -30,4 +31,4 @@ export default function SearchBar() {
       />
     </div>
   );
-}
+} 
