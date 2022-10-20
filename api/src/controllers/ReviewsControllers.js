@@ -1,7 +1,7 @@
 const { Products, Reviews, Users } = require("../db");
 const axios = require("axios");
 const { Op, where } = require("sequelize");
-const { getProductById } = require("./ProductsControllers");
+const { getProductById, updateRating } = require("./ProductsControllers");
 
 const getAllReviewsFromProduct = async (req, res, next) => {
     try {
@@ -39,6 +39,7 @@ const addReview = async (req, res, next) => {
     try {
         const review = { comment, rating, productId:idProduct, userEmail }
         const newReview = await Reviews.create(review)
+        await updateRating(idProduct)
     } catch (error) {
         next(error)
     }
