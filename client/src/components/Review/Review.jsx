@@ -53,7 +53,7 @@ function Review({edit}) {
         timer: 1500,
       }); */
       toast("Gracias por su opinion", {
-        icon: '👏',
+        icon: '👏⭐',
       });
       setInput({
           comment: 'Espectacular',

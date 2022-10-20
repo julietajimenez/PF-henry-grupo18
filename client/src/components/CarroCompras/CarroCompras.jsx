@@ -20,6 +20,10 @@ function CarroCompras(props) {
     localStorage.setItem("carrito", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  const notifyRemove=  ()=> toast.error("Removido del carrito!",{style:{
+    background:"red",
+    color:"white"
+}})
 
 const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
   background: "rgb(67, 160, 71)",
@@ -65,6 +69,7 @@ const notifyAddCart = () => toast.success('Agregado a carrito!',{style:{
   };
   const onRemoveItemCarrito = (product) => {
     setCartItems(cartItems.filter((item) => item.id !== product.id));
+    notifyRemove()
   };
 
   let total = cartItems.reduce((a, c) => a + c.price * c.cantidad, 0);
