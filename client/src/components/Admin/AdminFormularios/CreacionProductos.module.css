@@ -1,5 +1,5 @@
 .flexContainer {
-  min-height: 70vh;
+  min-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,6 +7,7 @@
   font-family: "Poppins", sans-serif;
 }
 .container {
+  width: 40%;
   border: 1px solid rgb(233, 233, 233);
   padding: 25px;
   border-radius: 10px;
@@ -31,6 +32,7 @@
   border: none;
   outline: none;
   padding: 8px;
+  height: 200px;
 }
 
 .formInputs select {

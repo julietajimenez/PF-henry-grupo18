@@ -87,7 +87,7 @@ function CreacionProductos() {
     navigate('/')
   }
   return (
-    <div className={styles.flexContainer}>
+    <div className={styles.flexContainer} style={{ minHeight: "80vh" }}>
       <form
         className={styles.container}
         autoComplete="off"
