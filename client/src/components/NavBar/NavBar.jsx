@@ -350,7 +350,9 @@ export default function NavBar({ usuario }) {
     <React.Fragment>
 
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', backgroundColor: '#1C1C1C' }}>
-        <img src={img} style={{ width: '110px', height: '90px', marginLeft: '0%' }} />
+      <Link to={"/"} >
+        <img src={img} style={{ width: '110px', height: '90px', marginLeft: '24%' }} />
+        </Link>
         <Link to={"/catalogo"} className={styles.underline}>
           Catalogo
         </Link>

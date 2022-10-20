@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 //const { process.env.REACT_APP_URL_API } = process.env;
 export function getAllUsers() {
   return async function (dispatch) {
@@ -69,13 +70,22 @@ export function searchByEmail(email) {
   return async function (dispatch) {
     var json = await axios.get(
       process.env.REACT_APP_URL_API + `/users/byEmail?email=${email}`
-    );
-    return dispatch({
-      type: "GET_BY_EMAIL",
-      payload: json.data,
-    });
+    )
+    if (!json.data.length) {
+      swal("Error: no se encontró el usuario.", {
+        icon: "error",
+        buttons: "Cerrar",
+      });
+    } else {
+      return dispatch({
+        type: "GET_BY_EMAIL",
+        payload: json.data,
+      });
+    }
+
   };
 }
+
 
 
 export function updateCarrito(idUser, payload) {
