@@ -5,6 +5,7 @@ import { deleteFavorites, getFavorites, removeStateFav } from "../../redux/actio
 import Cards from "../Cards/Cards";
 import style from './Favorites.module.css';
 import toast, { Toaster } from 'react-hot-toast';
+import Swal from "sweetalert2";
 
 export default function Favorites() {
     const dispatch = useDispatch()
@@ -22,6 +23,20 @@ export default function Favorites() {
         color:"white"
     }})
     const removeFav=(idUser, idProduct)=>{
+        Swal.fire({
+            title: 'Seguro quiere remover el producto de favoritos?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Si',
+            denyButtonText: `No`,
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+              Swal.fire('Changes are not saved', '', 'info')
+            }
+          })
         dispatch(deleteFavorites(idUser, idProduct))
         notifyRemove();
     }
