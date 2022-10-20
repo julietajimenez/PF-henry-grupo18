@@ -20,7 +20,6 @@ module.exports = (sequelize) => {
     },
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: true,
       defaultValue: 1,
     },
     price: {
@@ -39,11 +38,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     image: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
     },
     active: {
       type: DataTypes.BOOLEAN,
-      defaultValue: true
-    }
+      defaultValue: true,
+    },
   });
 };

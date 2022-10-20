@@ -14,8 +14,8 @@ function Footer() {
       </div>
       <div>
         <ul className={styles.ulContainer}>
-          <Link to={"/"} className={styles.underline}>
-            <li>Redes Sociales</li>
+          <Link to={"/support"} className={styles.underline}>
+            <li>Contáctanos</li>
           </Link>
         </ul>
       </div>

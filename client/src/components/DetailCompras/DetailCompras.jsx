@@ -47,7 +47,7 @@ export default function Detail() {
                 <img src={p.image} alt="" />
               </div>
               {existeReview ? 
-                <button className={styles.opinion} onClick={() => navigate(`/review/edit/${p.id}/${existeReview.id}`)}>Click aquí para dejar tu opinión sobre este producto</button>
+                <button className={styles.opinion} onClick={() => navigate(`/review/edit/${p.id}/${existeReview.id}`)}>Click aquí para editar tu opinión sobre este producto</button>
 
              : 
                 <button className={styles.opinion} onClick={() => navigate(`/review/${p.id}`)}>Click aquí para dejar tu opinión sobre este producto</button>
