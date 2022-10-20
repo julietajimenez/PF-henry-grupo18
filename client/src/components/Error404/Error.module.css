@@ -1,14 +1,14 @@
 .container{
-    background: linear-gradient(to right, #ECD6D0, #FEF0F0);
+    /* background: linear-gradient(to right, #ECD6D0, #FEF0F0); */
     display: flex;
+    min-height: 80vh;
 }
 .img{
-    width: 80%;
-    height: 750px;
-    margin-left: 10%;
+    width: 60%;
+    margin-left: 20%;
     justify-content: center;
 }
-.button{
+/* .button{
     background-color: #f7d9d9;
     position: absolute;
     left: 39%;
@@ -17,4 +17,4 @@
     width: 300px;
     height: 30px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+} */

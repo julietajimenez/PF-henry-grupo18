@@ -17,7 +17,7 @@ function Register() {
   const [input, setInput] = useState({
     name: "",
     email: "",
-    avatar: "",
+//    avatar: "",
     password: "",
     confirmPassword: "",
   });
@@ -63,7 +63,7 @@ function Register() {
     const Usuario = {
       name: input.name,
       email: input.email,
-      avatar: input.avatar,
+//      avatar: input.avatar,
       password: input.password,
       confirmPassword: input.confirmPassword,
     };
@@ -87,7 +87,7 @@ function Register() {
       setInput({
         name: "",
         email: "",
-        avatar: "",
+//        avatar: "",
         confirmPassword: "",
         password: "",
       });
@@ -113,7 +113,7 @@ function Register() {
           />
           {errors.name && <p className={styles.error}>{errors.name}</p>}
         </div>
-        <div className={styles.formInputs}>
+{/*         <div className={styles.formInputs}>
           <label>Avatar: </label>
           <input
             type={"text"}
@@ -121,7 +121,7 @@ function Register() {
             value={input.avatar}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className={styles.formInputs}>
           <label>Contraseña: </label>
           <input
