@@ -323,6 +323,7 @@ function App() {
               </>
             ) : null}
             <Route path="/" element={<Home />} />
+            <Route path="/verify/:id" element={<Verify />} />
             <Route path="/support" element={<ContactUs />} />
             <Route path="/*" element={<Error404 />} />
           </Routes>

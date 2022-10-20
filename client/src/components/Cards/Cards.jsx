@@ -5,7 +5,7 @@ import imgDefault from './imageDefault.jpg';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react";
 import { addFavorite, deleteFavorites, getFavorites } from "../../redux/actions/ProductsActions";
-import swal from "sweetalert";
+import swal from "sweetalert2";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import UserContext from "../../context/userContext";
 const Cards = ({

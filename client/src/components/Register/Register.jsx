@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import styles from "./Register.module.css";
 import UserContext from "../../context/userContext";
+import Swal from "sweetalert2";
 
 function Register() {
 
@@ -82,6 +83,7 @@ function Register() {
 
             setlogueado(Usuario);
           }, 1500);
+          Swal.fire(data.mensaje, 'Se ha enviado un correo de verificación al email registrado')
         });
 
       setInput({
@@ -163,7 +165,7 @@ function Register() {
           </button>
 
       </form>
-      {mensaje && <div>{mensaje}</div>}
+      
     </div>
   );
 }

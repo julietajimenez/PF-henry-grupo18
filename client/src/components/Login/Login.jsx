@@ -7,6 +7,8 @@ import { UserAuth } from "../../context/authContext";
 import { GoogleButton } from "react-google-button";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/actions/UsersAction";
+import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 const Login = ({ setCartItems }) => {
   const [inputs, setInputs] = useState({ email: "", password: "" });
@@ -43,6 +45,7 @@ const Login = ({ setCartItems }) => {
                 setCartItems(JSON.parse(data?.usuario.carrito));
               }
               setlogueado(data?.usuario);
+              Swal.fire(data.mensaje)
               navigate("/");
             }, 1500);
           })
@@ -74,6 +77,7 @@ const Login = ({ setCartItems }) => {
               localStorage.setItem("logueado", JSON.stringify(data.usuario));
 
               setlogueado(data.usuario);
+              Swal.fire(data.mensaje)
               navigate("/");
             }, 1500);
           });
@@ -125,7 +129,7 @@ const Login = ({ setCartItems }) => {
             localStorage.setItem("token", data?.usuario.token);
             localStorage.setItem("logueado", JSON.stringify(data?.usuario));
             setlogueado(data?.usuario);
-
+            Swal.fire(data.mensaje)
             navigate(`/`);
           }, 1500);
         })
@@ -187,7 +191,7 @@ const Login = ({ setCartItems }) => {
         </form>
       </div>
 
-      {mensaje && <div>{mensaje}</div>}
+
     </div>
   );
 };

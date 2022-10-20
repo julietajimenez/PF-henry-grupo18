@@ -349,7 +349,7 @@ export default function NavBar({ usuario }) {
   return (
     <React.Fragment>
 
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center', backgroundColor: '#1C1C1C' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', height: '10vh', textAlign: 'center', backgroundColor: '#1C1C1C' }}>
       <Link to={"/"} >
         <img src={img} style={{ width: '110px', height: '90px', marginLeft: '24%' }} />
         </Link>

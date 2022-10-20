@@ -66,7 +66,7 @@ function ContactUs() {
           </div>
         </form>
       </div>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="bottom-left" reverseOrder={false} />
     </div>
   );
 }
