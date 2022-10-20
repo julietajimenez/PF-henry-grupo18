@@ -12,7 +12,7 @@ function CarroCompras({cartItems, setCartItems, onAddCarrito, onRemoveCarrito, o
   const dispatch = useDispatch();
   const { logueado, setlogueado } = useContext(UserContext);
 
-  if(logueado !== 'invitado' && JSON.parse(logueado.carrito).length === 0) {
+  if(logueado !== 'invitado' && logueado.carrito) {
 
     dispatch(updateCarrito(logueado.id, cartItems))
   }

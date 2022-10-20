@@ -22,7 +22,9 @@ const Login = ({ setCartItems }) => {
 
   const handleGoogleSignIn = () => {
     if (user != null && JSON.stringify(user) !== "{}") {
+      console.log(usersDataBase)
       let usuarioYaExiste = usersDataBase.find((e) => e.email === user.email);
+      console.log(usuarioYaExiste)
       if (usuarioYaExiste) {
         axios
           .post(process.env.REACT_APP_URL_API + "/users/login", usuarioYaExiste)
@@ -33,7 +35,7 @@ const Login = ({ setCartItems }) => {
               setMensaje("");
               localStorage.setItem("token", data?.usuario.token);
               localStorage.setItem("logueado", JSON.stringify(data?.usuario));
-              if (JSON.parse(data.usuario.carrito).length !== 0) {
+              if (data.usuario.carrito && JSON.parse(data.usuario.carrito).length !== 0) {
                 localStorage.setItem(
                   "carrito",
                   JSON.stringify(data?.usuario.carrito)
@@ -69,9 +71,9 @@ const Login = ({ setCartItems }) => {
               setMensaje("");
               // localStorage.setItem("token", data?.usuario.token);
 
-              localStorage.setItem("logueado", JSON.stringify(Usuario));
+              localStorage.setItem("logueado", JSON.stringify(data.usuario));
 
-              setlogueado(Usuario);
+              setlogueado(data.usuario);
               navigate("/");
             }, 1500);
           });

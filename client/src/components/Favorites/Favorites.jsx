@@ -6,11 +6,13 @@ import Cards from "../Cards/Cards";
 import style from './Favorites.module.css';
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from "sweetalert2";
+import UserContext from "../../context/userContext";
 
 export default function Favorites(props) {
     const { onAddCarrito } = props;
     const dispatch = useDispatch()
-    const logueado = JSON.parse(localStorage.logueado);
+    const { logueado, setlogueado } = React.useContext(UserContext);
+
 
     useEffect(() => {
         dispatch(getFavorites(logueado.email))

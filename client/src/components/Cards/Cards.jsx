@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { addFavorite, deleteFavorites, getFavorites } from "../../redux/actions/ProductsActions";
 import swal from "sweetalert";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-
+import UserContext from "../../context/userContext";
 const Cards = ({
   id,
   name,
@@ -23,7 +23,7 @@ const Cards = ({
   let producto = { id, name, price, category, image, categories, stock };
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const logueado = JSON.parse(localStorage.logueado);
+  const { logueado, setlogueado } = React.useContext(UserContext);
   const [user, setUser] = useState(false)
   const [favorite, setFavorite] = useState(false)
   /*   const obj = {
@@ -31,14 +31,14 @@ const Cards = ({
     idProduct: producto.id
   } */
   
-  useEffect(() => {
+ // useEffect(() => {
     //dispatch(getFavorites(logueado.email))
-    if (Object.keys(logueado).length !== 0) {
-      setUser(true)
+ //   if (Object.keys(logueado).length !== 0) {
+ //     setUser(true)
       
-    }
-    if (Object.keys(logueado).length === 0) return setUser(false) 
-  }, [dispatch])
+ //   }
+ //   if (Object.keys(logueado).length === 0) return setUser(false) 
+ // }, [dispatch])
 /*   
   const fav = useSelector(state=> state.products.favorite)
   fav.map(e=>{
@@ -48,15 +48,19 @@ const Cards = ({
   }) */
   function handleFavorite() {
     if (favorite == false) {
-      if (logueado) {
+      if (logueado !== 'invitado') {
+        console.log('esta logueado')
         dispatch(addFavorite(logueado.email, producto.id))
         notifyAddFav()
         setFavorite(true)
-      } else swal.fire({
+      } else {
+        console.log('NOO esta logueado')
+        
+       swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'Debes iniciar sesión para añadir favoritos',
-      })
+      })}
     }
 
     if (favorite == true) {

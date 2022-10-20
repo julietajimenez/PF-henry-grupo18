@@ -87,12 +87,13 @@ const register = async (req, res, next) => {
               avatar,
               status,
               password: passwordHasheada,
+              carrito: '[]'
             };
             if (googleAccount === true) {
               nuevoUsuario.googleAccount = googleAccount;
             }
 
-            await Users.create(nuevoUsuario);
+            let userBd = await Users.create(nuevoUsuario);
 
             const id = await Users.findOne({
               where: {
@@ -136,7 +137,11 @@ const register = async (req, res, next) => {
             });
             console.log(id.dataValues.id);
 
-            res.json({ mensaje: "Usuario creado correctamente", nuevoUsuario });
+            //res.json({ mensaje: "Usuario creado correctamente", nuevoUsuario });
+            res.json({
+              mensaje: "Usuario creado correctamente",
+              usuario: userBd
+            });
           }
         });
       }
