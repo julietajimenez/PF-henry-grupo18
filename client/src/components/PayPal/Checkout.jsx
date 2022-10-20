@@ -94,7 +94,7 @@ function Checkout() {
         TOTAL: ${valor}
       </div>
       <PayPalScriptProvider
-        options={{ "client-id": REACT_APP_PAYPAL_CLIENT_ID }}
+        options={{ "client-id": REACT_APP_PAYPAL_CLIENT_ID, "mode":"no cors" }}
       >
         <PayPalButtons
           onClick={(data, actions) => {
