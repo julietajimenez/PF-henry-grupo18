@@ -53,7 +53,7 @@ export default function Detail() {
         {product.stock < 2 ? <h4>¡Último producto disponible!</h4> : null}
         <button
           onClick={() => {
-            navigate(-1);
+            navigate("/catalogo");
             dispatch(pagesControl(page));
           }}
         >

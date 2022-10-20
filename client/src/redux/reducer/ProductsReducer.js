@@ -4,8 +4,8 @@ const initialState = {
   detail: {},
   filtered: [],
   pages: 1,
-  reviews: []
-
+  reviews: [],
+  favorite: [],
 };
 
 export function products(state = initialState, action) {
@@ -28,19 +28,19 @@ export function products(state = initialState, action) {
     case "GET_PRODUCTS_BY_ID":
       return {
         ...state,
-        detail: action.payload
-      }
-      case "GET_REVIEWS_BY_PRODUCT":
-        return {
-          ...state,
-          reviews: action.payload
-        }
-      case "GET_REVIEWS":
-        return {
-          ...state,
-          reviews: action.payload
-        }
-      case 'REMOVE_DETAIL': 
+        detail: action.payload,
+      };
+    case "GET_REVIEWS_BY_PRODUCT":
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    case "GET_REVIEWS":
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+    case "REMOVE_DETAIL":
       return {
         ...state,
         detail: {},
@@ -83,6 +83,26 @@ export function products(state = initialState, action) {
     case "IMAGE_POST":
       return {
         ...state,
+      };
+    case "ADD_FAV":
+      return {
+        ...state,
+        favorite: action.payload,
+      };
+    case "DELETE_FAV":
+      return {
+        ...state,
+        favorite: action.payload,
+      };
+    case "GET_FAV":
+      return {
+        ...state,
+        favorite: action.payload,
+      };
+    case "REMOVE_STATE_FAV":
+      return {
+        ...state,
+        favorite: [],
       };
     default:
       return state;

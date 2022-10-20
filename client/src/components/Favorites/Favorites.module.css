@@ -1,0 +1,24 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.button{
+  width: 186px;
+  height: 30px;
+  margin: 0 auto;
+  border: none;
+  background-color: #f7d9d9;
+  position: absolute;
+  margin-left: -91px;
+  margin-top: -30px;
+  border-radius: 7px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.button:hover{
+    background-color: #ec80a4;
+}

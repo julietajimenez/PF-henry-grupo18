@@ -38,21 +38,24 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Users, Products, Reviews, Payments, Category, Compras } = sequelize.models;
+const { Users, Products, Reviews, Payments, Category, Compras } =
+  sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 Products.belongsToMany(Category, { through: "products_categories" });
 Category.belongsToMany(Products, { through: "products_categories" });
+Products.belongsToMany(Users, { through: "favorites" });
+Users.belongsToMany(Products, { through: "favorites" });
 
+Users.hasMany(Reviews);
+Reviews.belongsTo(Users);
+Reviews.belongsTo(Products);
+Products.hasMany(Reviews);
 
-Users.hasMany(Reviews)
-Reviews.belongsTo(Users)
-Reviews.belongsTo(Products)
-Products.hasMany(Reviews)
-
-
-const DetalleCompras = sequelize.define("detalle_Compras", {
+const DetalleCompras = sequelize.define(
+  "detalle_Compras",
+  {
     cantidad: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -61,14 +64,15 @@ const DetalleCompras = sequelize.define("detalle_Compras", {
       type: DataTypes.STRING,
       allowNull: false,
     },
-}, { timestamps: false });
+  },
+  { timestamps: false }
+);
 
 Products.belongsToMany(Compras, { through: DetalleCompras });
 Compras.belongsToMany(Products, { through: DetalleCompras });
 
-Users.hasMany(Compras)
-Compras.belongsTo(Users)
-
+Users.hasMany(Compras);
+Compras.belongsTo(Users);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

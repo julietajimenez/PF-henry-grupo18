@@ -9,8 +9,7 @@ export function getAllProducts() {
         type: "GET_PRODUCTS",
         payload: json.data,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 }
 
@@ -78,7 +77,8 @@ export function updateProducts(id, payload) {
 export function stockUpdate(id, payload) {
   return async function () {
     var json = await axios.put(
-      process.env.REACT_APP_URL_API + `/products/stockupdate/${id}?stock=${payload}`,
+      process.env.REACT_APP_URL_API +
+        `/products/stockupdate/${id}?stock=${payload}`,
       payload
     );
     return json;
@@ -95,8 +95,7 @@ export function getProductsByBrand(brand) {
         type: "GET_PRODUCTS_BY_BRAND",
         payload: json.data,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 }
 
@@ -130,7 +129,60 @@ export function image_post(payload, name) {
         type: "IMAGE_POST",
         payload: json.data,
       });
-    } catch (e) {
+    } catch (e) {}
+  };
+}
+export function addFavorite(idUser, idProduct) {
+  return async function (dispatch) {
+    try {
+      let response = await axios.post(
+        process.env.REACT_APP_URL_API + "/favorites/create",
+        { idUser, idProduct }
+      );
+      return dispatch({
+        type: "ADD_FAV",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 }
+
+export function deleteFavorites(idUser, idProduct) {
+  return async function (dispatch) {
+    try {
+      let response = await axios.delete(
+        process.env.REACT_APP_URL_API +
+          `/favorites/delete?idUser=${idUser}&idProduct=${idProduct}`
+      );
+      return dispatch({
+        type: "DELETE_FAV",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getFavorites(user) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        process.env.REACT_APP_URL_API + `/favorites/${user}`
+      );
+      return dispatch({
+        type: "GET_FAV",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export const removeStateFav = () => {
+  return {
+    type: "REMOVE_STATE_FAV",
+  };
+};

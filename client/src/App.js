@@ -36,6 +36,7 @@ import Review from "./components/Review/Review";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContextProvider } from "./context/authContext";
 import ContactUs from "./components/ContactUs/ContactUs";
+import Favorites from "./components/Favorites/Favorties";
 
 function App() {
   const dispatch = useDispatch();
@@ -151,6 +152,7 @@ function App() {
                 <Route path="/miscompras" element={<MisCompras />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/favoritos" element={<Favorites />} />
                 <Route
                   path="/carrito"
                   element={

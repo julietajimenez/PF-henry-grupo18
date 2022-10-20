@@ -8,7 +8,7 @@ import { GoogleButton } from "react-google-button";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../redux/actions/UsersAction";
 
-const Login = ({setCartItems}) => {
+const Login = ({ setCartItems }) => {
   const [inputs, setInputs] = useState({ email: "", password: "" });
   const [mensaje, setMensaje] = useState();
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const Login = ({setCartItems}) => {
   const { googleSignIn, user } = UserAuth();
 
   const handleGoogleSignIn = () => {
-    if (user != null && JSON.stringify(user)!=='{}') {
+    if (user != null && JSON.stringify(user) !== "{}") {
       let usuarioYaExiste = usersDataBase.find((e) => e.email === user.email);
       if (usuarioYaExiste) {
         axios
@@ -33,10 +33,12 @@ const Login = ({setCartItems}) => {
               setMensaje("");
               localStorage.setItem("token", data?.usuario.token);
               localStorage.setItem("logueado", JSON.stringify(data?.usuario));
-              if(JSON.parse(data?.usuario?.carrito)?.length !== 0) {
-                
-                localStorage.setItem("carrito", JSON.stringify(data?.usuario.carrito));
-                setCartItems(JSON.parse(data?.usuario.carrito))
+              if (JSON.parse(data.usuario.carrito).length !== 0) {
+                localStorage.setItem(
+                  "carrito",
+                  JSON.stringify(data?.usuario.carrito)
+                );
+                setCartItems(JSON.parse(data?.usuario.carrito));
               }
               setlogueado(data?.usuario);
               navigate("/");
@@ -52,7 +54,7 @@ const Login = ({setCartItems}) => {
       } else {
         const Usuario = {
           name: user.displayName,
-          category: 'user',
+          category: "user",
           email: user.email,
           password: user.uid,
           status: "VERIFIED",
